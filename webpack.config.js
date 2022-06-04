@@ -24,7 +24,7 @@ module.exports = {
             {
                 loader: 'ts-loader',
                 test: /\.(tsx|ts)$/,
-            }
+            },
         ],
     },
     plugins: [
