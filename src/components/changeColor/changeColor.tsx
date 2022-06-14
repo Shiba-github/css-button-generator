@@ -9,10 +9,7 @@ export const ChangeColor = () => {
 
     const [colorRgb, setColorRgb] = useState({ r: 0, g: 0, b: 0, a: 1 })
 
-    const handleOnChangeComplete = (
-        color: ColorResult,
-        event: React.ChangeEvent<HTMLInputElement>
-    ) => {
+    const handleOnChangeComplete = (color: ColorResult, event: React.ChangeEvent<HTMLInputElement>) => {
         setColorRgb({
             r: color.rgb.r,
             g: color.rgb.g,
@@ -35,11 +32,7 @@ export const ChangeColor = () => {
     }
     return (
         <Box>
-            <SketchPicker
-                color={colorRgb}
-                onChange={handleChange}
-                onChangeComplete={handleOnChangeComplete}
-            />
+            <SketchPicker color={colorRgb} onChange={handleChange} onChangeComplete={handleOnChangeComplete} />
         </Box>
     )
 }
