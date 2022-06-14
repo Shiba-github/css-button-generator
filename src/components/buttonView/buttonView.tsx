@@ -4,14 +4,10 @@ import { useAppSelector } from '../../hooks'
 
 export const ButtonView = () => {
     const color = useAppSelector((state) => state.buttonView.color)
-    const backgroundColor = useAppSelector(
-        (state) => state.buttonView.backgroundColor
-    )
+    const backgroundColor = useAppSelector((state) => state.buttonView.backgroundColor)
     const border = useAppSelector((state) => state.buttonView.border)
     const padding = useAppSelector((state) => state.buttonView.padding)
-    const textDecoration = useAppSelector(
-        (state) => state.buttonView.textDecoration
-    )
+    const textDecoration = useAppSelector((state) => state.buttonView.textDecoration)
     const display = useAppSelector((state) => state.buttonView.display)
     const fontSize = useAppSelector((state) => state.buttonView.fontSize)
 
@@ -26,7 +22,7 @@ export const ButtonView = () => {
     }
 
     return (
-        <Flex>
+        <Flex bg={'gray'}>
             <button style={buttonStyle}>Text</button>
         </Flex>
     )

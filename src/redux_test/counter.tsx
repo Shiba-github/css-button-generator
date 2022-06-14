@@ -11,9 +11,7 @@ export const Counter = () => {
             <h1>count is... {count}</h1>
             <button onClick={() => dispatch(increment())}>increment</button>
             <button onClick={() => dispatch(decrement())}>decrement</button>
-            <button onClick={() => dispatch(incrementByAmount(40))}>
-                incrementByAmount 40
-            </button>
+            <button onClick={() => dispatch(incrementByAmount(40))}>incrementByAmount 40</button>
         </Flex>
     )
 }

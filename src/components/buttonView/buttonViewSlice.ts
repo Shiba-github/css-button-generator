@@ -49,23 +49,14 @@ export const buttonViewSlice = createSlice({
     },
 })
 
-export const {
-    setColor,
-    setBackgroundColor,
-    setBorder,
-    setPadding,
-    setTextDecoration,
-    setDisplay,
-    setFontSize,
-} = buttonViewSlice.actions
+export const { setColor, setBackgroundColor, setBorder, setPadding, setTextDecoration, setDisplay, setFontSize } =
+    buttonViewSlice.actions
 
 export const color = (state: getStateType) => state.buttonView.color
-export const backgroundColor = (state: getStateType) =>
-    state.buttonView.backgroundColor
+export const backgroundColor = (state: getStateType) => state.buttonView.backgroundColor
 export const border = (state: getStateType) => state.buttonView.border
 export const padding = (state: getStateType) => state.buttonView.padding
-export const textDecoration = (state: getStateType) =>
-    state.buttonView.textDecoration
+export const textDecoration = (state: getStateType) => state.buttonView.textDecoration
 export const display = (state: getStateType) => state.buttonView.display
 
 export default buttonViewSlice.reducer
