@@ -1,8 +1,7 @@
-import React from "react"
-import { Flex } from "@chakra-ui/react"
-import { useAppDispatch } from "../../../hooks"
-import { setBackgroundColor, setColor, setPadding } from "../../buttonView/buttonViewSlice"
-
+import React from 'react'
+import { Flex } from '@chakra-ui/react'
+import { useAppDispatch } from '../../../hooks'
+import { setBackgroundColor, setColor, setPadding } from '../../buttonView/buttonViewSlice'
 
 export const TemplatesNeumophism001 = () => {
     // TODO：padding, colorなどいまある要素だけ適用してる。あくまでひな型
@@ -21,12 +20,13 @@ export const TemplatesNeumophism001 = () => {
         display: 'inline-block',
         fontSize: '20px',
         borderRadius: '50px',
-        boxShadow: '26px 26px 51px #d9d9d9, -26px -26px 51px #ffffff'
-
+        boxShadow: '26px 26px 51px #d9d9d9, -26px -26px 51px #ffffff',
     }
     return (
         <Flex flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
-            <button style={buttonStyle} onClick={() => onClick()}>Neumophism001</button>
+            <button style={buttonStyle} onClick={() => onClick()}>
+                Neumophism001
+            </button>
         </Flex>
     )
 }

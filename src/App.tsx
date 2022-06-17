@@ -35,7 +35,7 @@ const App = () => {
                         flex={3}
                     >
                         <ButtonView />
-                        <Templates/>
+                        <Templates />
                     </Flex>
                 </Flex>
             </ChakraProvider>
