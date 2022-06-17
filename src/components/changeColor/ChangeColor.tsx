@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
 import { Box } from '@chakra-ui/react'
+import React, { useState } from 'react'
 import { ColorResult, SketchPicker } from 'react-color'
 import { useAppDispatch } from '../../hooks'
-import { setBackgroundColor } from '../buttonView/buttonViewSlice'
+import { setColor } from '../buttonView/buttonViewSlice'
 
-export const BackgroundColor = () => {
+export const ChangeColor = () => {
     const dispatch = useAppDispatch()
 
     const [colorRgb, setColorRgb] = useState({ r: 0, g: 0, b: 0, a: 1 })
@@ -17,7 +17,7 @@ export const BackgroundColor = () => {
             a: color.rgb.a!,
         })
         const rgba = `rgba(${colorRgb.r},${colorRgb.g},${colorRgb.b},${colorRgb.a})`
-        dispatch(setBackgroundColor(rgba))
+        dispatch(setColor(rgba))
     }
 
     const handleChange = (color: ColorResult) => {
@@ -28,7 +28,7 @@ export const BackgroundColor = () => {
             a: color.rgb.a!,
         })
         const rgba = `rgba(${colorRgb.r},${colorRgb.g},${colorRgb.b},${colorRgb.a})`
-        dispatch(setBackgroundColor(rgba))
+        dispatch(setColor(rgba))
     }
     return (
         <Box>
