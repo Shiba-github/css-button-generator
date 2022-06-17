@@ -6,6 +6,7 @@ import { ButtonView } from './components/buttonView/ButtonView'
 import { ChangeColor } from './components/changeColor/ChangeColor'
 import { store } from './store'
 import { Padding } from './components/padding/Padding'
+import { Templates } from './components/templates/Templates'
 
 const App = () => {
     return (
@@ -34,6 +35,7 @@ const App = () => {
                         flex={3}
                     >
                         <ButtonView />
+                        <Templates />
                     </Flex>
                 </Flex>
             </ChakraProvider>
