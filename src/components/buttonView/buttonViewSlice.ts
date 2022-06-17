@@ -29,7 +29,7 @@ export const buttonViewSlice = createSlice({
             state.color = action.payload
         },
         setBackgroundColor: (state, action: PayloadAction<string>) => {
-            state.color = action.payload
+            state.backgroundColor = action.payload
         },
         setBorder: (state, action: PayloadAction<string>) => {
             state.color = action.payload
