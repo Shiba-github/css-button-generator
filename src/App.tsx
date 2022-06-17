@@ -5,6 +5,7 @@ import { BackgroundColor } from './components/backgroundColor/BackgroundColor'
 import { ButtonView } from './components/buttonView/ButtonView'
 import { ChangeColor } from './components/changeColor/ChangeColor'
 import { store } from './store'
+import { Padding } from './components/padding/Padding'
 
 const App = () => {
     return (
@@ -21,6 +22,7 @@ const App = () => {
                     >
                         <ChangeColor />
                         <BackgroundColor />
+                        <Padding />
                     </Flex>
                     <Flex
                         flexDirection={'column'}
