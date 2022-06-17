@@ -1,10 +1,10 @@
+import { ChakraProvider, Flex } from '@chakra-ui/react'
 import React from 'react'
-import { Center, ChakraProvider, Flex } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
+import { BackgroundColor } from './components/backgroundColor/BackgroundColor'
+import { ButtonView } from './components/buttonView/ButtonView'
+import { ChangeColor } from './components/changeColor/ChangeColor'
 import { store } from './store'
-import { ButtonView } from './components/buttonView/buttonView'
-import { ChangeColor } from './components/changeColor/changeColor'
-import { BackgroundColor } from './components/backgroundColor/backgroundColor'
 
 const App = () => {
     return (
