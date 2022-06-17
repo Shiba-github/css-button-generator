@@ -29,22 +29,22 @@ export const buttonViewSlice = createSlice({
             state.color = action.payload
         },
         setBackgroundColor: (state, action: PayloadAction<string>) => {
-            state.color = action.payload
+            state.backgroundColor = action.payload
         },
         setBorder: (state, action: PayloadAction<string>) => {
-            state.color = action.payload
+            state.border = action.payload
         },
         setPadding: (state, action: PayloadAction<string>) => {
-            state.color = action.payload
+            state.padding = action.payload
         },
         setTextDecoration: (state, action: PayloadAction<string>) => {
-            state.color = action.payload
+            state.textDecoration = action.payload
         },
         setDisplay: (state, action: PayloadAction<string>) => {
-            state.color = action.payload
+            state.display = action.payload
         },
         setFontSize: (state, action: PayloadAction<string>) => {
-            state.color = action.payload
+            state.fontSize = action.payload
         },
     },
 })

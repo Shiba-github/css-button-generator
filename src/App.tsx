@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 import { ButtonView } from './components/buttonView/buttonView'
 import { ChangeColor } from './components/changeColor/changeColor'
+import { BackgroundColor } from './components/backgroundColor/backgroundColor'
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                         flex={1}
                     >
                         <ChangeColor />
+                        <BackgroundColor />
                     </Flex>
                     <Flex
                         flexDirection={'column'}
