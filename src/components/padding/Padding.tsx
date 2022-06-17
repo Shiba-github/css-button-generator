@@ -27,6 +27,7 @@ export const Padding = () => {
             <Slider
                 id="slider"
                 defaultValue={25}
+                value={parseInt(padding.replace('px', ''))}
                 min={0}
                 max={200}
                 colorScheme="teal"
