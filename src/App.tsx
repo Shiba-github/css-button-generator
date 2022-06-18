@@ -7,6 +7,7 @@ import { ChangeColor } from './components/changeColor/ChangeColor'
 import { store } from './store'
 import { Padding } from './components/padding/Padding'
 import { Templates } from './components/templates/Templates'
+import { CodeArea } from './components/codeArea/CodeArea'
 
 const App = () => {
     return (
@@ -30,12 +31,23 @@ const App = () => {
                         alignItems={'center'}
                         justifyContent={'center'}
                         bg={'black'}
-                        minWidth={'60rem'}
+                        minWidth={'30rem'}
                         maxWidth={'120rem'}
                         flex={3}
                     >
                         <ButtonView />
                         <Templates />
+                    </Flex>
+                    <Flex
+                        flexDirection={'column'}
+                        alignItems={'center'}
+                        justifyContent={'center'}
+                        bg={'gray'}
+                        minWidth={'30rem'}
+                        maxWidth={'120rem'}
+                        flex={3}
+                    >
+                        <CodeArea />
                     </Flex>
                 </Flex>
             </ChakraProvider>
