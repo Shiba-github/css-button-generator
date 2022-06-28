@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getStateType } from '../../store'
 
+// TODO:ぶくぶくになる未来が容易に想像できる(要リファクタリング
 type buttonViewType = {
     color: string
     backgroundColor: string
@@ -10,6 +11,7 @@ type buttonViewType = {
     display: string
     fontSize: string
     borderColor: string
+    borderStyle: string
 }
 
 const initialState: buttonViewType = {
@@ -21,6 +23,7 @@ const initialState: buttonViewType = {
     display: 'inline-block',
     fontSize: '16px',
     borderColor: 'rgba(255,0,0,1)',
+    borderStyle: 'none',
 }
 
 export const buttonViewSlice = createSlice({
@@ -51,6 +54,9 @@ export const buttonViewSlice = createSlice({
         setBorderColor: (state, action: PayloadAction<string>) => {
             state.borderColor = action.payload
         },
+        setBorderStyle: (state, action: PayloadAction<string>) => {
+            state.borderStyle = action.payload
+        },
     },
 })
 
@@ -63,6 +69,7 @@ export const {
     setDisplay,
     setFontSize,
     setBorderColor,
+    setBorderStyle,
 } = buttonViewSlice.actions
 
 export const color = (state: getStateType) => state.buttonView.color
@@ -72,5 +79,6 @@ export const padding = (state: getStateType) => state.buttonView.padding
 export const textDecoration = (state: getStateType) => state.buttonView.textDecoration
 export const display = (state: getStateType) => state.buttonView.display
 export const borderColor = (state: getStateType) => state.buttonView.borderColor
+export const borderStyle = (state: getStateType) => state.buttonView.borderStyle
 
 export default buttonViewSlice.reducer

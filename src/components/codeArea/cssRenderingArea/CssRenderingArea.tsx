@@ -12,6 +12,8 @@ export const CssRenderingArea = () => {
     const fontSize = useAppSelector((state) => state.buttonView.fontSize)
     const borderColor = useAppSelector((state) => state.buttonView.borderColor)
     const isDisplayBorderColor = useAppSelector((state) => state.cssCustomArea.displayBorderColor)
+    const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
+    const isDisplayBorderStyle = useAppSelector((state) => state.cssCustomArea.displayBorderStyle)
     return (
         <Flex flexDirection={'column'} color={'black'} fontSize={'1.5rem'}>
             <Text>.custom_button {'{'}</Text>
@@ -23,6 +25,7 @@ export const CssRenderingArea = () => {
             <Text>display: {display}</Text>
             <Text>font-size: {fontSize}</Text>
             {isDisplayBorderColor ? <Text>border-color: {borderColor}</Text> : ''}
+            {isDisplayBorderStyle ? <Text>border-style: {borderStyle}</Text> : ''}
             <Text>{'}'}</Text>
         </Flex>
     )
