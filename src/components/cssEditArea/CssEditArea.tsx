@@ -10,6 +10,7 @@ import { motion } from 'framer-motion'
 import { addCssButtonAnimeVariants } from './animation/addCssButton'
 import { rotateElementVariants } from './animation/rotateElement'
 import { EditBorderColor } from './borderColor/EditBorderColor'
+import { EditBorderStyle } from './borderStyle/EditBorderStyle'
 
 export const CssEditArea = () => {
     const dispatch = useAppDispatch()
@@ -24,8 +25,10 @@ export const CssEditArea = () => {
             <BackgroundColor />
             <Padding />
             <EditBorderColor />
+            <EditBorderStyle />
             <Button
                 as={motion.button}
+                margin={'4rem'}
                 variants={addCssButtonAnimeVariants}
                 initial={addCssButtonAnimeVariants.off}
                 whileHover={addCssButtonAnimeVariants.on}

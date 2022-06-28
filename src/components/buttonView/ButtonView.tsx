@@ -11,6 +11,7 @@ export const ButtonView = () => {
     const display = useAppSelector((state) => state.buttonView.display)
     const fontSize = useAppSelector((state) => state.buttonView.fontSize)
     const borderColor = useAppSelector((state) => state.buttonView.borderColor)
+    const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
 
     const buttonStyle = {
         color: color,
@@ -21,6 +22,7 @@ export const ButtonView = () => {
         display: display,
         fontSize: fontSize,
         borderColor: borderColor,
+        borderStyle: borderStyle,
     }
 
     return (
