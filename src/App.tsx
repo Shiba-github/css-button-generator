@@ -1,13 +1,10 @@
-import { Center, ChakraProvider, Flex } from '@chakra-ui/react'
+import { ChakraProvider, Flex } from '@chakra-ui/react'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { BackgroundColor } from './components/backgroundColor/BackgroundColor'
-import { ButtonView } from './components/buttonView/ButtonView'
-import { ChangeColor } from './components/changeColor/ChangeColor'
-import { CodeArea } from './components/codeArea/CodeArea'
+import { Route, Routes } from 'react-router-dom'
 import Header from './components/header/Header'
-import { Padding } from './components/padding/Padding'
-import { Templates } from './components/templates/Templates'
+import Editor from './components/page/Editor/Editor'
+import Template from './components/page/Template/Template'
 import { store } from './store'
 
 const App = () => {
@@ -16,31 +13,10 @@ const App = () => {
             <ChakraProvider>
                 <Flex flexDirection="column">
                     <Header />
-                    <Flex flexDirection={'row'} justifyContent={'center'} width={'100%'} height={'60rem'}>
-                        <Flex flexDirection={'column'} alignItems={'center'} bg={'white'} width="50%" flex={1}>
-                            <ChangeColor />
-                            <BackgroundColor />
-                            <Padding />
-                        </Flex>
-                        <Flex
-                            flexDirection={'column'}
-                            alignItems={'center'}
-                            justifyContent={'center'}
-                            bg={'gray'}
-                            width="50%"
-                            flex={3}
-                        >
-                            <Center>
-                                <ButtonView />
-                            </Center>
-                            <Center>
-                                <CodeArea />
-                            </Center>
-                            <Center>
-                                <Templates />
-                            </Center>
-                        </Flex>
-                    </Flex>
+                    <Routes>
+                        <Route index element={<Template />} />
+                        <Route path="editor" element={<Editor />} />
+                    </Routes>
                 </Flex>
             </ChakraProvider>
         </Provider>
