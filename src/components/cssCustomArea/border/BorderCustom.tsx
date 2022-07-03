@@ -2,7 +2,12 @@ import React from 'react'
 import { Flex, Text } from '@chakra-ui/react'
 import { BellIcon, ChatIcon, CopyIcon } from '@chakra-ui/icons'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setDisplayBorderColor, setDisplayBorderStyle, setDisplayBorderWidth } from '../cssCustomAreaSlice'
+import {
+    setDisplayBorderColor,
+    setDisplayBorderRadius,
+    setDisplayBorderStyle,
+    setDisplayBorderWidth,
+} from '../cssCustomAreaSlice'
 
 export const BorderCustom = () => {
     // TODO:一旦適当なアイコンをおいておく
@@ -10,6 +15,7 @@ export const BorderCustom = () => {
     const displayBorderColor = useAppSelector((state) => state.cssCustomArea.displayBorderColor)
     const displayBorderStyle = useAppSelector((state) => state.cssCustomArea.displayBorderStyle)
     const displayBorderWidth = useAppSelector((state) => state.cssCustomArea.displayBorderWidth)
+    const displayBorderRadius = useAppSelector((state) => state.cssCustomArea.displayBorderRadius)
 
     return (
         <Flex flexDirection={'column'}>
@@ -58,6 +64,26 @@ export const BorderCustom = () => {
                 >
                     Border Width
                     <CopyIcon marginTop={'1.5rem'} boxSize={'12'} />
+                </Flex>
+            </Flex>
+            <Flex
+                flexDirection={'row'}
+                justifyContent={'space-around'}
+                backgroundColor={'teal.100'}
+                width={'50rem'}
+                height={'10rem'}
+            >
+                <Flex
+                    flexDirection={'column'}
+                    alignItems={'center'}
+                    backgroundColor={displayBorderRadius ? 'teal.500' : 'gray.100'}
+                    margin={'1rem'}
+                    padding={'1rem'}
+                    borderRadius={'1rem'}
+                    onClick={() => dispatch(setDisplayBorderRadius(!displayBorderRadius))}
+                >
+                    Border Radius
+                    <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />
                 </Flex>
             </Flex>
         </Flex>
