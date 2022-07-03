@@ -12,7 +12,13 @@ const App = () => {
     return (
         <Provider store={store}>
             <ChakraProvider>
-                <Flex flexDirection={'row'} justifyContent={'center'} width={'120rem'} height={'60rem'}>
+                <Flex
+                    flexDirection={'row'}
+                    justifyContent={'center'}
+                    width={'120rem'}
+                    minHeight={'60rem'}
+                    height={'100%'}
+                >
                     <CssEditArea />
                     <Flex flex={1} width={'60rem'} height={'inherit'}>
                         <Flex

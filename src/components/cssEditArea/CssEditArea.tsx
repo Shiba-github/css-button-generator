@@ -11,6 +11,7 @@ import { addCssButtonAnimeVariants } from './animation/addCssButton'
 import { rotateElementVariants } from './animation/rotateElement'
 import { EditBorderColor } from './borderColor/EditBorderColor'
 import { EditBorderStyle } from './borderStyle/EditBorderStyle'
+import { EditBorderRadius } from './borderRadius/EditBorderRadius'
 
 export const CssEditArea = () => {
     const dispatch = useAppDispatch()
@@ -26,6 +27,7 @@ export const CssEditArea = () => {
             <Padding />
             <EditBorderColor />
             <EditBorderStyle />
+            <EditBorderRadius />
             <Button
                 as={motion.button}
                 margin={'4rem'}
