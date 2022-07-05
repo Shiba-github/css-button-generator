@@ -1,30 +1,26 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import { BackgroundColor } from '../../backgroundColor/BackgroundColor'
 import { ButtonView } from '../../buttonView/ButtonView'
-import { ChangeColor } from '../../changeColor/ChangeColor'
 import { CodeArea } from '../../codeArea/CodeArea'
-import { Padding } from '../../padding/Padding'
+import { CssCustomArea } from '../../cssCustomArea/CssCustomArea'
+import { CssEditArea } from '../../cssEditArea/CssEditArea'
 
 const Editor = () => {
     return (
-        <div>
-            <Flex flexDirection={'row'}>
-                <Flex flexDirection={'column'} alignItems={'center'} bg={'gray.200'} flex={2}>
-                    <ChangeColor />
-                    <BackgroundColor />
-                    <Padding />
-                </Flex>
-                <Flex flexDirection={'column'} bg={'gray'} flex={1}>
-                    <Flex flex={3}>
-                        <ButtonView />
-                    </Flex>
-                    <Flex flex={7}>
-                        <CodeArea />
-                    </Flex>
-                </Flex>
+        <Flex flexDirection={'row'} height={'100vh'}>
+            <Flex flexDirection={'column'} alignItems={'center'} bg={'gray.200'} flex={2} zIndex={20}>
+                <CssEditArea />
             </Flex>
-        </div>
+            <Flex flexDirection={'column'} bg={'gray'} flex={1}>
+                <Flex flex={3}>
+                    <ButtonView />
+                </Flex>
+                <Flex flex={7}>
+                    <CodeArea />
+                </Flex>
+                <CssCustomArea />
+            </Flex>
+        </Flex>
     )
 }
 

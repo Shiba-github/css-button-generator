@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark, Tooltip, Flex, Text } from '@chakra-ui/react'
-import { useAppDispatch, useAppSelector } from '../../hooks'
-import { setPadding } from '../buttonView/buttonViewSlice'
+import { useAppDispatch, useAppSelector } from '../../../hooks'
+import { setPadding } from '../../buttonView/buttonViewSlice'
 
 export const Padding = () => {
     const dispatch = useAppDispatch()
@@ -16,12 +16,12 @@ export const Padding = () => {
             alignItems={'center'}
             margin={'1rem'}
             padding={'1rem'}
-            width={'100%'}
+            width={'50rem'}
             border={'1px'}
             borderRadius={'1rem'}
             borderColor={'gray.200'}
         >
-            <Text color={'black'} marginBottom={'1rem'}>
+            <Text color={'black'} marginBottom={'1rem'} fontSize={'2rem'}>
                 Padding
             </Text>
             <Slider

@@ -1,11 +1,14 @@
 import { ChakraProvider, Flex } from '@chakra-ui/react'
 import React from 'react'
 import { Provider } from 'react-redux'
-import { Route, Routes } from 'react-router-dom'
+
 import Header from './components/header/Header'
-import Editor from './components/page/Editor/Editor'
-import Template from './components/page/Template/Template'
+import Editor from './components/page/editor/Editor'
+import Template from './components/page/template/Template'
+
+import { Route, Routes } from 'react-router-dom'
 import { store } from './store'
+
 
 const App = () => {
     return (

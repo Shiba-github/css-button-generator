@@ -4,24 +4,48 @@ import { TemplatesNeumophism001 } from '../../templates/templatesNeumorphism001/
 
 const Template = () => {
     return (
-        <Flex bg={'twitter.200'} flexDirection={'column'} alignItems={'center'}>
+        <Flex bgColor={'twitter.200'} flexDirection={'column'} alignItems={'center'} height={'100vh'}>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
-                <TemplatesNeumophism001 />
-                <TemplatesNeumophism001 />
-                <TemplatesNeumophism001 />
-                <TemplatesNeumophism001 />
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
             </Flex>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
-                <TemplatesNeumophism001 />
-                <TemplatesNeumophism001 />
-                <TemplatesNeumophism001 />
-                <TemplatesNeumophism001 />
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
             </Flex>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
-                <TemplatesNeumophism001 />
-                <TemplatesNeumophism001 />
-                <TemplatesNeumophism001 />
-                <TemplatesNeumophism001 />
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
+                <Flex m={4}>
+                    <TemplatesNeumophism001 />
+                </Flex>
             </Flex>
         </Flex>
     )
