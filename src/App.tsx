@@ -4,12 +4,10 @@ import { Provider } from 'react-redux'
 
 import Header from './components/header/Header'
 
-
 import { Route, Routes } from 'react-router-dom'
 import { store } from './store'
 import Editor from './components/page/Editor/Editor'
 import Template from './components/page/Template/Template'
-
 
 const App = () => {
     return (
