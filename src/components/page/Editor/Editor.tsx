@@ -11,11 +11,11 @@ const Editor = () => {
             <Flex flexDirection={'column'} alignItems={'center'} bg={'gray.200'} flex={2} zIndex={20}>
                 <CssEditArea />
             </Flex>
-            <Flex flexDirection={'column'} bg={'gray'} flex={1}>
-                <Flex flex={3}>
+            <Flex flexDirection={'column'} bg={'#e2e8f0'} flex={1} alignItems={'center'}>
+                <Flex height={'29rem'} margin={'2rem 0'} alignItems={'center'} justifyContent={'center'}>
                     <ButtonView />
                 </Flex>
-                <Flex flex={7}>
+                <Flex>
                     <CodeArea />
                 </Flex>
                 <CssCustomArea />

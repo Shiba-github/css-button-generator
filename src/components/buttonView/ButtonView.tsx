@@ -28,7 +28,7 @@ export const ButtonView = () => {
     }
 
     return (
-        <Flex bg={'gray'}>
+        <Flex bg={'#e2e8f0'}>
             <button style={buttonStyle}>Text</button>
         </Flex>
     )
