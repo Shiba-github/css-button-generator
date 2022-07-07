@@ -1,5 +1,5 @@
 import { Flex } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useAppSelector } from '../../hooks'
 import { openCssCustomAreaVariants } from './animation/openCssCustomAreaAnimation'
@@ -9,19 +9,17 @@ export const CssCustomArea = () => {
     const openCssCustomAreaControls = useAnimation()
     const isCustomAreaOpen = useAppSelector((state) => state.cssCustomArea.isOpen)
 
-    useEffect(() => {
-        if (isCustomAreaOpen) {
-            openCssCustomAreaControls.start('open')
-        } else {
-            openCssCustomAreaControls.start('close')
-        }
-    }, [isCustomAreaOpen])
+    if (isCustomAreaOpen) {
+        openCssCustomAreaControls.start('open')
+    } else {
+        openCssCustomAreaControls.start('close')
+    }
 
     return (
         <Flex
             as={motion.div}
             position={'absolute'}
-            backgroundColor={'gray'}
+            backgroundColor={'gray.100'}
             height={'inherit'}
             width={'inherit'}
             zIndex={10}

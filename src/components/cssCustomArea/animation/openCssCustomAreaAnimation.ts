@@ -1,6 +1,6 @@
 export const openCssCustomAreaVariants = {
     open: {
-        left: '60rem',
+        left: '66vw',
         transition: { duration: 0.5 },
     },
     close: {
