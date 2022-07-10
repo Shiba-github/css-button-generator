@@ -18,7 +18,7 @@ export const CssEditArea = () => {
     const isCustomAreaOpen = useAppSelector((state) => state.cssCustomArea.isOpen)
 
     return (
-        <div>
+        <Flex flexDirection={'column'} alignItems={'center'} bg={'gray.200'} flex={2} zIndex={20}>
             <Text margin={'2rem'} marginBottom={'4rem'}>
                 This is CSS edit area
             </Text>
@@ -47,6 +47,6 @@ export const CssEditArea = () => {
                     <AddIcon />
                 </Box>
             </Button>
-        </div>
+        </Flex>
     )
 }

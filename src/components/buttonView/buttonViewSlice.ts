@@ -19,7 +19,7 @@ const initialState: buttonViewType = {
     color: 'rgba(255,0,0,1)',
     backgroundColor: '#4CAF50',
     border: 'none',
-    padding: '15px 32px',
+    padding: '30px 60px',
     textDecoration: 'none',
     display: 'inline-block',
     fontSize: '16px',
