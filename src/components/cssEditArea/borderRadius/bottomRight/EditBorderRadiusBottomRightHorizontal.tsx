@@ -3,14 +3,14 @@ import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
 import { setBorderRadius } from '../../../buttonView/buttonViewSlice'
 
-export const EditBorderRadiusTopLeftVertical = memo(() => {
+export const EditBorderRadiusBottomRightHorizontal = memo(() => {
     const dispatch = useAppDispatch()
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
-    const [showTooltipTopLeftVertical, setShowTooltipTopLeftVertical] = useState(false)
+    const [showTooltipBottomRightHorizontal, setShowTooltipBottomRightHorizontal] = useState(false)
     const getBorderRadius = () => {
         const borderRadiusList = borderRadius.split(' ').filter((value) => value !== '/')
         if (borderRadiusList.length === 8) {
-            return borderRadiusList[4]
+            return borderRadiusList[2]
         } else {
             return borderRadius
         }
@@ -18,7 +18,7 @@ export const EditBorderRadiusTopLeftVertical = memo(() => {
     const onChangeValue = (v: number) => {
         const borderRadiusList = borderRadius.split(' ').filter((value) => value !== '/')
         if (borderRadiusList.length === 8) {
-            borderRadiusList[4] = v.toString() + 'px'
+            borderRadiusList[2] = v.toString() + 'px'
             borderRadiusList.splice(4, 0, '/')
             dispatch(setBorderRadius(borderRadiusList.join(' ')))
         } else {
@@ -31,19 +31,19 @@ export const EditBorderRadiusTopLeftVertical = memo(() => {
     }
     return (
         <Flex flexDirection={'row'} alignItems={'center'} width={'50rem'}>
-            <Text display={'flex'} justifyContent={'center'} alignItems={'center'} color={'black'} width={'8rem'}>
-                Vertical
+            <Text display={'flex'} justifyContent={'center'} alignItems={'center'} color={'black'} width={'10rem'}>
+                Horizontal
             </Text>
             <Slider
-                id="topLeft-vertical"
+                id="bottomRight-horizontal"
                 defaultValue={25}
                 value={parseInt(getBorderRadius().replace('px', ''))}
                 min={0}
                 max={200}
                 colorScheme="teal"
                 onChange={(v) => onChangeValue(v)}
-                onMouseEnter={() => setShowTooltipTopLeftVertical(true)}
-                onMouseLeave={() => setShowTooltipTopLeftVertical(false)}
+                onMouseEnter={() => setShowTooltipBottomRightHorizontal(true)}
+                onMouseLeave={() => setShowTooltipBottomRightHorizontal(false)}
             >
                 <SliderMark color={'black'} value={50} mt="1" ml="-2.5" fontSize="sm">
                     50px
@@ -62,7 +62,7 @@ export const EditBorderRadiusTopLeftVertical = memo(() => {
                     bg="teal.500"
                     color="white"
                     placement="top"
-                    isOpen={showTooltipTopLeftVertical}
+                    isOpen={showTooltipBottomRightHorizontal}
                     label={getBorderRadius()}
                 >
                     <SliderThumb />

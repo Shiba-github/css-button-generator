@@ -3,14 +3,14 @@ import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
 import { setBorderRadius } from '../../../buttonView/buttonViewSlice'
 
-export const EditBorderRadiusTopLeftVertical = memo(() => {
+export const EditBorderRadiusBottomLeftVertical = memo(() => {
     const dispatch = useAppDispatch()
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
-    const [showTooltipTopLeftVertical, setShowTooltipTopLeftVertical] = useState(false)
+    const [showTooltipBottomLeftVertical, setShowTooltipBottomLeftVertical] = useState(false)
     const getBorderRadius = () => {
         const borderRadiusList = borderRadius.split(' ').filter((value) => value !== '/')
         if (borderRadiusList.length === 8) {
-            return borderRadiusList[4]
+            return borderRadiusList[7]
         } else {
             return borderRadius
         }
@@ -18,7 +18,7 @@ export const EditBorderRadiusTopLeftVertical = memo(() => {
     const onChangeValue = (v: number) => {
         const borderRadiusList = borderRadius.split(' ').filter((value) => value !== '/')
         if (borderRadiusList.length === 8) {
-            borderRadiusList[4] = v.toString() + 'px'
+            borderRadiusList[7] = v.toString() + 'px'
             borderRadiusList.splice(4, 0, '/')
             dispatch(setBorderRadius(borderRadiusList.join(' ')))
         } else {
@@ -35,15 +35,15 @@ export const EditBorderRadiusTopLeftVertical = memo(() => {
                 Vertical
             </Text>
             <Slider
-                id="topLeft-vertical"
+                id="bottomLeft-vertical"
                 defaultValue={25}
                 value={parseInt(getBorderRadius().replace('px', ''))}
                 min={0}
                 max={200}
                 colorScheme="teal"
                 onChange={(v) => onChangeValue(v)}
-                onMouseEnter={() => setShowTooltipTopLeftVertical(true)}
-                onMouseLeave={() => setShowTooltipTopLeftVertical(false)}
+                onMouseEnter={() => setShowTooltipBottomLeftVertical(true)}
+                onMouseLeave={() => setShowTooltipBottomLeftVertical(false)}
             >
                 <SliderMark color={'black'} value={50} mt="1" ml="-2.5" fontSize="sm">
                     50px
@@ -62,7 +62,7 @@ export const EditBorderRadiusTopLeftVertical = memo(() => {
                     bg="teal.500"
                     color="white"
                     placement="top"
-                    isOpen={showTooltipTopLeftVertical}
+                    isOpen={showTooltipBottomLeftVertical}
                     label={getBorderRadius()}
                 >
                     <SliderThumb />

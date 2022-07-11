@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks'
 import { setBorderRadius } from '../../../buttonView/buttonViewSlice'
 
 export const EditBorderRadiusTopLeftHorizontal = memo(() => {
-    console.log('EditBorderRadiusTopLeftHorizontal')
     const dispatch = useAppDispatch()
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
     const [showTooltipTopLeftHorizontal, setShowTooltipTopLeftHorizontal] = useState(false)
