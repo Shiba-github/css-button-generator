@@ -17,6 +17,8 @@ import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setBorderRadius } from '../../buttonView/buttonViewSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
+import { EditBorderRadiusTopLeftHorizontal } from './topLeft/EditBorderRadiusTopLeftHorizontal'
+import { EditBorderRadiusTopLeftVertical } from './topLeft/EditBorderRadiusTopLeftVertical'
 
 export const EditBorderRadius = () => {
     // TODO:デカすぎコンポーネント
@@ -27,8 +29,6 @@ export const EditBorderRadius = () => {
     const displayBorderRadius = useAppSelector((state) => state.cssCustomArea.displayBorderRadius)
     const [borderRadiusAll, setBorderRadiusAll] = useState(borderRadius)
     const [showTooltipAll, setShowTooltipAll] = useState(false)
-    const [showTooltipTopLeftHorizontal, setShowTooltipTopLeftHorizontal] = useState(false)
-    const [showTooltipTopLeftVertical, setShowTooltipTopLeftVertical] = useState(false)
     const [showTooltipTopRightHorizontal, setShowTooltipTopRightHorizontal] = useState(false)
     const [showTooltipTopRightVertical, setShowTooltipTopRightVertical] = useState(false)
     const [showTooltipBottomRightHorizontal, setShowTooltipBottomRightHorizontal] = useState(false)
@@ -40,11 +40,7 @@ export const EditBorderRadius = () => {
 
     const getBorderRadius = (position: string) => {
         const borderRadiusList = borderRadius.split(' ').filter((value) => value !== '/')
-        if (borderRadiusList.length === 8 && position === 'topLeftHorizontal') {
-            return borderRadiusList[0]
-        } else if (borderRadiusList.length === 8 && position === 'topLeftVertical') {
-            return borderRadiusList[4]
-        } else if (borderRadiusList.length === 8 && position === 'topRightHorizontal') {
+        if (borderRadiusList.length === 8 && position === 'topRightHorizontal') {
             return borderRadiusList[1]
         } else if (borderRadiusList.length === 8 && position === 'topRightVertical') {
             return borderRadiusList[5]
@@ -71,11 +67,7 @@ export const EditBorderRadius = () => {
                     )
                 )
             } else {
-                if (position === 'topLeftHorizontal') {
-                    borderRadiusList[0] = v.toString() + 'px'
-                } else if (position === 'topLeftVertical') {
-                    borderRadiusList[4] = v.toString() + 'px'
-                } else if (position === 'topRightHorizontal') {
+                if (position === 'topRightHorizontal') {
                     borderRadiusList[1] = v.toString() + 'px'
                 } else if (position === 'topRightVertical') {
                     borderRadiusList[5] = v.toString() + 'px'
@@ -193,92 +185,8 @@ export const EditBorderRadius = () => {
                                 >
                                     Top Left
                                 </Text>
-                                <Text
-                                    display={'flex'}
-                                    justifyContent={'center'}
-                                    alignItems={'center'}
-                                    color={'black'}
-                                    width={'25rem'}
-                                >
-                                    Horizontal
-                                </Text>
-                                <Slider
-                                    id="topLeft-horizontal"
-                                    defaultValue={25}
-                                    value={parseInt(getBorderRadius('topLeftHorizontal').replace('px', ''))}
-                                    min={0}
-                                    max={200}
-                                    colorScheme="teal"
-                                    onChange={(v) => onChangeValue(v, 'topLeftHorizontal')}
-                                    onMouseEnter={() => setShowTooltipTopLeftHorizontal(true)}
-                                    onMouseLeave={() => setShowTooltipTopLeftHorizontal(false)}
-                                >
-                                    <SliderMark color={'black'} value={50} mt="1" ml="-2.5" fontSize="sm">
-                                        50px
-                                    </SliderMark>
-                                    <SliderMark color={'black'} value={100} mt="1" ml="-2.5" fontSize="sm">
-                                        100px
-                                    </SliderMark>
-                                    <SliderMark color={'black'} value={150} mt="1" ml="-2.5" fontSize="sm">
-                                        150px
-                                    </SliderMark>
-                                    <SliderTrack bg={'teal.50'}>
-                                        <SliderFilledTrack />
-                                    </SliderTrack>
-                                    <Tooltip
-                                        hasArrow
-                                        bg="teal.500"
-                                        color="white"
-                                        placement="top"
-                                        isOpen={showTooltipTopLeftHorizontal}
-                                        label={getBorderRadius('topLeftHorizontal')}
-                                    >
-                                        <SliderThumb />
-                                    </Tooltip>
-                                </Slider>
-                                <Text
-                                    display={'flex'}
-                                    justifyContent={'center'}
-                                    alignItems={'center'}
-                                    color={'black'}
-                                    width={'18rem'}
-                                >
-                                    Vertical
-                                </Text>
-                                <Slider
-                                    id="topLeft-vertical"
-                                    defaultValue={25}
-                                    value={parseInt(getBorderRadius('topLeftVertical').replace('px', ''))}
-                                    min={0}
-                                    max={200}
-                                    colorScheme="teal"
-                                    onChange={(v) => onChangeValue(v, 'topLeftVertical')}
-                                    onMouseEnter={() => setShowTooltipTopLeftVertical(true)}
-                                    onMouseLeave={() => setShowTooltipTopLeftVertical(false)}
-                                >
-                                    <SliderMark color={'black'} value={50} mt="1" ml="-2.5" fontSize="sm">
-                                        50px
-                                    </SliderMark>
-                                    <SliderMark color={'black'} value={100} mt="1" ml="-2.5" fontSize="sm">
-                                        100px
-                                    </SliderMark>
-                                    <SliderMark color={'black'} value={150} mt="1" ml="-2.5" fontSize="sm">
-                                        150px
-                                    </SliderMark>
-                                    <SliderTrack bg={'teal.50'}>
-                                        <SliderFilledTrack />
-                                    </SliderTrack>
-                                    <Tooltip
-                                        hasArrow
-                                        bg="teal.500"
-                                        color="white"
-                                        placement="top"
-                                        isOpen={showTooltipTopLeftVertical}
-                                        label={getBorderRadius('topLeftVertical')}
-                                    >
-                                        <SliderThumb />
-                                    </Tooltip>
-                                </Slider>
+                                <EditBorderRadiusTopLeftHorizontal />
+                                <EditBorderRadiusTopLeftVertical />
                             </Flex>
                             <Flex flexDirection={'row'} alignItems={'center'} width={'inherit'} margin={'0.3rem'}>
                                 <Text

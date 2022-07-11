@@ -19,8 +19,8 @@ export const CssCustomArea = () => {
         <Flex
             as={motion.div}
             position={'absolute'}
-            backgroundColor={'gray.100'}
-            height={'inherit'}
+            backgroundColor={'teal'}
+            height={'100vh'}
             width={'inherit'}
             zIndex={10}
             left={'0rem'}
