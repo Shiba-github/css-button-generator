@@ -1,9 +1,9 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import { ButtonView } from '../../buttonView/ButtonView'
-import { CodeArea } from '../../codeArea/CodeArea'
-import { CssCustomArea } from '../../cssCustomArea/CssCustomArea'
-import { CssEditArea } from '../../cssEditArea/CssEditArea'
+import { ButtonView } from '../../components/buttonView/ButtonView'
+import { CodeArea } from '../../components/codeArea/CodeArea'
+import { CssCustomArea } from '../../components/cssCustomArea/CssCustomArea'
+import { CssEditArea } from '../../components/cssEditArea/CssEditArea'
 
 const Editor = () => {
     return (
