@@ -82,6 +82,7 @@ export const color = (state: getStateType) => state.buttonView.color
 export const backgroundColor = (state: getStateType) => state.buttonView.backgroundColor
 export const border = (state: getStateType) => state.buttonView.border
 export const padding = (state: getStateType) => state.buttonView.padding
+export const fontSize = (state: getStateType) => state.buttonView.fontSize
 export const textDecoration = (state: getStateType) => state.buttonView.textDecoration
 export const display = (state: getStateType) => state.buttonView.display
 export const borderColor = (state: getStateType) => state.buttonView.borderColor

@@ -3,6 +3,7 @@ import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import { BackgroundColor } from './backgroundColor/BackgroundColor'
 import { ChangeColor } from './changeColor/ChangeColor'
+import { FontSize } from './fontSize/FontSize'
 import { Padding } from './padding/Padding'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { setIsOpen } from '../cssCustomArea/cssCustomAreaSlice'
@@ -24,6 +25,7 @@ export const CssEditArea = () => {
             </Text>
             <ChangeColor />
             <BackgroundColor />
+            <FontSize />
             <Padding />
             <EditBorderColor />
             <EditBorderStyle />
