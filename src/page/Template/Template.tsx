@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import React from 'react'
-import { TemplatesNeumophism001 } from '../../templates/templatesNeumorphism001/TemplatesNeumophism001'
+import { TemplatesNeumophism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumophism001'
 
 const Template = () => {
     return (
