@@ -13,19 +13,21 @@ type buttonViewType = {
     borderColor: string
     borderStyle: string
     borderRadius: string
+    width: string
 }
 
 const initialState: buttonViewType = {
     color: 'rgba(255,0,0,1)',
     backgroundColor: '#4CAF50',
     border: 'none',
-    padding: '30px 60px',
+    padding: '20px',
     textDecoration: 'none',
     display: 'inline-block',
     fontSize: '16px',
     borderColor: 'rgba(255,0,0,1)',
     borderStyle: 'none',
     borderRadius: '0px',
+    width: '150px',
 }
 
 export const buttonViewSlice = createSlice({
@@ -62,6 +64,9 @@ export const buttonViewSlice = createSlice({
         setBorderRadius: (state, action: PayloadAction<string>) => {
             state.borderRadius = action.payload
         },
+        setWidth: (state, action: PayloadAction<string>) => {
+            state.width = action.payload
+        },
     },
 })
 
@@ -76,6 +81,7 @@ export const {
     setBorderColor,
     setBorderStyle,
     setBorderRadius,
+    setWidth,
 } = buttonViewSlice.actions
 
 export const color = (state: getStateType) => state.buttonView.color
@@ -87,5 +93,6 @@ export const display = (state: getStateType) => state.buttonView.display
 export const borderColor = (state: getStateType) => state.buttonView.borderColor
 export const borderStyle = (state: getStateType) => state.buttonView.borderStyle
 export const borderRadius = (state: getStateType) => state.buttonView.borderRadius
+export const width = (state: getStateType) => state.buttonView.width
 
 export default buttonViewSlice.reducer

@@ -4,6 +4,7 @@ import { motion, useAnimation } from 'framer-motion'
 import { useAppSelector } from '../../hooks'
 import { openCssCustomAreaVariants } from './animation/openCssCustomAreaAnimation'
 import { BorderCustom } from './border/BorderCustom'
+import { BacisCustom } from './basic/basicCustom'
 
 export const CssCustomArea = () => {
     const openCssCustomAreaControls = useAnimation()
@@ -18,6 +19,7 @@ export const CssCustomArea = () => {
     return (
         <Flex
             as={motion.div}
+            flexDirection={'column'}
             position={'absolute'}
             backgroundColor={'teal'}
             height={'100vh'}
@@ -28,6 +30,7 @@ export const CssCustomArea = () => {
             animate={openCssCustomAreaControls}
             variants={openCssCustomAreaVariants}
         >
+            <BacisCustom />
             <BorderCustom />
         </Flex>
     )
