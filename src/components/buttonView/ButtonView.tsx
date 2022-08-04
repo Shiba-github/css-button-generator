@@ -13,6 +13,7 @@ export const ButtonView = () => {
     const borderColor = useAppSelector((state) => state.buttonView.borderColor)
     const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
+    const width = useAppSelector((state) => state.buttonView.width)
 
     const buttonStyle = {
         color: color,
@@ -25,6 +26,7 @@ export const ButtonView = () => {
         borderColor: borderColor,
         borderStyle: borderStyle,
         borderRadius: borderRadius,
+        width: width,
     }
 
     return (
