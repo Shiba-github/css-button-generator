@@ -12,6 +12,7 @@ import { rotateElementVariants } from './animation/rotateElement'
 import { EditBorderColor } from './borderColor/EditBorderColor'
 import { EditBorderStyle } from './borderStyle/EditBorderStyle'
 import { EditBorderRadius } from './borderRadius/EditBorderRadius'
+import { EditWidth } from './width/EditWidth'
 
 export const CssEditArea = () => {
     const dispatch = useAppDispatch()
@@ -22,6 +23,7 @@ export const CssEditArea = () => {
             <Text margin={'2rem'} marginBottom={'4rem'}>
                 This is CSS edit area
             </Text>
+            <EditWidth />
             <ChangeColor />
             <BackgroundColor />
             <Padding />
