@@ -5,6 +5,8 @@ import { useAppSelector } from '../../../hooks'
 export const CssRenderingArea = () => {
     const widht = useAppSelector((state) => state.buttonView.width)
     const isDisplayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
+    const height = useAppSelector((state) => state.buttonView.height)
+    const isDisplayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
     const color = useAppSelector((state) => state.buttonView.color)
     const backgroundColor = useAppSelector((state) => state.buttonView.backgroundColor)
     const border = useAppSelector((state) => state.buttonView.border)
@@ -22,6 +24,7 @@ export const CssRenderingArea = () => {
         <Flex flexDirection={'column'} color={'black'} fontSize={'1.5rem'} margin={'1rem'}>
             <Text>.custom_button {'{'}</Text>
             {isDisplayWidth && <Text>&emsp;width: {widht}</Text>}
+            {isDisplayHeight && <Text>&emsp;height: {height}</Text>}
             <Text>&emsp;color: {color}</Text>
             <Text>&emsp;background-color: {backgroundColor}</Text>
             <Text>&emsp;border: {border}</Text>
