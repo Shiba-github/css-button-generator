@@ -19,17 +19,17 @@ type buttonViewType = {
 
 const initialState: buttonViewType = {
     color: 'rgba(255,0,0,1)',
-    backgroundColor: '#4CAF50',
+    backgroundColor: 'rgba(0,0,255,1)',
     border: 'none',
-    padding: '20px',
+    padding: '0px',
     textDecoration: 'none',
     display: 'inline-block',
-    fontSize: '16px',
-    borderColor: 'rgba(255,0,0,1)',
+    fontSize: '30px',
+    borderColor: 'none',
     borderStyle: 'none',
     borderRadius: '0px',
     width: '150px',
-    height: '75x',
+    height: '75px',
 }
 
 export const buttonViewSlice = createSlice({
