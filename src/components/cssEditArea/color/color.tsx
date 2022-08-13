@@ -8,7 +8,7 @@ import { setColor } from '../../buttonView/buttonViewSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
-export const ChangeColor = () => {
+export const Color = () => {
     const dispatch = useAppDispatch()
     const colorRgb = useAppSelector((state) => state.buttonView.color)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
