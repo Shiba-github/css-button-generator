@@ -9,7 +9,6 @@ export const BacisCustom = () => {
     const dispatch = useAppDispatch()
     const displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
     const displayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
-
     return (
         <Flex flexDirection={'column'}>
             <Text fontSize={'2rem'} margin={'0.5rem'} marginLeft={'2rem'}>
