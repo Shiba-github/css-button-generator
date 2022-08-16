@@ -4,6 +4,7 @@ import { AddIcon } from '@chakra-ui/icons'
 import { BackgroundColor } from './backgroundColor/BackgroundColor'
 import { ChangeColor } from './changeColor/ChangeColor'
 import { FontSize } from './fontSize/FontSize'
+import { Color } from './color/color'
 import { Padding } from './padding/Padding'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { setIsOpen } from '../cssCustomArea/cssCustomAreaSlice'
@@ -13,6 +14,8 @@ import { rotateElementVariants } from './animation/rotateElement'
 import { EditBorderColor } from './borderColor/EditBorderColor'
 import { EditBorderStyle } from './borderStyle/EditBorderStyle'
 import { EditBorderRadius } from './borderRadius/EditBorderRadius'
+import { EditWidth } from './width/EditWidth'
+import { EditHeight } from './height/EditHeight'
 
 export const CssEditArea = () => {
     const dispatch = useAppDispatch()
@@ -23,7 +26,9 @@ export const CssEditArea = () => {
             <Text margin={'2rem'} marginBottom={'4rem'}>
                 This is CSS edit area
             </Text>
-            <ChangeColor />
+            <EditWidth />
+            <EditHeight />
+            <Color />
             <BackgroundColor />
             <FontSize />
             <Padding />
