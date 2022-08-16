@@ -4,7 +4,7 @@ import { motion, useAnimation } from 'framer-motion'
 import { useAppSelector } from '../../hooks'
 import { openCssCustomAreaVariants } from './animation/openCssCustomAreaAnimation'
 import { BorderCustom } from './border/BorderCustom'
-import { CssCustomAnimeArea } from '../cssCustomAnimeArea/CssCustomAnimeArea'
+import { BacisCustom } from './basic/basicCustom'
 
 export const CssCustomArea = () => {
     const openCssCustomAreaControls = useAnimation()
@@ -32,6 +32,7 @@ export const CssCustomArea = () => {
     return (
         <Flex
             as={motion.div}
+            flexDirection={'column'}
             position={'absolute'}
             backgroundColor={'teal'}
             width={'inherit'}
@@ -43,41 +44,8 @@ export const CssCustomArea = () => {
             animate={openCssCustomAreaControls}
             variants={openCssCustomAreaVariants}
         >
-            <Button
-                marginTop={'-3rem'}
-                position={'absolute'}
-                bg={'teal'}
-                height={'3rem'}
-                width={'9rem'}
-                fontSize={'1.5rem'}
-                alignItems={'center'}
-                justifyContent={'center'}
-                borderRadius={'0'}
-                onClick={() => onClickStyleTub()}
-            >
-                Style
-            </Button>
-            <Flex width={'66vw'} height={'100vh'} bg={'teal'} position={'absolute'} zIndex={styleZIndex}>
-                <BorderCustom />
-            </Flex>
-            <Button
-                marginTop={'-3rem'}
-                position={'absolute'}
-                marginLeft={'9rem'}
-                bg={'teal.500'}
-                height={'3rem'}
-                width={'9rem'}
-                fontSize={'1.5rem'}
-                alignItems={'center'}
-                justifyContent={'center'}
-                borderRadius={0}
-                onClick={() => onClickAnimeTub()}
-            >
-                Animation
-            </Button>
-            <Flex bg={'teal.500'} position={'absolute'} width={'66vw'} height={'100vh'} zIndex={animationZIndex}>
-                <CssCustomAnimeArea />
-            </Flex>
+            <BacisCustom />
+            <BorderCustom />
         </Flex>
     )
 }
