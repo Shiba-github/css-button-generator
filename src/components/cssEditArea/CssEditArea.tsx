@@ -26,7 +26,6 @@ export const CssEditArea = () => {
             </Text>
             <EditWidth />
             <EditHeight />
-            <ChangeColor />
             <Color />
             <BackgroundColor />
             <Padding />
