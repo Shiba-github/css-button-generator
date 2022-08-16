@@ -8,7 +8,6 @@ export const BacisCustom = () => {
     // TODO:今後設定するCSSプロパティどんなもんになるかワカメだったのでとりあえずBacisにしました
     const dispatch = useAppDispatch()
     const displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
-
     return (
         <Flex flexDirection={'column'}>
             <Text fontSize={'2rem'} margin={'0.5rem'} marginLeft={'2rem'}>

@@ -7,7 +7,7 @@ import { CssEditArea } from '../../components/cssEditArea/CssEditArea'
 
 const Editor = () => {
     return (
-        <Flex flexDirection={'row'} height={'100vh'}>
+        <Flex flexDirection={'row'} height={'100%'} width={'100%'}>
             <CssEditArea />
             <Flex flexDirection={'column'} bg={'#e2e8f0'} flex={1} alignItems={'center'}>
                 <ButtonView />
