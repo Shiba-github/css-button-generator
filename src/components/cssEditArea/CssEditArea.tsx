@@ -13,6 +13,7 @@ import { EditBorderColor } from './borderColor/EditBorderColor'
 import { EditBorderStyle } from './borderStyle/EditBorderStyle'
 import { EditBorderRadius } from './borderRadius/EditBorderRadius'
 import { EditWidth } from './width/EditWidth'
+import { EditHeight } from './height/EditHeight'
 
 export const CssEditArea = () => {
     const dispatch = useAppDispatch()
@@ -24,6 +25,7 @@ export const CssEditArea = () => {
                 This is CSS edit area
             </Text>
             <EditWidth />
+            <EditHeight />
             <ChangeColor />
             <Color />
             <BackgroundColor />
