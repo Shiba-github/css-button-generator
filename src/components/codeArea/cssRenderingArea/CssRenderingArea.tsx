@@ -5,9 +5,7 @@ import { defaultButtonCss } from '../defaultButtonCss'
 
 export const CssRenderingArea = () => {
     const widht = useAppSelector((state) => state.buttonView.width)
-    const isDisplayWidth = defaultButtonCss.width === 'ALWAYS' || defaultButtonCss.width !== widht
-    const height = useAppSelector((state) => state.buttonView.height)
-    const isDisplayHeight = defaultButtonCss.height === 'ALWAYS' || defaultButtonCss.height !== height
+    const isDisplayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
     const color = useAppSelector((state) => state.buttonView.color)
     const isDisplayColor = defaultButtonCss.color === 'ALWAYS' || defaultButtonCss.color !== color
     const backgroundColor = useAppSelector((state) => state.buttonView.backgroundColor)
