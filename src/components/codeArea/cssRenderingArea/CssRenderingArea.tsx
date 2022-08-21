@@ -4,8 +4,8 @@ import { useAppSelector } from '../../../hooks'
 import { defaultButtonCss } from '../defaultButtonCss'
 
 export const CssRenderingArea = () => {
-    const widht = useAppSelector((state) => state.buttonView.width)
-    const isDisplayWidth = defaultButtonCss.width === 'ALWAYS' || defaultButtonCss.width !== widht
+    const width = useAppSelector((state) => state.buttonView.width)
+    const isDisplayWidth = defaultButtonCss.width === 'ALWAYS' || defaultButtonCss.width !== width
     const height = useAppSelector((state) => state.buttonView.height)
     const isDisplayHeight = defaultButtonCss.height === 'ALWAYS' || defaultButtonCss.height !== height
     const color = useAppSelector((state) => state.buttonView.color)
@@ -36,8 +36,7 @@ export const CssRenderingArea = () => {
     return (
         <Flex flexDirection={'column'} color={'black'} fontSize={'1.5rem'} margin={'1rem'}>
             <Text>.custom_button {'{'}</Text>
-            {}
-            {isDisplayWidth && <Text>&emsp;width: {widht}</Text>}
+            {isDisplayWidth && <Text>&emsp;width: {width}</Text>}
             {isDisplayHeight && <Text>&emsp;height: {height}</Text>}
             {isDisplayColor && <Text>&emsp;color: {color}</Text>}
             {isDisplayBackgroundColor && <Text>&emsp;backgroundColor: {backgroundColor}</Text>}
