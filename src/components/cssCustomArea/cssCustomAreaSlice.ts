@@ -17,7 +17,7 @@ const initialState: cssCustomAreaType = {
     displayHeight: false,
     displayBorderColor: false,
     displayBorderStyle: false,
-    displayBorderWidth: false,
+    displayBorderWidth: true,
     displayBorderRadius: false,
 }
 
