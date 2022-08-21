@@ -2,13 +2,15 @@ import React from 'react'
 import { Flex, Text } from '@chakra-ui/react'
 import { ChatIcon } from '@chakra-ui/icons'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setDisplayHeight, setDisplayWidth } from '../cssCustomAreaSlice'
+import { setDisplayBackgroundColor, setDisplayColor, setDisplayHeight, setDisplayWidth } from '../cssCustomAreaSlice'
 
 export const BacisCustom = () => {
     // TODO:今後設定するCSSプロパティどんなもんになるかワカメだったのでとりあえずBacisにしました
     const dispatch = useAppDispatch()
     const displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
     const displayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
+    const displayColor = useAppSelector((state) => state.cssCustomArea.displayColor)
+    const displayBackgroundColor = useAppSelector((state) => state.cssCustomArea.displayBackgroundColor)
     return (
         <Flex flexDirection={'column'}>
             <Text fontSize={'2rem'} margin={'0.5rem'} marginLeft={'2rem'}>
@@ -45,6 +47,32 @@ export const BacisCustom = () => {
                     onClick={() => dispatch(setDisplayHeight(!displayHeight))}
                 >
                     Height
+                    <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />
+                </Flex>
+                <Flex
+                    flexDirection={'column'}
+                    alignItems={'center'}
+                    backgroundColor={displayColor ? 'teal.500' : 'gray.100'}
+                    margin={'1rem'}
+                    padding={'1rem'}
+                    borderRadius={'1rem'}
+                    width={'7rem'}
+                    onClick={() => dispatch(setDisplayColor(!displayColor))}
+                >
+                    Color
+                    <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />
+                </Flex>
+                <Flex
+                    flexDirection={'column'}
+                    alignItems={'center'}
+                    backgroundColor={displayBackgroundColor ? 'teal.500' : 'gray.100'}
+                    margin={'1rem'}
+                    padding={'1rem'}
+                    borderRadius={'1rem'}
+                    width={'7rem'}
+                    onClick={() => dispatch(setDisplayBackgroundColor(!displayBackgroundColor))}
+                >
+                    BackgroundColor
                     <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />
                 </Flex>
             </Flex>

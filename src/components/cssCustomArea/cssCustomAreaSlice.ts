@@ -9,6 +9,8 @@ type cssCustomAreaType = {
     displayBorderStyle: boolean
     displayBorderWidth: boolean
     displayBorderRadius: boolean
+    displayColor: boolean
+    displayBackgroundColor: boolean
 }
 
 const initialState: cssCustomAreaType = {
@@ -19,6 +21,8 @@ const initialState: cssCustomAreaType = {
     displayBorderStyle: false,
     displayBorderWidth: false,
     displayBorderRadius: false,
+    displayColor: false,
+    displayBackgroundColor: false,
 }
 
 export const cssCustomAreaSlice = createSlice({
@@ -46,6 +50,12 @@ export const cssCustomAreaSlice = createSlice({
         setDisplayBorderRadius: (state, action: PayloadAction<boolean>) => {
             state.displayBorderRadius = action.payload
         },
+        setDisplayColor: (state, action: PayloadAction<boolean>) => {
+            state.displayColor = action.payload
+        },
+        setDisplayBackgroundColor: (state, action: PayloadAction<boolean>) => {
+            state.displayBackgroundColor = action.payload
+        },
     },
 })
 
@@ -57,6 +67,8 @@ export const {
     setDisplayBorderStyle,
     setDisplayBorderWidth,
     setDisplayBorderRadius,
+    setDisplayColor,
+    setDisplayBackgroundColor,
 } = cssCustomAreaSlice.actions
 
 export const isOpen = (state: getStateType) => state.cssCustomArea.isOpen
@@ -66,5 +78,7 @@ export const displayBorderColor = (state: getStateType) => state.cssCustomArea.d
 export const displayBorderStyle = (state: getStateType) => state.cssCustomArea.displayBorderStyle
 export const displayBorderWidth = (state: getStateType) => state.cssCustomArea.displayBorderWidth
 export const displayBorderRadius = (state: getStateType) => state.cssCustomArea.displayBorderRadius
+export const displayColor = (state: getStateType) => state.cssCustomArea.displayColor
+export const displayBackgroundColor = (state: getStateType) => state.cssCustomArea.displayBackgroundColor
 
 export default cssCustomAreaSlice.reducer
