@@ -30,6 +30,9 @@ export const CssRenderingArea = () => {
     const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
     const isDisplayBorderStyle =
         defaultButtonCss.borderStyle === 'ALWAYS' || defaultButtonCss.borderStyle !== borderStyle
+    const borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
+    const isDisplayBorderWidth =
+        defaultButtonCss.borderWidth === 'ALWAYS' || defaultButtonCss.borderWidth !== borderWidth
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
     const isDisplayBorderRadius =
         defaultButtonCss.borderRadius === 'ALWAYS' || defaultButtonCss.borderRadius !== borderRadius
@@ -39,15 +42,16 @@ export const CssRenderingArea = () => {
             {isDisplayWidth && <Text>&emsp;width: {width}</Text>}
             {isDisplayHeight && <Text>&emsp;height: {height}</Text>}
             {isDisplayColor && <Text>&emsp;color: {color}</Text>}
-            {isDisplayBackgroundColor && <Text>&emsp;backgroundColor: {backgroundColor}</Text>}
+            {isDisplayBackgroundColor && <Text>&emsp;background-color: {backgroundColor}</Text>}
             {isDisplayBorder && <Text>&emsp;border: {border}</Text>}
             {isDisplayPadding && <Text>&emsp;padding: {padding}</Text>}
-            {isDisplayTextDecoration && <Text>&emsp;textDecoration: {textDecoration}</Text>}
+            {isDisplayTextDecoration && <Text>&emsp;text-decoration: {textDecoration}</Text>}
             {isDisplayDisplay && <Text>&emsp;display: {display}</Text>}
-            {isDisplayFontSize && <Text>&emsp;fontSize: {fontSize}</Text>}
-            {isDisplayBorderColor && <Text>&emsp;borderColor: {borderColor}</Text>}
-            {isDisplayBorderStyle && <Text>&emsp;borderStyle: {borderStyle}</Text>}
-            {isDisplayBorderRadius && <Text>&emsp;borderRadius: {borderRadius}</Text>}
+            {isDisplayFontSize && <Text>&emsp;font-size: {fontSize}</Text>}
+            {isDisplayBorderColor && <Text>&emsp;border-color: {borderColor}</Text>}
+            {isDisplayBorderStyle && <Text>&emsp;border-style: {borderStyle}</Text>}
+            {isDisplayBorderWidth && <Text>&emsp;border-width: {borderWidth}</Text>}
+            {isDisplayBorderRadius && <Text>&emsp;border-radius: {borderRadius}</Text>}
             <Text>{'}'}</Text>
         </Flex>
     )

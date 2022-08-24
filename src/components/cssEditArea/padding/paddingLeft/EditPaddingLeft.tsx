@@ -17,7 +17,6 @@ export const EditPaddingLeft = memo(() => {
     }
     const onChangeValue = (v: number) => {
         const paddingList = padding.split(' ')
-        console.log(paddingList)
         if (paddingList.length === 4) {
             paddingList[3] = v.toString() + 'px'
             dispatch(setPadding(paddingList.join(' ')))

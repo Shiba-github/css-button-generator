@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 import { BackgroundColor } from './backgroundColor/BackgroundColor'
+import { FontSize } from './fontSize/FontSize'
 import { Color } from './color/color'
 import { Padding } from './padding/Padding'
 import { useAppDispatch, useAppSelector } from '../../hooks'
@@ -14,6 +15,7 @@ import { EditBorderStyle } from './borderStyle/EditBorderStyle'
 import { EditBorderRadius } from './borderRadius/EditBorderRadius'
 import { EditWidth } from './width/EditWidth'
 import { EditHeight } from './height/EditHeight'
+import { EditBorderWidth } from './borderWidth/EditBorderWidth'
 
 export const CssEditArea = () => {
     const dispatch = useAppDispatch()
@@ -28,9 +30,11 @@ export const CssEditArea = () => {
             <EditHeight />
             <Color />
             <BackgroundColor />
+            <FontSize />
             <Padding />
             <EditBorderColor />
             <EditBorderStyle />
+            <EditBorderWidth />
             <EditBorderRadius />
             <Button
                 as={motion.button}
