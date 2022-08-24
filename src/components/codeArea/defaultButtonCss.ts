@@ -9,6 +9,7 @@ type defaultButtonType = {
     fontSize: string
     borderColor: string
     borderStyle: string
+    borderWidth: string
     borderRadius: string
     width: string
     height: string
@@ -24,6 +25,7 @@ export const defaultButtonCss: defaultButtonType = {
     fontSize: 'ALWAYS',
     borderColor: 'none',
     borderStyle: 'none',
+    borderWidth: '0px',
     borderRadius: '0px',
     width: 'ALWAYS',
     height: 'ALWAYS',

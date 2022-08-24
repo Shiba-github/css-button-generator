@@ -34,6 +34,9 @@ export const CopyButton = () => {
     const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
     const isDisplayBorderStyle =
         defaultButtonCss.borderStyle === 'ALWAYS' || defaultButtonCss.borderStyle !== borderStyle
+    const borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
+    const isDisplayBorderWidth =
+        defaultButtonCss.borderWidth === 'ALWAYS' || defaultButtonCss.borderWidth !== borderWidth
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
     const isDisplayBorderRadius =
         defaultButtonCss.borderRadius === 'ALWAYS' || defaultButtonCss.borderRadius !== borderRadius
@@ -44,17 +47,18 @@ export const CopyButton = () => {
     const copyToClipboard = () => {
         const copyText =
             `.custom_button {\n` +
-            `${isDisplayWidth ? `    width: ${width}px;\n` : ''}` +
-            `${isDisplayHeight ? `    height: ${height}px;\n` : ''}` +
+            `${isDisplayWidth ? `    width: ${width};\n` : ''}` +
+            `${isDisplayHeight ? `    height: ${height};\n` : ''}` +
             `${isDisplayColor ? `    color: ${color};\n` : ''}` +
             `${isDisplayBackgroundColor ? `    background-color: ${backgroundColor};\n` : ''}` +
             `${isDisplayBorder ? `    border: ${border};\n` : ''}` +
             `${isDisplayPadding ? `    padding: ${padding};\n` : ''}` +
             `${isDisplayTextDecoration ? `    text-decoration: ${textDecoration};\n` : ''}` +
             `${isDisplayDisplay ? `    display: ${display};\n` : ''}` +
-            `${isDisplayFontSize ? `    font-size: ${fontSize}px;\n` : ''}` +
+            `${isDisplayFontSize ? `    font-size: ${fontSize};\n` : ''}` +
             `${isDisplayBorderColor ? `    border-color: ${borderColor};\n` : ''}` +
             `${isDisplayBorderStyle ? `    border-style: ${borderStyle};\n` : ''}` +
+            `${isDisplayBorderWidth ? `    border-width: ${borderWidth};\n` : ''}` +
             `${isDisplayBorderRadius ? `    border-radius: ${borderRadius}px;\n` : ''}` +
             `}`
         navigator.clipboard.writeText(copyText)

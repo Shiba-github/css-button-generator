@@ -12,31 +12,31 @@ import {
     Box,
 } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setPadding } from '../../buttonView/buttonViewSlice'
+import { setBorderWidth } from '../../buttonView/buttonViewSlice'
 import { AddIcon } from '@chakra-ui/icons'
 import { motion } from 'framer-motion'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
-import { EditPaddingTop } from './paddingTop/EditPaddingTop'
-import { EditPaddingRight } from './paddingRight/EditPaddingRight'
-import { EditPaddingBottom } from './paddingBottom/EditPaddingBottom'
-import { EditPaddingLeft } from './paddingLeft/EditPaddingLeft'
+import { EditBorderWidthTop } from './borderWidthTop/EditBorderWidthTop'
+import { EditBorderWidthRight } from './borderWidthRight/EditBorderWidthRight'
+import { EditBorderWidthBottom } from './borderWidthBottom/EditBorderWidthBottom'
+import { EditBorderWidthLeft } from './borderWidthLeft/EditBorderWidthLeft'
 
-export const Padding = () => {
+export const EditBorderWidth = () => {
     const dispatch = useAppDispatch()
-    const padding = useAppSelector((state) => state.buttonView.padding)
-    const displayPadding = useAppSelector((state) => state.cssCustomArea.displayPadding)
+    const borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
+    const displayBorderWidth = useAppSelector((state) => state.cssCustomArea.displayBorderWidth)
     const [showTooltip, setShowTooltip] = useState(false)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
-    const [allPadding, setAllPadding] = useState('')
+    const [allBorderWidth, setAllBorderWidth] = useState('')
 
     const onChangeValue = (v: number) => {
-        setAllPadding(v.toString() + 'px')
-        dispatch(setPadding(v.toString() + 'px'))
+        setAllBorderWidth(v.toString() + 'px')
+        dispatch(setBorderWidth(v.toString() + 'px'))
     }
     return (
         <>
-            {displayPadding && (
+            {displayBorderWidth && (
                 <Flex
                     flexDirection={'column'}
                     alignItems={'center'}
@@ -48,12 +48,12 @@ export const Padding = () => {
                     borderColor={'gray.200'}
                 >
                     <Text color={'black'} marginBottom={'1rem'} fontSize={'2rem'}>
-                        Padding
+                        borderWidth
                     </Text>
                     <Slider
                         id="slider"
                         defaultValue={0}
-                        value={parseInt(allPadding.replace('px', ''))}
+                        value={parseInt(allBorderWidth.replace('px', ''))}
                         min={0}
                         max={100}
                         colorScheme="teal"
@@ -79,7 +79,7 @@ export const Padding = () => {
                             color="white"
                             placement="top"
                             isOpen={showTooltip}
-                            label={`${padding}`}
+                            label={`${borderWidth}`}
                         >
                             <SliderThumb />
                         </Tooltip>
@@ -107,10 +107,10 @@ export const Padding = () => {
                     </Button>
                     {isDisplayDetail && (
                         <>
-                            <EditPaddingTop />
-                            <EditPaddingRight />
-                            <EditPaddingBottom />
-                            <EditPaddingLeft />
+                            <EditBorderWidthTop />
+                            <EditBorderWidthRight />
+                            <EditBorderWidthBottom />
+                            <EditBorderWidthLeft />
                         </>
                     )}
                 </Flex>

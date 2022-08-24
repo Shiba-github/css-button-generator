@@ -5,6 +5,8 @@ type cssCustomAreaType = {
     isOpen: boolean
     displayWidth: boolean
     displayHeight: boolean
+    displayPadding: boolean
+    displayFontSize: boolean
     displayBorderColor: boolean
     displayBorderStyle: boolean
     displayBorderWidth: boolean
@@ -17,6 +19,8 @@ const initialState: cssCustomAreaType = {
     isOpen: false,
     displayWidth: false,
     displayHeight: false,
+    displayPadding: false,
+    displayFontSize: false,
     displayBorderColor: false,
     displayBorderStyle: false,
     displayBorderWidth: false,
@@ -35,8 +39,14 @@ export const cssCustomAreaSlice = createSlice({
         setDisplayWidth: (state, action: PayloadAction<boolean>) => {
             state.displayWidth = action.payload
         },
+        setDisplayPadding: (state, action: PayloadAction<boolean>) => {
+            state.displayPadding = action.payload
+        },
         setDisplayHeight: (state, action: PayloadAction<boolean>) => {
             state.displayHeight = action.payload
+        },
+        setDisplayFontSize: (state, action: PayloadAction<boolean>) => {
+            state.displayFontSize = action.payload
         },
         setDisplayBorderColor: (state, action: PayloadAction<boolean>) => {
             state.displayBorderColor = action.payload
@@ -63,6 +73,8 @@ export const {
     setIsOpen,
     setDisplayWidth,
     setDisplayHeight,
+    setDisplayPadding,
+    setDisplayFontSize,
     setDisplayBorderColor,
     setDisplayBorderStyle,
     setDisplayBorderWidth,
@@ -74,6 +86,8 @@ export const {
 export const isOpen = (state: getStateType) => state.cssCustomArea.isOpen
 export const displayWidth = (state: getStateType) => state.cssCustomArea.displayWidth
 export const displayHeight = (state: getStateType) => state.cssCustomArea.displayHeight
+export const displayPadding = (state: getStateType) => state.cssCustomArea.displayPadding
+export const displayFontSize = (state: getStateType) => state.cssCustomArea.displayFontSize
 export const displayBorderColor = (state: getStateType) => state.cssCustomArea.displayBorderColor
 export const displayBorderStyle = (state: getStateType) => state.cssCustomArea.displayBorderStyle
 export const displayBorderWidth = (state: getStateType) => state.cssCustomArea.displayBorderWidth
