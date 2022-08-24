@@ -58,6 +58,7 @@ export const CopyButton = () => {
             `${isDisplayFontSize ? `    font-size: ${fontSize};\n` : ''}` +
             `${isDisplayBorderColor ? `    border-color: ${borderColor};\n` : ''}` +
             `${isDisplayBorderStyle ? `    border-style: ${borderStyle};\n` : ''}` +
+            `${isDisplayBorderWidth ? `    border-width: ${borderWidth};\n` : ''}` +
             `${isDisplayBorderRadius ? `    border-radius: ${borderRadius}px;\n` : ''}` +
             `}`
         navigator.clipboard.writeText(copyText)

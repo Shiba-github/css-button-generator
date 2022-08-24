@@ -1,9 +1,8 @@
 import React from 'react'
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
-import { BackgroundColor } from './backgroundColor/BackgroundColor'
+import { EditColor } from './color/EditColor'
 import { FontSize } from './fontSize/FontSize'
-import { Color } from './color/color'
 import { Padding } from './padding/Padding'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { setIsOpen } from '../cssCustomArea/cssCustomAreaSlice'
@@ -15,6 +14,7 @@ import { EditBorderStyle } from './borderStyle/EditBorderStyle'
 import { EditBorderRadius } from './borderRadius/EditBorderRadius'
 import { EditWidth } from './width/EditWidth'
 import { EditHeight } from './height/EditHeight'
+import { EditBackgroundColor } from './backgroundColor/EditBackgroundColor'
 import { EditBorderWidth } from './borderWidth/EditBorderWidth'
 
 export const CssEditArea = () => {
@@ -28,8 +28,8 @@ export const CssEditArea = () => {
             </Text>
             <EditWidth />
             <EditHeight />
-            <Color />
-            <BackgroundColor />
+            <EditColor />
+            <EditBackgroundColor />
             <FontSize />
             <Padding />
             <EditBorderColor />
