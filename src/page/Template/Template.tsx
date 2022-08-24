@@ -1,5 +1,6 @@
 import { Flex } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
+import { HandWrittenLikeButton } from '../../components/templates/handWrittenLikeButton/HandWrittenLikeButton'
 import { TemplatesNeumophism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumophism001'
 
 const Template = () => {
@@ -29,7 +30,7 @@ const Template = () => {
         >
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <HandWrittenLikeButton />
                 </Flex>
                 <Flex m={4}>
                     <TemplatesNeumophism001 />
