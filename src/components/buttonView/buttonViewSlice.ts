@@ -12,6 +12,7 @@ type buttonViewType = {
     fontSize: string
     borderColor: string
     borderStyle: string
+    borderWidth: string
     borderRadius: string
     width: string
     height: string
@@ -27,6 +28,7 @@ const initialState: buttonViewType = {
     fontSize: '30px',
     borderColor: 'none',
     borderStyle: 'none',
+    borderWidth: '0px',
     borderRadius: '0px',
     width: '150px',
     height: '75x',
@@ -63,6 +65,9 @@ export const buttonViewSlice = createSlice({
         setBorderStyle: (state, action: PayloadAction<string>) => {
             state.borderStyle = action.payload
         },
+        setBorderWidth: (state, action: PayloadAction<string>) => {
+            state.borderWidth = action.payload
+        },
         setBorderRadius: (state, action: PayloadAction<string>) => {
             state.borderRadius = action.payload
         },
@@ -85,6 +90,7 @@ export const {
     setFontSize,
     setBorderColor,
     setBorderStyle,
+    setBorderWidth,
     setBorderRadius,
     setWidth,
     setHeight,
@@ -99,6 +105,7 @@ export const textDecoration = (state: getStateType) => state.buttonView.textDeco
 export const display = (state: getStateType) => state.buttonView.display
 export const borderColor = (state: getStateType) => state.buttonView.borderColor
 export const borderStyle = (state: getStateType) => state.buttonView.borderStyle
+export const borderWidth = (state: getStateType) => state.buttonView.borderWidth
 export const borderRadius = (state: getStateType) => state.buttonView.borderRadius
 export const width = (state: getStateType) => state.buttonView.width
 export const height = (state: getStateType) => state.buttonView.height

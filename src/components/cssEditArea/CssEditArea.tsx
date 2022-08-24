@@ -15,6 +15,7 @@ import { EditBorderStyle } from './borderStyle/EditBorderStyle'
 import { EditBorderRadius } from './borderRadius/EditBorderRadius'
 import { EditWidth } from './width/EditWidth'
 import { EditHeight } from './height/EditHeight'
+import { EditBorderWidth } from './borderWidth/EditBorderWidth'
 
 export const CssEditArea = () => {
     const dispatch = useAppDispatch()
@@ -33,6 +34,7 @@ export const CssEditArea = () => {
             <Padding />
             <EditBorderColor />
             <EditBorderStyle />
+            <EditBorderWidth />
             <EditBorderRadius />
             <Button
                 as={motion.button}
