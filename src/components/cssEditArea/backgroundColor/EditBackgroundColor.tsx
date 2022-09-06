@@ -8,10 +8,19 @@ import { setBackgroundColor } from '../../buttonView/buttonViewSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
-export const EditBackgroundColor = () => {
+type selectedTopicType = {
+    selectedTopic: 'BASIC' | 'ANIMATION'
+}
+
+export const EditBackgroundColor = (props: selectedTopicType) => {
+    let displayBackgroundColor = useAppSelector((state) => state.cssCustomArea.displayBackgroundColor)
+    if (props.selectedTopic === 'BASIC') {
+        displayBackgroundColor = useAppSelector((state) => state.cssCustomArea.displayBackgroundColor)
+    } else if (props.selectedTopic === 'ANIMATION') {
+        displayBackgroundColor = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeBackgroundColor)
+    }
     const dispatch = useAppDispatch()
     const backgroundColor = useAppSelector((state) => state.buttonView.backgroundColor)
-    const displayBackgroundColor = useAppSelector((state) => state.cssCustomArea.displayBackgroundColor)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const handleChange = (color: ColorResult) => {
         const rgba = `rgba(${color.rgb.r},${color.rgb.g},${color.rgb.b},${color.rgb.a})`

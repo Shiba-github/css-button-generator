@@ -3,11 +3,21 @@ import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setHeight } from '../../buttonView/buttonViewSlice'
 
-export const EditHeight = () => {
+type selectedTopicType = {
+    selectedTopic: 'BASIC' | 'ANIMATION'
+}
+
+export const EditHeight = (props: selectedTopicType) => {
+    let displayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
+    if (props.selectedTopic === 'BASIC') {
+        displayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
+    } else if (props.selectedTopic === 'ANIMATION') {
+        displayHeight = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeHeight)
+    }
+
     const [showTooltip, setShowTooltip] = useState(false)
     const dispatch = useAppDispatch()
     const height = useAppSelector((state) => state.buttonView.height)
-    const displayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
     const onChangeValue = (v: number) => {
         dispatch(setHeight(v.toString() + 'px'))
     }

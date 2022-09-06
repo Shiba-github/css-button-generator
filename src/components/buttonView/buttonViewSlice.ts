@@ -1,24 +1,25 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getStateType } from '../../store'
+import { cssTypes } from '../../types/cssTypes'
 
 // TODO:ぶくぶくになる未来が容易に想像できる(要リファクタリング
-type buttonViewType = {
-    color: string
-    backgroundColor: string
-    border: string
-    padding: string
-    textDecoration: string
-    display: string
-    fontSize: string
-    borderColor: string
-    borderStyle: string
-    borderWidth: string
-    borderRadius: string
-    width: string
-    height: string
-}
+// type buttonViewType = {
+//     color: string
+//     backgroundColor: string
+//     border: string
+//     padding: string
+//     textDecoration: string
+//     display: string
+//     fontSize: string
+//     borderColor: string
+//     borderStyle: string
+//     borderWidth: string
+//     borderRadius: string
+//     width: string
+//     height: string
+// }
 
-const initialState: buttonViewType = {
+const initialState: cssTypes = {
     color: 'rgba(255,0,0,1)',
     backgroundColor: 'rgba(0,0,255,1)',
     border: 'none',

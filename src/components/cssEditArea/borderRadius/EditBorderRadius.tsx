@@ -26,11 +26,20 @@ import { EditBorderRadiusTopLeftVertical } from './topLeft/EditBorderRadiusTopLe
 import { EditBorderRadiusTopRightHorizontal } from './topRight/EditBorderRadiusTopRightHorizontal'
 import { EditBorderRadiusTopRightVertical } from './topRight/EditBorderRadiusTopRightVertical'
 
-export const EditBorderRadius = () => {
+type selectedTopicType = {
+    selectedTopic: 'BASIC' | 'ANIMATION'
+}
+
+export const EditBorderRadius = (props: selectedTopicType) => {
+    let displayBorderRadius = useAppSelector((state) => state.cssCustomArea.displayBorderRadius)
+    if (props.selectedTopic === 'BASIC') {
+        displayBorderRadius = useAppSelector((state) => state.cssCustomArea.displayBorderRadius)
+    } else if (props.selectedTopic === 'ANIMATION') {
+        displayBorderRadius = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeBorderRadius)
+    }
     // TODO:デザインは一旦ポイ
     const dispatch = useAppDispatch()
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
-    const displayBorderRadius = useAppSelector((state) => state.cssCustomArea.displayBorderRadius)
     const [borderRadiusAll, setBorderRadiusAll] = useState(borderRadius)
     const [showTooltipAll, setShowTooltipAll] = useState(false)
 

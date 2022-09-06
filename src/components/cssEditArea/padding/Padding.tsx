@@ -22,10 +22,19 @@ import { EditPaddingRight } from './paddingRight/EditPaddingRight'
 import { EditPaddingBottom } from './paddingBottom/EditPaddingBottom'
 import { EditPaddingLeft } from './paddingLeft/EditPaddingLeft'
 
-export const Padding = () => {
+type selectedTopicType = {
+    selectedTopic: 'BASIC' | 'ANIMATION'
+}
+
+export const Padding = (props: selectedTopicType) => {
+    let displayPadding = useAppSelector((state) => state.cssCustomArea.displayPadding)
+    if (props.selectedTopic === 'BASIC') {
+        displayPadding = useAppSelector((state) => state.cssCustomArea.displayPadding)
+    } else if (props.selectedTopic === 'ANIMATION') {
+        displayPadding = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimePadding)
+    }
     const dispatch = useAppDispatch()
     const padding = useAppSelector((state) => state.buttonView.padding)
-    const displayPadding = useAppSelector((state) => state.cssCustomArea.displayPadding)
     const [showTooltip, setShowTooltip] = useState(false)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const [allPadding, setAllPadding] = useState('')

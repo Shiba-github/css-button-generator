@@ -3,23 +3,22 @@ import { Flex, Text } from '@chakra-ui/react'
 import { ChatIcon } from '@chakra-ui/icons'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import {
-    setDisplayBackgroundColor,
-    setDisplayColor,
-    setDisplayHeight,
-    setDisplayPadding,
-    setDisplayWidth,
-    setDisplayFontSize,
-} from '../cssCustomAreaSlice'
+    setDisplayAnimeBackgroundColor,
+    setDisplayAnimeColor,
+    setDisplayAnimeFontSize,
+    setDisplayAnimeHeight,
+    setDisplayAnimePadding,
+    setDisplayAnimeWidth,
+} from '../cssCustomAnimeAreaSlice'
 
-export const BasicCustom = () => {
-    // TODO:今後設定するCSSプロパティどんなもんになるかワカメだったのでとりあえずBacisにしました
+export const BasicAnimeCustom = () => {
     const dispatch = useAppDispatch()
-    const displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
-    const displayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
-    const displayColor = useAppSelector((state) => state.cssCustomArea.displayColor)
-    const displayBackgroundColor = useAppSelector((state) => state.cssCustomArea.displayBackgroundColor)
-    const displayPadding = useAppSelector((state) => state.cssCustomArea.displayPadding)
-    const displayFontSize = useAppSelector((state) => state.cssCustomArea.displayFontSize)
+    const displayAnimeWidth = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeWidth)
+    const displayAnimeHeight = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeHeight)
+    const displayAnimeColor = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeColor)
+    const displayAnimeBackgroundColor = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeBackgroundColor)
+    const displayAnimePadding = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimePadding)
+    const displayAnimeFontSize = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeFontSize)
     return (
         <Flex flexDirection={'column'}>
             <Text fontSize={'2rem'} margin={'0.5rem'} marginLeft={'2rem'}>
@@ -35,12 +34,12 @@ export const BasicCustom = () => {
                 <Flex
                     flexDirection={'column'}
                     alignItems={'center'}
-                    backgroundColor={displayWidth ? 'teal.500' : 'gray.100'}
+                    backgroundColor={displayAnimeWidth ? 'teal.500' : 'gray.100'}
                     margin={'1rem'}
                     padding={'1rem'}
                     borderRadius={'1rem'}
                     width={'7rem'}
-                    onClick={() => dispatch(setDisplayWidth(!displayWidth))}
+                    onClick={() => dispatch(setDisplayAnimeWidth(!displayAnimeWidth))}
                 >
                     Width
                     <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />
@@ -48,12 +47,12 @@ export const BasicCustom = () => {
                 <Flex
                     flexDirection={'column'}
                     alignItems={'center'}
-                    backgroundColor={displayHeight ? 'teal.500' : 'gray.100'}
+                    backgroundColor={displayAnimeHeight ? 'teal.500' : 'gray.100'}
                     margin={'1rem'}
                     padding={'1rem'}
                     borderRadius={'1rem'}
                     width={'7rem'}
-                    onClick={() => dispatch(setDisplayHeight(!displayHeight))}
+                    onClick={() => dispatch(setDisplayAnimeHeight(!displayAnimeHeight))}
                 >
                     Height
                     <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />
@@ -61,12 +60,12 @@ export const BasicCustom = () => {
                 <Flex
                     flexDirection={'column'}
                     alignItems={'center'}
-                    backgroundColor={displayColor ? 'teal.500' : 'gray.100'}
+                    backgroundColor={displayAnimeColor ? 'teal.500' : 'gray.100'}
                     margin={'1rem'}
                     padding={'1rem'}
                     borderRadius={'1rem'}
                     width={'7rem'}
-                    onClick={() => dispatch(setDisplayColor(!displayColor))}
+                    onClick={() => dispatch(setDisplayAnimeColor(!displayAnimeColor))}
                 >
                     Color
                     <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />
@@ -74,12 +73,12 @@ export const BasicCustom = () => {
                 <Flex
                     flexDirection={'column'}
                     alignItems={'center'}
-                    backgroundColor={displayBackgroundColor ? 'teal.500' : 'gray.100'}
+                    backgroundColor={displayAnimeBackgroundColor ? 'teal.500' : 'gray.100'}
                     margin={'1rem'}
                     padding={'1rem'}
                     borderRadius={'1rem'}
                     width={'7rem'}
-                    onClick={() => dispatch(setDisplayBackgroundColor(!displayBackgroundColor))}
+                    onClick={() => dispatch(setDisplayAnimeBackgroundColor(!displayAnimeBackgroundColor))}
                 >
                     BackgroundColor
                     <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />
@@ -87,12 +86,12 @@ export const BasicCustom = () => {
                 <Flex
                     flexDirection={'column'}
                     alignItems={'center'}
-                    backgroundColor={displayPadding ? 'teal.500' : 'gray.100'}
+                    backgroundColor={displayAnimePadding ? 'teal.500' : 'gray.100'}
                     margin={'1rem'}
                     padding={'1rem'}
                     borderRadius={'1rem'}
                     width={'7rem'}
-                    onClick={() => dispatch(setDisplayPadding(!displayPadding))}
+                    onClick={() => dispatch(setDisplayAnimePadding(!displayAnimePadding))}
                 >
                     Padding
                     <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />
@@ -100,12 +99,12 @@ export const BasicCustom = () => {
                 <Flex
                     flexDirection={'column'}
                     alignItems={'center'}
-                    backgroundColor={displayFontSize ? 'teal.500' : 'gray.100'}
+                    backgroundColor={displayAnimeFontSize ? 'teal.500' : 'gray.100'}
                     margin={'1rem'}
                     padding={'1rem'}
                     borderRadius={'1rem'}
                     width={'7rem'}
-                    onClick={() => dispatch(setDisplayFontSize(!displayFontSize))}
+                    onClick={() => dispatch(setDisplayAnimeFontSize(!displayAnimeFontSize))}
                 >
                     FontSize
                     <ChatIcon marginTop={'1.5rem'} boxSize={'12'} />

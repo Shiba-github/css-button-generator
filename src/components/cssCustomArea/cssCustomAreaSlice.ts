@@ -3,6 +3,7 @@ import { getStateType } from '../../store'
 
 type cssCustomAreaType = {
     isOpen: boolean
+    isSelectedBasicTopic: boolean
     displayWidth: boolean
     displayHeight: boolean
     displayPadding: boolean
@@ -17,6 +18,7 @@ type cssCustomAreaType = {
 
 const initialState: cssCustomAreaType = {
     isOpen: false,
+    isSelectedBasicTopic: true,
     displayWidth: false,
     displayHeight: false,
     displayPadding: false,
@@ -35,6 +37,9 @@ export const cssCustomAreaSlice = createSlice({
     reducers: {
         setIsOpen: (state, action: PayloadAction<boolean>) => {
             state.isOpen = action.payload
+        },
+        setIsSelectedBasicTopic: (state, action: PayloadAction<boolean>) => {
+            state.isSelectedBasicTopic = action.payload
         },
         setDisplayWidth: (state, action: PayloadAction<boolean>) => {
             state.displayWidth = action.payload
@@ -71,6 +76,7 @@ export const cssCustomAreaSlice = createSlice({
 
 export const {
     setIsOpen,
+    setIsSelectedBasicTopic,
     setDisplayWidth,
     setDisplayHeight,
     setDisplayPadding,
@@ -84,6 +90,7 @@ export const {
 } = cssCustomAreaSlice.actions
 
 export const isOpen = (state: getStateType) => state.cssCustomArea.isOpen
+export const isSelectedBasicTopic = (state: getStateType) => state.cssCustomArea.isSelectedBasicTopic
 export const displayWidth = (state: getStateType) => state.cssCustomArea.displayWidth
 export const displayHeight = (state: getStateType) => state.cssCustomArea.displayHeight
 export const displayPadding = (state: getStateType) => state.cssCustomArea.displayPadding

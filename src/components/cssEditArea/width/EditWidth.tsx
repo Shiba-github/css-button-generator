@@ -3,11 +3,25 @@ import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setWidth } from '../../buttonView/buttonViewSlice'
 
-export const EditWidth = () => {
+type selectedTopicType = {
+    selectedTopic: 'BASIC' | 'ANIMATION'
+}
+
+export const EditWidth = (props: selectedTopicType) => {
+    let displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
+    let width = useAppSelector((state) => state.buttonView.width)
+    if (props.selectedTopic === 'BASIC') {
+        displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
+        width = useAppSelector((state) => state.buttonView.width)
+    } else if (props.selectedTopic === 'ANIMATION') {
+        displayWidth = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeWidth)
+        // 選択されているパネルを取得する（仕様上、一つだけしか選択できないようになっている）
+        // 取得したパネルに呼応する連想配列内のwidthを書き込めるようにする
+        // 必要ならsetAnimeWidth的なfunctionを作成するべし
+        width = useAppSelector((state) => state.buttonView.width)
+    }
     const [showTooltip, setShowTooltip] = useState(false)
     const dispatch = useAppDispatch()
-    const width = useAppSelector((state) => state.buttonView.width)
-    const displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
     const onChangeValue = (v: number) => {
         dispatch(setWidth(v.toString() + 'px'))
     }

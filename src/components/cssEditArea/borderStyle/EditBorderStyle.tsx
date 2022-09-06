@@ -7,11 +7,20 @@ import { setBorderStyle } from '../../buttonView/buttonViewSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
-export const EditBorderStyle = () => {
+type selectedTopicType = {
+    selectedTopic: 'BASIC' | 'ANIMATION'
+}
+
+export const EditBorderStyle = (props: selectedTopicType) => {
+    let displayBorderStyle = useAppSelector((state) => state.cssCustomArea.displayBorderStyle)
+    if (props.selectedTopic === 'BASIC') {
+        displayBorderStyle = useAppSelector((state) => state.cssCustomArea.displayBorderStyle)
+    } else if (props.selectedTopic === 'ANIMATION') {
+        displayBorderStyle = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeBorderStyle)
+    }
     // TODO:Animationはスーパーてきとー
     const dispatch = useAppDispatch()
     const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
-    const displayBorderStyle = useAppSelector((state) => state.cssCustomArea.displayBorderStyle)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const confirmClickedBorderStyleButton = (_borderStyle: string, position: string) => {
         const borderStyleList = borderStyle.split(' ')

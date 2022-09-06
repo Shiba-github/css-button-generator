@@ -3,11 +3,20 @@ import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark, Toolti
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setFontSize } from '../../buttonView/buttonViewSlice'
 
-export const FontSize = () => {
+type selectedTopicType = {
+    selectedTopic: 'BASIC' | 'ANIMATION'
+}
+
+export const FontSize = (props: selectedTopicType) => {
+    let displayFontSize = useAppSelector((state) => state.cssCustomArea.displayFontSize)
+    if (props.selectedTopic === 'BASIC') {
+        displayFontSize = useAppSelector((state) => state.cssCustomArea.displayFontSize)
+    } else if (props.selectedTopic === 'ANIMATION') {
+        displayFontSize = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeFontSize)
+    }
     const dispatch = useAppDispatch()
     const fontSize = useAppSelector((state) => state.buttonView.fontSize)
     const [showTooltip, setShowTooltip] = useState(false)
-    const displayFontSize = useAppSelector((state) => state.cssCustomArea.displayFontSize)
     const onChangeValue = (v: number) => {
         dispatch(setFontSize(v.toString() + 'px'))
     }

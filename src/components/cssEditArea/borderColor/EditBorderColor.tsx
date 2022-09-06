@@ -8,10 +8,19 @@ import { setBorderColor } from '../../buttonView/buttonViewSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
-export const EditBorderColor = () => {
+type selectedTopicType = {
+    selectedTopic: 'BASIC' | 'ANIMATION'
+}
+
+export const EditBorderColor = (props: selectedTopicType) => {
+    let displayBorderColor = useAppSelector((state) => state.cssCustomArea.displayBorderColor)
+    if (props.selectedTopic === 'BASIC') {
+        displayBorderColor = useAppSelector((state) => state.cssCustomArea.displayBorderColor)
+    } else if (props.selectedTopic === 'ANIMATION') {
+        displayBorderColor = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeBorderColor)
+    }
     const dispatch = useAppDispatch()
     const borderColor = useAppSelector((state) => state.buttonView.borderColor)
-    const displayBorderColor = useAppSelector((state) => state.cssCustomArea.displayBorderColor)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const handleChange = (color: ColorResult) => {
         const rgba = `rgba(${color.rgb.r},${color.rgb.g},${color.rgb.b},${color.rgb.a})`

@@ -22,10 +22,19 @@ import { EditBorderWidthRight } from './borderWidthRight/EditBorderWidthRight'
 import { EditBorderWidthBottom } from './borderWidthBottom/EditBorderWidthBottom'
 import { EditBorderWidthLeft } from './borderWidthLeft/EditBorderWidthLeft'
 
-export const EditBorderWidth = () => {
+type selectedTopicType = {
+    selectedTopic: 'BASIC' | 'ANIMATION'
+}
+
+export const EditBorderWidth = (props: selectedTopicType) => {
+    let displayBorderWidth = useAppSelector((state) => state.cssCustomArea.displayBorderWidth)
+    if (props.selectedTopic === 'BASIC') {
+        displayBorderWidth = useAppSelector((state) => state.cssCustomArea.displayBorderWidth)
+    } else if (props.selectedTopic === 'ANIMATION') {
+        displayBorderWidth = useAppSelector((state) => state.cssCustomAnimeArea.displayAnimeBorderWidth)
+    }
     const dispatch = useAppDispatch()
     const borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
-    const displayBorderWidth = useAppSelector((state) => state.cssCustomArea.displayBorderWidth)
     const [showTooltip, setShowTooltip] = useState(false)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const [allBorderWidth, setAllBorderWidth] = useState('')
