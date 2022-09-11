@@ -25,14 +25,15 @@ export const EditBorderWidthRight = memo(() => {
         }
     }
     return (
-        <Flex flexDirection={'row'} alignItems={'center'} width={'50rem'} marginTop={'1rem'}>
+        <Flex flexDirection={'row'} alignItems={'center'} width={'50rem'} marginTop={'1rem'} marginRight={'0.5rem'}>
             <Text
                 display={'flex'}
                 justifyContent={'flex-end'}
                 alignItems={'center'}
                 color={'black'}
                 width={'12rem'}
-                marginRight={'2rem'}
+                marginRight={'1rem'}
+                marginLeft={'1rem'}
             >
                 BorderWidth Right
             </Text>

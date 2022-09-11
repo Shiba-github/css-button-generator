@@ -41,76 +41,93 @@ export const EditBorderRadius = () => {
         dispatch(setBorderRadius(v.toString() + 'px'))
     }
     return (
-        <Flex>
+        <>
             {displayBorderRadius ? (
                 <Flex
                     flexDirection={'column'}
-                    alignItems={'center'}
-                    margin={'1rem'}
-                    padding={'1rem'}
-                    width={'50rem'}
-                    border={'1px'}
+                    backgroundColor={'gray.50'}
                     borderRadius={'1rem'}
-                    borderColor={'gray.200'}
+                    marginTop={'1rem'}
+                    width={'50rem'}
                 >
-                    <Text color={'black'} marginBottom={'1rem'} fontSize={'2rem'}>
-                        Border Radius
-                    </Text>
-                    <Slider
-                        id="BorderRadius"
-                        defaultValue={55}
-                        value={parseInt(borderRadiusAll.replace('px', ''))}
-                        min={0}
-                        max={200}
-                        colorScheme="teal"
-                        onChange={(v) => onChangeValue(v)}
-                        onMouseEnter={() => setShowTooltipAll(true)}
-                        onMouseLeave={() => setShowTooltipAll(false)}
+                    <Flex
+                        flexDirection={'row'}
+                        alignItems={'center'}
+                        marginTop={'0.5rem'}
+                        marginBottom={'0.8rem'}
+                        width={'50rem'}
+                        borderColor={'gray.200'}
                     >
-                        <SliderMark color={'black'} value={50} mt="1" ml="-2.5" fontSize="sm">
-                            50px
-                        </SliderMark>
-                        <SliderMark color={'black'} value={100} mt="1" ml="-2.5" fontSize="sm">
-                            100px
-                        </SliderMark>
-                        <SliderMark color={'black'} value={150} mt="1" ml="-2.5" fontSize="sm">
-                            150px
-                        </SliderMark>
-                        <SliderTrack bg={'teal.50'}>
-                            <SliderFilledTrack />
-                        </SliderTrack>
-                        <Tooltip
-                            hasArrow
-                            bg="teal.500"
-                            color="white"
-                            placement="top"
-                            isOpen={showTooltipAll}
-                            label={borderRadiusAll}
+                        <Text
+                            width={'9rem'}
+                            color={'black'}
+                            justifyContent={'start'}
+                            fontSize={'1.2rem'}
+                            marginLeft={'1rem'}
+                            marginRight={'1rem'}
                         >
-                            <SliderThumb />
-                        </Tooltip>
-                    </Slider>
-                    <Button
-                        as={motion.button}
-                        margin={['0rem', '2rem']}
-                        variants={addCssButtonAnimeVariants}
-                        initial={addCssButtonAnimeVariants.off}
-                        whileHover={addCssButtonAnimeVariants.on}
-                        animate={isDisplayDetail ? addCssButtonAnimeVariants.on : addCssButtonAnimeVariants.off}
-                        onClick={() => setIsDisplayDetail(!isDisplayDetail)}
-                    >
-                        <Box
-                            display={'flex'}
-                            alignItems={'center'}
-                            justifyContent={'center'}
-                            as={motion.div}
-                            initial={rotateElementVariants.off}
-                            animate={isDisplayDetail ? rotateElementVariants.on : rotateElementVariants.off}
-                            whileHover={rotateElementVariants.on}
+                            Border Radius
+                        </Text>
+                        <Slider
+                            width={'40rem'}
+                            id="BorderRadius"
+                            defaultValue={55}
+                            value={parseInt(borderRadiusAll.replace('px', ''))}
+                            min={0}
+                            max={200}
+                            colorScheme="teal"
+                            onChange={(v) => onChangeValue(v)}
+                            onMouseEnter={() => setShowTooltipAll(true)}
+                            onMouseLeave={() => setShowTooltipAll(false)}
                         >
-                            <AddIcon />
-                        </Box>
-                    </Button>
+                            <SliderMark color={'black'} value={50} mt="1" ml="-2.5" fontSize="sm">
+                                50px
+                            </SliderMark>
+                            <SliderMark color={'black'} value={100} mt="1" ml="-2.5" fontSize="sm">
+                                100px
+                            </SliderMark>
+                            <SliderMark color={'black'} value={150} mt="1" ml="-2.5" fontSize="sm">
+                                150px
+                            </SliderMark>
+                            <SliderTrack bg={'teal.50'}>
+                                <SliderFilledTrack />
+                            </SliderTrack>
+                            <Tooltip
+                                hasArrow
+                                bg="teal.500"
+                                color="white"
+                                placement="top"
+                                isOpen={showTooltipAll}
+                                label={borderRadiusAll}
+                            >
+                                <SliderThumb />
+                            </Tooltip>
+                        </Slider>
+                        <Button
+                            as={motion.button}
+                            marginLeft={'2rem'}
+                            marginRight={'1rem'}
+                            width={'2rem'}
+                            height={'2rem'}
+                            variants={addCssButtonAnimeVariants}
+                            initial={addCssButtonAnimeVariants.off}
+                            whileHover={addCssButtonAnimeVariants.on}
+                            animate={isDisplayDetail ? addCssButtonAnimeVariants.on : addCssButtonAnimeVariants.off}
+                            onClick={() => setIsDisplayDetail(!isDisplayDetail)}
+                        >
+                            <Box
+                                display={'flex'}
+                                alignItems={'center'}
+                                justifyContent={'center'}
+                                as={motion.div}
+                                initial={rotateElementVariants.off}
+                                animate={isDisplayDetail ? rotateElementVariants.on : rotateElementVariants.off}
+                                whileHover={rotateElementVariants.on}
+                            >
+                                <AddIcon />
+                            </Box>
+                        </Button>
+                    </Flex>
                     {isDisplayDetail ? (
                         <Flex
                             flexDirection={'column'}
@@ -122,7 +139,7 @@ export const EditBorderRadius = () => {
                             <Flex flexDirection={'row'} alignItems={'center'} width={'inherit'} margin={'0.3rem'}>
                                 <Text
                                     display={'flex'}
-                                    justifyContent={'center'}
+                                    justifyContent={'start'}
                                     alignItems={'center'}
                                     color={'black'}
                                     width={'20rem'}
@@ -135,7 +152,7 @@ export const EditBorderRadius = () => {
                             <Flex flexDirection={'row'} alignItems={'center'} width={'inherit'} margin={'0.3rem'}>
                                 <Text
                                     display={'flex'}
-                                    justifyContent={'center'}
+                                    justifyContent={'start'}
                                     alignItems={'center'}
                                     color={'black'}
                                     width={'20rem'}
@@ -148,7 +165,7 @@ export const EditBorderRadius = () => {
                             <Flex flexDirection={'row'} alignItems={'center'} width={'inherit'} margin={'0.3rem'}>
                                 <Text
                                     display={'flex'}
-                                    justifyContent={'center'}
+                                    justifyContent={'start'}
                                     alignItems={'center'}
                                     color={'black'}
                                     width={'20rem'}
@@ -161,7 +178,7 @@ export const EditBorderRadius = () => {
                             <Flex flexDirection={'row'} alignItems={'center'} width={'inherit'} margin={'0.3rem'}>
                                 <Text
                                     display={'flex'}
-                                    justifyContent={'center'}
+                                    justifyContent={'start'}
                                     alignItems={'center'}
                                     color={'black'}
                                     width={'20rem'}
@@ -179,6 +196,6 @@ export const EditBorderRadius = () => {
             ) : (
                 ''
             )}
-        </Flex>
+        </>
     )
 }

@@ -6,11 +6,13 @@ import { CssRenderingArea } from './cssRenderingArea/CssRenderingArea'
 export const CodeArea = () => {
     return (
         <Flex
-            width={'35rem'}
-            height={'fit-content'}
+            width={'30rem'}
+            height={'15rem'}
             bg={'white'}
             borderRadius={'2rem'}
             flexDirection={'row'}
+            overflowY={'scroll'}
+            overflowX={'hidden'}
             justifyContent={'space-between'}
         >
             <CssRenderingArea />

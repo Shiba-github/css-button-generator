@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react'
+import { Grid, GridItem } from '@chakra-ui/react'
 import React from 'react'
 import { ButtonView } from '../../components/buttonView/ButtonView'
 import { CodeArea } from '../../components/codeArea/CodeArea'
@@ -7,14 +7,49 @@ import { CssEditArea } from '../../components/cssEditArea/CssEditArea'
 
 const Editor = () => {
     return (
-        <Flex flexDirection={'row'} height={'100%'} width={'100%'}>
-            <CssEditArea />
-            <Flex flexDirection={'column'} bg={'#e2e8f0'} flex={1} alignItems={'center'}>
-                <ButtonView />
-                <CodeArea />
+        <Grid
+            templateAreas={`
+                "pseudo edit button"
+                "custom custom code"
+            `}
+            gridTemplateRows={'1fr 1fr'}
+            gridTemplateColumns={'15rem 1fr 35rem'}
+            height={'100vh'}
+            width={'100vw'}
+            overflowX={'hidden'}
+            overflowY={'hidden'}
+        >
+            <GridItem
+                area={'pseudo'}
+                backgroundColor={'rgb(26 32 44)'}
+                overflowX={'hidden'}
+                overflowY={'scroll'}
+            ></GridItem>
+            <GridItem
+                display={'flex'}
+                flexDirection={'column'}
+                area={'custom'}
+                backgroundColor={'rgb(26 32 44)'}
+                height={'30rem'}
+            >
                 <CssCustomArea />
-            </Flex>
-        </Flex>
+            </GridItem>
+            <GridItem area={'edit'} backgroundColor={'gray.500'} overflowX={'hidden'} overflowY={'scroll'}>
+                <CssEditArea />
+            </GridItem>
+            <GridItem area={'button'} backgroundColor={'gray.200'} overflow={'hidden'}>
+                <ButtonView />
+            </GridItem>
+            <GridItem
+                display={'flex'}
+                area={'code'}
+                backgroundColor={'rgb(26 32 44)'}
+                alignItems={'center'}
+                justifyContent={'center'}
+            >
+                <CodeArea />
+            </GridItem>
+        </Grid>
     )
 }
 

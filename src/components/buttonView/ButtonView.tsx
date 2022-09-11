@@ -33,7 +33,7 @@ export const ButtonView = () => {
     }
 
     return (
-        <Flex height={'29rem'} margin={'2rem 0'} alignItems={'center'} justifyContent={'center'}>
+        <Flex height={'100%'} alignItems={'center'} justifyContent={'center'}>
             <button style={buttonStyle}>Text</button>
         </Flex>
     )

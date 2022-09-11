@@ -20,17 +20,43 @@ export const EditColor = () => {
     return (
         <>
             {displayColor && (
-                <Flex flexDirection={'row'} alignItems={'center'}>
-                    <Text color={'blackAlpha.800'} marginRight={'2rem'} fontSize={'2rem'}>
+                <Flex
+                    flexDirection={'row'}
+                    alignItems={'center'}
+                    width={'50rem'}
+                    backgroundColor={'gray.50'}
+                    borderRadius={'1rem'}
+                    marginTop={'1rem'}
+                    paddingTop={'0.5rem'}
+                    paddingBottom={'0.8rem'}
+                >
+                    <Text
+                        width={'100%'}
+                        color={'blackAlpha.800'}
+                        marginLeft={'1rem'}
+                        marginRight={'1rem'}
+                        fontSize={'1.2rem'}
+                    >
                         Color
                     </Text>
-                    <Box>
-                        <HuePicker color={colorRgb} onChange={handleChange} />
-                        <AlphaPicker color={colorRgb} onChange={handleChange} />
+                    <Box position={'relative'}>
+                        <HuePicker
+                            width={isDisplayDetail ? '20rem' : '30rem'}
+                            color={colorRgb}
+                            onChange={handleChange}
+                        />
+                        <AlphaPicker
+                            width={isDisplayDetail ? '20rem' : '30rem'}
+                            color={colorRgb}
+                            onChange={handleChange}
+                        />
                     </Box>
                     <Button
                         as={motion.button}
                         marginLeft={'2rem'}
+                        marginRight={'1rem'}
+                        width={'2rem'}
+                        height={'2rem'}
                         variants={addCssButtonAnimeVariants}
                         initial={addCssButtonAnimeVariants.off}
                         whileHover={addCssButtonAnimeVariants.on}
@@ -50,7 +76,7 @@ export const EditColor = () => {
                         </Box>
                     </Button>
                     {isDisplayDetail ? (
-                        <Box marginLeft={'1rem'}>
+                        <Box marginLeft={'1rem'} marginRight={'0.5rem'}>
                             <ChromePicker color={colorRgb} onChange={handleChange} />
                         </Box>
                     ) : (

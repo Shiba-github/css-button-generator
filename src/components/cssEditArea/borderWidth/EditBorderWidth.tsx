@@ -37,81 +37,92 @@ export const EditBorderWidth = () => {
     return (
         <>
             {displayBorderWidth && (
-                <Flex
-                    flexDirection={'column'}
-                    alignItems={'center'}
-                    margin={'1rem'}
-                    padding={'1rem'}
-                    width={'50rem'}
-                    border={'1px'}
-                    borderRadius={'1rem'}
-                    borderColor={'gray.200'}
-                >
-                    <Text color={'black'} marginBottom={'1rem'} fontSize={'2rem'}>
-                        borderWidth
-                    </Text>
-                    <Slider
-                        id="slider"
-                        defaultValue={0}
-                        value={parseInt(allBorderWidth.replace('px', ''))}
-                        min={0}
-                        max={100}
-                        colorScheme="teal"
-                        onChange={(v) => onChangeValue(v)}
-                        onMouseEnter={() => setShowTooltip(true)}
-                        onMouseLeave={() => setShowTooltip(false)}
+                <Flex flexDirection={'column'} backgroundColor={'gray.50'} borderRadius={'1rem'} marginTop={'1rem'}>
+                    <Flex
+                        flexDirection={'row'}
+                        alignItems={'center'}
+                        marginTop={'0.5rem'}
+                        marginBottom={'0.8rem'}
+                        width={'50rem'}
+                        borderColor={'gray.200'}
                     >
-                        <SliderMark color={'black'} value={25} mt="1" ml="-2.5" fontSize="sm">
-                            25px
-                        </SliderMark>
-                        <SliderMark color={'black'} value={50} mt="1" ml="-2.5" fontSize="sm">
-                            50px
-                        </SliderMark>
-                        <SliderMark color={'black'} value={75} mt="1" ml="-2.5" fontSize="sm">
-                            75px
-                        </SliderMark>
-                        <SliderTrack bg={'teal.50'}>
-                            <SliderFilledTrack />
-                        </SliderTrack>
-                        <Tooltip
-                            hasArrow
-                            bg="teal.500"
-                            color="white"
-                            placement="top"
-                            isOpen={showTooltip}
-                            label={`${borderWidth}`}
+                        <Text
+                            width={'7rem'}
+                            color={'black'}
+                            justifyContent={'start'}
+                            fontSize={'1.2rem'}
+                            marginLeft={'1rem'}
+                            marginRight={'1rem'}
                         >
-                            <SliderThumb />
-                        </Tooltip>
-                    </Slider>
-                    <Button
-                        as={motion.button}
-                        margin={['0rem', '2rem']}
-                        variants={addCssButtonAnimeVariants}
-                        initial={addCssButtonAnimeVariants.off}
-                        whileHover={addCssButtonAnimeVariants.on}
-                        animate={isDisplayDetail ? addCssButtonAnimeVariants.on : addCssButtonAnimeVariants.off}
-                        onClick={() => setIsDisplayDetail(!isDisplayDetail)}
-                    >
-                        <Box
-                            display={'flex'}
-                            alignItems={'center'}
-                            justifyContent={'center'}
-                            as={motion.div}
-                            initial={rotateElementVariants.off}
-                            animate={isDisplayDetail ? rotateElementVariants.on : rotateElementVariants.off}
-                            whileHover={rotateElementVariants.on}
+                            borderWidth
+                        </Text>
+                        <Slider
+                            width={'40rem'}
+                            id="slider"
+                            defaultValue={0}
+                            value={parseInt(allBorderWidth.replace('px', ''))}
+                            min={0}
+                            max={100}
+                            colorScheme="teal"
+                            onChange={(v) => onChangeValue(v)}
+                            onMouseEnter={() => setShowTooltip(true)}
+                            onMouseLeave={() => setShowTooltip(false)}
                         >
-                            <AddIcon />
-                        </Box>
-                    </Button>
+                            <SliderMark color={'black'} value={25} mt="1" ml="-2.5" fontSize="sm">
+                                25px
+                            </SliderMark>
+                            <SliderMark color={'black'} value={50} mt="1" ml="-2.5" fontSize="sm">
+                                50px
+                            </SliderMark>
+                            <SliderMark color={'black'} value={75} mt="1" ml="-2.5" fontSize="sm">
+                                75px
+                            </SliderMark>
+                            <SliderTrack bg={'teal.50'}>
+                                <SliderFilledTrack />
+                            </SliderTrack>
+                            <Tooltip
+                                hasArrow
+                                bg="teal.500"
+                                color="white"
+                                placement="top"
+                                isOpen={showTooltip}
+                                label={`${borderWidth}`}
+                            >
+                                <SliderThumb />
+                            </Tooltip>
+                        </Slider>
+                        <Button
+                            as={motion.button}
+                            marginLeft={'2rem'}
+                            marginRight={'1rem'}
+                            width={'2rem'}
+                            height={'2rem'}
+                            variants={addCssButtonAnimeVariants}
+                            initial={addCssButtonAnimeVariants.off}
+                            whileHover={addCssButtonAnimeVariants.on}
+                            animate={isDisplayDetail ? addCssButtonAnimeVariants.on : addCssButtonAnimeVariants.off}
+                            onClick={() => setIsDisplayDetail(!isDisplayDetail)}
+                        >
+                            <Box
+                                display={'flex'}
+                                alignItems={'center'}
+                                justifyContent={'center'}
+                                as={motion.div}
+                                initial={rotateElementVariants.off}
+                                animate={isDisplayDetail ? rotateElementVariants.on : rotateElementVariants.off}
+                                whileHover={rotateElementVariants.on}
+                            >
+                                <AddIcon />
+                            </Box>
+                        </Button>
+                    </Flex>
                     {isDisplayDetail && (
-                        <>
+                        <Flex flexDirection={'column'}>
                             <EditBorderWidthTop />
                             <EditBorderWidthRight />
                             <EditBorderWidthBottom />
                             <EditBorderWidthLeft />
-                        </>
+                        </Flex>
                     )}
                 </Flex>
             )}
