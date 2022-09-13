@@ -1,8 +1,7 @@
 import { Flex, Text } from '@chakra-ui/react'
 import React from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import { useAnimation } from 'framer-motion'
 import { useAppSelector } from '../../hooks'
-import { openCssCustomAreaVariants } from './animation/openCssCustomAreaAnimation'
 import { BorderColor } from './border/BorderColor'
 import { BorderStyle } from './border/BorderStyle'
 import { BorderWidth } from './border/BorderWidth'
@@ -26,15 +25,11 @@ export const CssCustomArea = () => {
 
     return (
         <Flex
-            as={motion.div}
             flexDirection={'column'}
             width={'15rem'}
             height={'90%'}
             flexWrap={'wrap'}
             minHeight={'0'}
-            initial={'close'}
-            animate={openCssCustomAreaControls}
-            variants={openCssCustomAreaVariants}
         >
             <Text
                 display={'flex'}
