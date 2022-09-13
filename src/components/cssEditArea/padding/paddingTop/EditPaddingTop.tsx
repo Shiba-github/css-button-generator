@@ -25,14 +25,15 @@ export const EditPaddingTop = memo(() => {
         }
     }
     return (
-        <Flex flexDirection={'row'} alignItems={'center'} width={'50rem'}>
+        <Flex flexDirection={'row'} alignItems={'center'} width={'50rem'} marginTop={'1rem'} marginRight={'0.5rem'}>
             <Text
                 display={'flex'}
-                justifyContent={'flex-end'}
+                justifyContent={'start'}
                 alignItems={'center'}
                 color={'black'}
                 width={'10rem'}
-                marginRight={'2rem'}
+                marginRight={'1rem'}
+                marginLeft={'1rem'}
             >
                 Padding Top
             </Text>

@@ -16,16 +16,18 @@ export const EditWidth = () => {
         <>
             {displayWidth ? (
                 <Flex
-                    flexDirection={'column'}
+                    flexDirection={'row'}
                     alignItems={'center'}
-                    margin={'1rem'}
-                    padding={'1rem'}
+                    marginTop={'1rem'}
+                    paddingTop={'0.5rem'}
+                    paddingBottom={'0.8rem'}
                     width={'50rem'}
                     border={'1px'}
                     borderRadius={'1rem'}
                     borderColor={'gray.200'}
+                    backgroundColor={'gray.50'}
                 >
-                    <Text color={'black'} marginBottom={'1rem'} fontSize={'2rem'}>
+                    <Text color={'black'} fontSize={'1.2rem'} marginLeft={'1rem'} marginRight={'1rem'}>
                         Width
                     </Text>
                     <Slider

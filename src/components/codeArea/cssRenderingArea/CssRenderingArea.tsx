@@ -37,7 +37,7 @@ export const CssRenderingArea = () => {
     const isDisplayBorderRadius =
         defaultButtonCss.borderRadius === 'ALWAYS' || defaultButtonCss.borderRadius !== borderRadius
     return (
-        <Flex flexDirection={'column'} color={'black'} fontSize={'1.5rem'} margin={'1rem'}>
+        <Flex flexDirection={'column'} color={'black'} fontSize={'1rem'} margin={'1rem'}>
             <Text>.custom_button {'{'}</Text>
             {isDisplayWidth && <Text>&emsp;width: {width}</Text>}
             {isDisplayHeight && <Text>&emsp;height: {height}</Text>}
