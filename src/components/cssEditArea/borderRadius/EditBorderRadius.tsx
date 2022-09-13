@@ -134,7 +134,7 @@ export const EditBorderRadius = () => {
                             alignItems={'center'}
                             margin={'1rem'}
                             padding={'1rem'}
-                            width={'50rem'}
+                            width={'47rem'}
                         >
                             <Flex flexDirection={'row'} alignItems={'center'} width={'inherit'} margin={'0.3rem'}>
                                 <Text
