@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { HandWrittenLikeButton } from '../../components/templates/handWrittenLikeButton/HandWrittenLikeButton'
 import { SimpleRoundIconButton } from '../../components/templates/simpleRoundIconButton/SimpleRoundIcon'
+import { RealShadowButton } from '../../components/templates/realShadowButton/RealShadowButton'
 import { TemplatesNeumophism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumophism001'
 import { Templates003 } from '../../components/templates/templates003/templates003'
 
@@ -38,7 +39,7 @@ const Template = () => {
                     <SimpleRoundIconButton />
                 </Flex>
                 <Flex m={4}>
-                    <Templates003 />
+                    <RealShadowButton />
                 </Flex>
                 <Flex m={4}>
                     <TemplatesNeumophism001 />
