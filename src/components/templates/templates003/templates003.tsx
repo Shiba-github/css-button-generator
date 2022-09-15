@@ -10,21 +10,22 @@ export const Templates003 = () => {
         dispatch(setPadding(buttonStyle.padding))
     }
     const buttonStyle = {
-        width: '140px',
+        width: '10px',
         height: '60px',
         color: '#fff',
         cursor: 'pointer',
         border: 'none',
-        borderRadius: '6px',
-        backgroundColor: '#6cebbf',
+        borderRadius: '10px',
+        backgroundColor: 'rgb(108, 235, 142)',
         backfaceVisibility: 'hidden',
-        boxShadow: '0px 10px 20px #6cebbf',
-        fontSize: '18px',
+        boxShadow: '0px 10px 20px rgba(108, 235, 142, 0.8)',
+        fontSize: '16px',
         fontWeight: 'bold',
         padding: '12px',
-        transition: 'box-shadow 0.3s cubic-bezier(0.85, 1.97, 0.46, 0.4) 0s, transform',
+        transition: 'all 0.3s cubic-bezier(0.85, 1.95, 0.45, 0.4) 0s',
         '&:hover': {
-            backgroundColor: 'green',
+            transform: 'scale(1.08)',
+            boxShadow: '8px 14px 20px rgba(108, 235, 142, 0.8)',
         },
     }
 
