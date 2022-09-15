@@ -1,5 +1,5 @@
 import React from 'react'
-import { css } from '@emotion/react'
+import { css, CSSObject } from '@emotion/react'
 import { Flex } from '@chakra-ui/react'
 import { useAppDispatch } from '../../../hooks'
 import { setPadding } from '../../buttonView/buttonViewSlice'
@@ -17,7 +17,7 @@ export const Templates003 = () => {
         border: 'none',
         borderRadius: '6px',
         backgroundColor: '#6cebbf',
-        // backfaceVisibility: 'hidden',
+        backfaceVisibility: 'hidden',
         boxShadow: '0px 10px 20px #6cebbf',
         fontSize: '18px',
         fontWeight: 'bold',
@@ -28,11 +28,14 @@ export const Templates003 = () => {
         },
     }
 
-    const hogehogeStyle = css(buttonStyle)
+    const buttonStyles = {
+        ...buttonStyle,
+    } as CSSObject
+    const cssProps = css(buttonStyles)
 
     return (
         <Flex flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
-            <button css={hogehogeStyle} onClick={() => onClick()}>
+            <button css={cssProps} onClick={() => onClick()}>
                 button3
             </button>
         </Flex>
