@@ -37,7 +37,7 @@ export const Templates003 = () => {
     return (
         <Flex flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
             <button css={cssProps} onClick={() => onClick()}>
-                button3
+                Button
             </button>
         </Flex>
     )
