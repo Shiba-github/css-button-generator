@@ -14,23 +14,8 @@ import { Padding } from './basic/Padding'
 import { FontSize } from './basic/FontSize'
 
 export const CssCustomArea = () => {
-    const openCssCustomAreaControls = useAnimation()
-    const isCustomAreaOpen = useAppSelector((state) => state.cssCustomArea.isOpen)
-
-    if (isCustomAreaOpen) {
-        openCssCustomAreaControls.start('open')
-    } else {
-        openCssCustomAreaControls.start('close')
-    }
-
     return (
-        <Flex
-            flexDirection={'column'}
-            width={'15rem'}
-            height={'90%'}
-            flexWrap={'wrap'}
-            minHeight={'0'}
-        >
+        <Flex flexDirection={'column'} width={'15rem'} height={'90%'} flexWrap={'wrap'} minHeight={'0'}>
             <Text
                 display={'flex'}
                 alignItems={'center'}

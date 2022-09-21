@@ -4,6 +4,7 @@ import { ButtonView } from '../../components/buttonView/ButtonView'
 import { CodeArea } from '../../components/codeArea/CodeArea'
 import { CssCustomArea } from '../../components/cssCustomArea/CssCustomArea'
 import { CssEditArea } from '../../components/cssEditArea/CssEditArea'
+import { PseudoArea } from '../../components/pseudoArea/PseudoArea'
 
 const Editor = () => {
     return (
@@ -19,12 +20,9 @@ const Editor = () => {
             overflowX={'hidden'}
             overflowY={'hidden'}
         >
-            <GridItem
-                area={'pseudo'}
-                backgroundColor={'rgb(26 32 44)'}
-                overflowX={'hidden'}
-                overflowY={'scroll'}
-            ></GridItem>
+            <GridItem area={'pseudo'} backgroundColor={'rgb(26 32 44)'} overflowX={'hidden'} overflowY={'scroll'}>
+                <PseudoArea />
+            </GridItem>
             <GridItem
                 display={'flex'}
                 flexDirection={'column'}

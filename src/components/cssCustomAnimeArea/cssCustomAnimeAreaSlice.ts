@@ -21,6 +21,4 @@ export const cssCustomAnimeAreaSlice = createSlice({
 
 export const { setIsOpen } = cssCustomAnimeAreaSlice.actions
 
-export const isOpen = (state: getStateType) => state.cssCustomArea.isOpen
-
 export default cssCustomAnimeAreaSlice.reducer

@@ -17,8 +17,8 @@ const Template = () => {
     }, [])
     useEffect(() => {
         const deg = Math.floor(((mouseX + mouseY) / 510) * 360)
-        const firstColor = `rgba(${mouseX},${mouseY},255,1)`
-        const secondColor = `rgba(255,${mouseX},${mouseY},1)`
+        const firstColor = `rgba(255,255,255,1)`
+        const secondColor = `rgba(0,0,0,1)`
         setBackground(`linear-gradient(${deg}deg, ${firstColor} 0%, ${secondColor} 100%)`)
     }, [mouseX, mouseY])
     return (
