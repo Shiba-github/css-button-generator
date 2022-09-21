@@ -21,6 +21,7 @@ type setCssArgsType = {
     elementName: string
     classNames: string[]
     cssProps: cssTypes
+    customAreaDisplay: cssCustomAreaType
 }
 
 const initCssState: statesType = {
@@ -32,7 +33,7 @@ const initCssState: statesType = {
         // css property
         cssProps: buttonInitialState,
         // custom areaの状態
-        customAreaDisplay: cssCustomAreaDisplay
+        customAreaDisplay: cssCustomAreaDisplay,
         // edit areaの状態
     },
 }
@@ -115,6 +116,34 @@ export const pseudoAreaSlice = createSlice({
             }
             state.cssStates[uid] = newCssState
         },
+        setCustomDisplay: (state, action: PayloadAction<setCssArgsType>) => {
+            // 既に同じ物が存在するか確認する
+            const elementName = action.payload.elementName
+            const classNames = action.payload.classNames
+            const customAreaDisplay = action.payload.customAreaDisplay
+            // console.log(elementName)
+            // console.log(classNames)
+            // console.log(cssProps)
+            const uid =
+                elementName +
+                '_' +
+                classNames.map((className) => {
+                    return className
+                })
+            let cssState
+            if (uid in state.cssStates) {
+                cssState = state.cssStates.uid
+            } else {
+                cssState = initCssState
+            }
+            const newCssState = {
+                ...cssState,
+                elementName: elementName,
+                classNames: classNames,
+                customAreaDisplay: customAreaDisplay,
+            }
+            state.cssStates[uid] = newCssState
+        },
         setIsActiveMain: (state, action: PayloadAction<boolean>) => {
             if (state.isActiveMain === true) {
                 return
@@ -158,6 +187,7 @@ export const {
     setElementNameSelectedCurrent,
     setElementClassSelectedCurrent,
     removeElementClassSelectedCurrent,
+    setCustomDisplay,
     setCssStates,
     setIsActiveMain,
     setIsActiveBefore,
