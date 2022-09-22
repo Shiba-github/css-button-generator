@@ -4,7 +4,6 @@ import { HandWrittenLikeButton } from '../../components/templates/handWrittenLik
 import { SimpleRoundIconButton } from '../../components/templates/simpleRoundIconButton/SimpleRoundIcon'
 import { RealShadowButton } from '../../components/templates/realShadowButton/RealShadowButton'
 import { TemplatesNeumophism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumophism001'
-import { Templates003 } from '../../components/templates/templates003/templates003'
 
 const Template = () => {
     const [mouseX, setMouseX] = useState(0)
