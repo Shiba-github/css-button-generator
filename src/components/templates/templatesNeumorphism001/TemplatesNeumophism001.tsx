@@ -3,7 +3,7 @@ import { Flex } from '@chakra-ui/react'
 import { useAppDispatch } from '../../../hooks'
 import { setBackgroundColor, setColor, setPadding } from '../../buttonView/buttonViewSlice'
 
-export const TemplatesNeumophism001 = () => {
+export const TemplatesNeumorphism001 = () => {
     // TODO：padding, colorなどいまある要素だけ適用してる。あくまでひな型
     const dispatch = useAppDispatch()
     const onClick = () => {
@@ -25,7 +25,7 @@ export const TemplatesNeumophism001 = () => {
     return (
         <Flex flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
             <button style={buttonStyle} onClick={() => onClick()}>
-                Neumophism001
+                Neumorphism001
             </button>
         </Flex>
     )
