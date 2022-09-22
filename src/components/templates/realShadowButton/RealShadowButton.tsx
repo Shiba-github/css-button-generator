@@ -46,6 +46,9 @@ export const RealShadowButton = () => {
             transform: 'scale(1.08)',
             boxShadow: '8px 14px 20px rgba(108, 235, 142, 0.8)',
         },
+        '&:active': {
+            backgroundColor: 'rgba(105, 227, 142, 0.8)',
+        },
     }
 
     const buttonStyles = {
