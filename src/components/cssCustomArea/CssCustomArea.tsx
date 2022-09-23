@@ -1,10 +1,51 @@
 import { Flex, Text } from '@chakra-ui/react'
-import React from 'react'
-import { useAppSelector } from '../../hooks'
+import React, { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 import { CustomAreaButton } from './CustomAreaButton'
-import { setDisplayBackgroundColor, setDisplayBorderColor, setDisplayBorderRadius, setDisplayBorderStyle, setDisplayBorderWidth, setDisplayColor, setDisplayFontSize, setDisplayHeight, setDisplayPadding, setDisplayWidth } from './cssCustomAreaSlice'
+import {
+    setDisplayBackgroundColor,
+    setDisplayBorderColor,
+    setDisplayBorderRadius,
+    setDisplayBorderStyle,
+    setDisplayBorderWidth,
+    setDisplayColor,
+    setDisplayFontSize,
+    setDisplayHeight,
+    setDisplayPadding,
+    setDisplayWidth,
+} from './cssCustomAreaSlice'
+import { setIsChangedPseudoButton } from '../pseudoArea/pseudoAreaSlice'
 
 export const CssCustomArea = () => {
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const isChangedPseudoButton = useAppSelector((state) => state.pseudoArea.isChangedPseudoButton)
+    const cssState = useAppSelector((state) => state.pseudoArea.cssStates)
+    const dispatch = useAppDispatch()
+    useEffect(() => {
+        // pseudoAreaが変更されたときだけ初期化処理を行うようにisChangedPseudoButtonをトリガーにしている
+        if (!isChangedPseudoButton) {
+            return
+        }
+        const uid =
+            selectedElementName +
+            '_' +
+            selectedElementClass.map((className) => {
+                return className
+            })
+        // TODO:将来的に長くなりそうなので、そのうちどっかに書き出したい
+        dispatch(setDisplayBackgroundColor(cssState[uid].customAreaDisplay.displayBackgroundColor))
+        dispatch(setDisplayBorderColor(cssState[uid].customAreaDisplay.displayBorderColor))
+        dispatch(setDisplayBorderRadius(cssState[uid].customAreaDisplay.displayBorderRadius))
+        dispatch(setDisplayBorderStyle(cssState[uid].customAreaDisplay.displayBorderStyle))
+        dispatch(setDisplayBorderWidth(cssState[uid].customAreaDisplay.displayBorderWidth))
+        dispatch(setDisplayColor(cssState[uid].customAreaDisplay.displayColor))
+        dispatch(setDisplayFontSize(cssState[uid].customAreaDisplay.displayFontSize))
+        dispatch(setDisplayHeight(cssState[uid].customAreaDisplay.displayHeight))
+        dispatch(setDisplayPadding(cssState[uid].customAreaDisplay.displayPadding))
+        dispatch(setDisplayWidth(cssState[uid].customAreaDisplay.displayWidth))
+        dispatch(setIsChangedPseudoButton(false))
+    }, [isChangedPseudoButton])
     const displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
     const displayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
     const displayColor = useAppSelector((state) => state.cssCustomArea.displayColor)
@@ -26,12 +67,16 @@ export const CssCustomArea = () => {
             >
                 Basics
             </Text>
-            <CustomAreaButton text='Width' isDisplay={displayWidth} setter={setDisplayWidth}/>
-            <CustomAreaButton text='Height' isDisplay={displayHeight} setter={setDisplayHeight}/>
-            <CustomAreaButton text='Color' isDisplay={displayColor} setter={setDisplayColor}/>
-            <CustomAreaButton text='BackgroundColor' isDisplay={displayBackgroundColor} setter={setDisplayBackgroundColor}/>
-            <CustomAreaButton text='FontSize' isDisplay={displayFontSize} setter={setDisplayFontSize}/>
-            <CustomAreaButton text='Padding' isDisplay={displayPadding} setter={setDisplayPadding}/>
+            <CustomAreaButton text="Width" isDisplay={displayWidth} setter={setDisplayWidth} />
+            <CustomAreaButton text="Height" isDisplay={displayHeight} setter={setDisplayHeight} />
+            <CustomAreaButton text="Color" isDisplay={displayColor} setter={setDisplayColor} />
+            <CustomAreaButton
+                text="BackgroundColor"
+                isDisplay={displayBackgroundColor}
+                setter={setDisplayBackgroundColor}
+            />
+            <CustomAreaButton text="FontSize" isDisplay={displayFontSize} setter={setDisplayFontSize} />
+            <CustomAreaButton text="Padding" isDisplay={displayPadding} setter={setDisplayPadding} />
             <Text
                 display={'flex'}
                 alignItems={'center'}
@@ -41,10 +86,10 @@ export const CssCustomArea = () => {
             >
                 Border
             </Text>
-            <CustomAreaButton text='BorderColor' isDisplay={displayBorderColor} setter={setDisplayBorderColor}/>
-            <CustomAreaButton text='BorderStyle' isDisplay={displayBorderStyle} setter={setDisplayBorderStyle}/>
-            <CustomAreaButton text='BorderWidth' isDisplay={displayBorderWidth} setter={setDisplayBorderWidth}/>
-            <CustomAreaButton text='BorderRadius' isDisplay={displayBorderRadius} setter={setDisplayBorderRadius}/>
+            <CustomAreaButton text="BorderColor" isDisplay={displayBorderColor} setter={setDisplayBorderColor} />
+            <CustomAreaButton text="BorderStyle" isDisplay={displayBorderStyle} setter={setDisplayBorderStyle} />
+            <CustomAreaButton text="BorderWidth" isDisplay={displayBorderWidth} setter={setDisplayBorderWidth} />
+            <CustomAreaButton text="BorderRadius" isDisplay={displayBorderRadius} setter={setDisplayBorderRadius} />
         </Flex>
     )
 }

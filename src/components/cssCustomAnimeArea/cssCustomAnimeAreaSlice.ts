@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getStateType } from '../../store'
 
 type cssCustomAreaType = {
     isOpen: boolean

@@ -14,7 +14,7 @@ export type customAreaButtonType = {
     borderRadius?: string
 }
 
-export const customButtonStyle:customAreaButtonType = {
+export const customButtonStyle: customAreaButtonType = {
     width: '15rem',
     height: '2rem',
     padding: '0.2rem',

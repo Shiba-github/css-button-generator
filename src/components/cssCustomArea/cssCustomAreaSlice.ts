@@ -88,4 +88,19 @@ export const displayBorderRadius = (state: getStateType) => state.cssCustomArea.
 export const displayColor = (state: getStateType) => state.cssCustomArea.displayColor
 export const displayBackgroundColor = (state: getStateType) => state.cssCustomArea.displayBackgroundColor
 
+export const getAllDisplayStatus = (state: getStateType) => {
+    return {
+        displayWidth: state.cssCustomArea.displayWidth,
+        displayHeight: state.cssCustomArea.displayHeight,
+        displayPadding: state.cssCustomArea.displayPadding,
+        displayFontSize: state.cssCustomArea.displayFontSize,
+        displayBorderColor: state.cssCustomArea.displayBorderColor,
+        displayBorderStyle: state.cssCustomArea.displayBorderStyle,
+        displayBorderWidth: state.cssCustomArea.displayBorderWidth,
+        displayBorderRadius: state.cssCustomArea.displayBorderRadius,
+        displayColor: state.cssCustomArea.displayColor,
+        displayBackgroundColor: state.cssCustomArea.displayBackgroundColor,
+    }
+}
+
 export default cssCustomAreaSlice.reducer

@@ -1,9 +1,7 @@
-import { Button, Flex, Text } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks'
-import { buttonInitialState } from '../buttonView/buttonViewSlice'
+import { Flex, Text } from '@chakra-ui/react'
+import React from 'react'
+import { useAppSelector } from '../../hooks'
 import {
-    setCssStates,
     setIsActiveActive,
     setIsActiveAfter,
     setIsActiveBefore,
@@ -14,7 +12,6 @@ import {
 import { PseudoButton } from './PseudoButton'
 
 export const PseudoArea = () => {
-    const cssState = useAppSelector((state) => state.pseudoArea.cssStates)
     const isActiveMain = useAppSelector((state) => state.pseudoArea.isActiveMain)
     const isActiveBefore = useAppSelector((state) => state.pseudoArea.isActiveBefore)
     const isActiveAfter = useAppSelector((state) => state.pseudoArea.isActiveAfter)
@@ -22,16 +19,6 @@ export const PseudoArea = () => {
     const isActiveFocus = useAppSelector((state) => state.pseudoArea.isActiveFocus)
     const isActiveActive = useAppSelector((state) => state.pseudoArea.isActiveActive)
 
-    // const onClickButtonHandler = () => {
-    //     const dispatch = useAppDispatch()
-    //     const copyButtonCss = {...buttonInitialState}
-    //     dispatch(setCssStates({elementName: 'before', classNames:['hover', 'focus'], cssProps:copyButtonCss}))
-    //     console.log(cssState)
-    // }
-    const selectElement = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
-    const selectClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
-    console.log(selectElement)
-    console.log(selectClass)
     return (
         <Flex flexDirection={'column'} width={'100%'} height={'100%'} color={'white'}>
             <Text textAlign={'center'} fontSize={'1.5rem'}>

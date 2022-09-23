@@ -5,47 +5,34 @@ import { buttonInitialState } from '../buttonView/buttonViewSlice'
 import { cssCustomAreaDisplay, cssCustomAreaType } from '../cssCustomArea/cssCustomAreaSlice'
 
 type statesType = {
-    element: {
-        elementName: string
-        classNames: string[]
-        cssProps: cssTypes
-        customAreaDisplay: cssCustomAreaType
-    }
-}
-
-type arrayType = {
-    [prop: string]: statesType
-}
-
-type setCssArgsType = {
     elementName: string
     classNames: string[]
     cssProps: cssTypes
     customAreaDisplay: cssCustomAreaType
 }
 
+type arrayType = {
+    [prop: string]: statesType
+}
+
+const initCustomAreaDisplay = { ...cssCustomAreaDisplay }
+const initCssProps = { ...buttonInitialState }
 const initCssState: statesType = {
-    element: {
-        // main, before, after, etc
-        elementName: 'main',
-        // hover, focus, active, etc(こっちは複合する可能性あり['hover', 'focus']みたいな感じ)
-        classNames: [],
-        // css property
-        cssProps: buttonInitialState,
-        // custom areaの状態
-        customAreaDisplay: cssCustomAreaDisplay,
-        // edit areaの状態
-    },
+    elementName: 'Main', // main, before, after, etc
+    classNames: [], // hover, focus, active, etc...(CSSの仕組み上、複合する可能性あり['hover', 'focus']みたいな感じ)
+    cssProps: initCssProps,
+    customAreaDisplay: initCustomAreaDisplay,
 }
 
 const initCssStates: arrayType = {
-    main: initCssState,
+    Main_: initCssState,
 }
 
 type pseudoAreaType = {
     elementNameSelectedCurrent: string
     elementClassSelectedCurrent: string[]
     cssStates: arrayType
+    isChangedPseudoButton: boolean
     isActiveMain: boolean
     isActiveBefore: boolean
     isActiveAfter: boolean
@@ -55,9 +42,10 @@ type pseudoAreaType = {
 }
 
 const initialState: pseudoAreaType = {
-    elementNameSelectedCurrent: 'main',
+    elementNameSelectedCurrent: 'Main',
     elementClassSelectedCurrent: [],
     cssStates: initCssStates,
+    isChangedPseudoButton: false,
     isActiveMain: true,
     isActiveBefore: false,
     isActiveAfter: false,
@@ -88,14 +76,21 @@ export const pseudoAreaSlice = createSlice({
                 state.elementClassSelectedCurrent = [...newArray]
             }
         },
-        setCssStates: (state, action: PayloadAction<setCssArgsType>) => {
-            // 既に同じ物が存在するか確認する
+        createNewCssStates: (
+            state,
+            action: PayloadAction<{
+                elementName: string
+                classNames: string[]
+            }>
+        ) => {
             const elementName = action.payload.elementName
             const classNames = action.payload.classNames
-            const cssProps = action.payload.cssProps
-            // console.log(elementName)
-            // console.log(classNames)
-            // console.log(cssProps)
+            const cssProps = initCssState.cssProps
+            const customAreaDisplay = initCssState.customAreaDisplay
+            /**
+             * このuidで利用しているpseudoClass(or element)を判別する
+             * 例えば、pseudoElementがbeforeで、pseudoClassがhover, focusの場合、"before_hover,focus"となる
+             */
             const uid =
                 elementName +
                 '_' +
@@ -104,7 +99,9 @@ export const pseudoAreaSlice = createSlice({
                 })
             let cssState
             if (uid in state.cssStates) {
-                cssState = state.cssStates.uid
+                // すでに存在する場合は、何もしない。
+                // TODO:が、この処理は使うところで書いて、ここではエラーを吐くようにしたほうがイイのかもしれない
+                return
             } else {
                 cssState = initCssState
             }
@@ -113,36 +110,42 @@ export const pseudoAreaSlice = createSlice({
                 elementName: elementName,
                 classNames: classNames,
                 cssProps: cssProps,
+                customAreaDisplay: customAreaDisplay,
             }
             state.cssStates[uid] = newCssState
         },
-        setCustomDisplay: (state, action: PayloadAction<setCssArgsType>) => {
+        saveCurrentCustomAreaDisplay: (
+            state,
+            action: PayloadAction<{
+                elementName: string
+                classNames: string[]
+                allCustomAreaDisplayStatus: cssCustomAreaType
+            }>
+        ) => {
             // 既に同じ物が存在するか確認する
             const elementName = action.payload.elementName
             const classNames = action.payload.classNames
-            const customAreaDisplay = action.payload.customAreaDisplay
-            // console.log(elementName)
-            // console.log(classNames)
-            // console.log(cssProps)
+            const allCustomAreaDisplayStatus = action.payload.allCustomAreaDisplayStatus
+
+            // TODO:処理が似ているので、関数化したい
             const uid =
                 elementName +
                 '_' +
                 classNames.map((className) => {
                     return className
                 })
-            let cssState
-            if (uid in state.cssStates) {
-                cssState = state.cssStates.uid
-            } else {
-                cssState = initCssState
-            }
+            const cssState = current(state.cssStates).uid
+
             const newCssState = {
                 ...cssState,
                 elementName: elementName,
                 classNames: classNames,
-                customAreaDisplay: customAreaDisplay,
+                customAreaDisplay: allCustomAreaDisplayStatus,
             }
             state.cssStates[uid] = newCssState
+        },
+        setIsChangedPseudoButton: (state, action: PayloadAction<boolean>) => {
+            state.isChangedPseudoButton = action.payload
         },
         setIsActiveMain: (state, action: PayloadAction<boolean>) => {
             if (state.isActiveMain === true) {
@@ -187,8 +190,9 @@ export const {
     setElementNameSelectedCurrent,
     setElementClassSelectedCurrent,
     removeElementClassSelectedCurrent,
-    setCustomDisplay,
-    setCssStates,
+    createNewCssStates,
+    saveCurrentCustomAreaDisplay,
+    setIsChangedPseudoButton,
     setIsActiveMain,
     setIsActiveBefore,
     setIsActiveAfter,
@@ -200,6 +204,7 @@ export const {
 export const selectElementNameSelectedCurrent = (state: getStateType) => state.pseudoArea.elementNameSelectedCurrent
 export const selectElementClassSelectedCurrent = (state: getStateType) => state.pseudoArea.elementClassSelectedCurrent
 export const cssStates = (state: getStateType) => state.pseudoArea.cssStates
+export const isChangedPseudoButton = (state: getStateType) => state.pseudoArea.isChangedPseudoButton
 export const isActiveMain = (state: getStateType) => state.pseudoArea.isActiveMain
 export const isActiveBefore = (state: getStateType) => state.pseudoArea.isActiveBefore
 export const isActiveAfter = (state: getStateType) => state.pseudoArea.isActiveAfter
