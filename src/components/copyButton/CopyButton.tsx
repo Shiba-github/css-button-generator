@@ -7,7 +7,7 @@ import { defaultButtonCss } from '../codeArea/defaultButtonCss'
 import { copyAnimeVariants } from './animation/copyAnimation'
 
 export const CopyButton = () => {
-    // TODO:codeArea, copybutton, buttonViewでデータはしているが、中身が同期しているかは不明。整合性の確認が必要
+    // TODO:codeArea, copyButton, buttonViewでデータはしているが、中身が同期しているかは不明。整合性の確認が必要
     const width = useAppSelector((state) => state.buttonView.width)
     const isDisplayWidth = defaultButtonCss.width === 'ALWAYS' || defaultButtonCss.width !== width
     const height = useAppSelector((state) => state.buttonView.height)
