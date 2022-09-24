@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { HandWrittenLikeButton } from '../../components/templates/handWrittenLikeButton/HandWrittenLikeButton'
 import { SimpleRoundIconButton } from '../../components/templates/simpleRoundIconButton/SimpleRoundIcon'
 import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumorphism001'
+import { RealShadowButton } from '../../components/templates/realShadowButton/RealShadowButton'
 
 const Template = () => {
     const [mouseX, setMouseX] = useState(0)
@@ -37,7 +38,7 @@ const Template = () => {
                     <SimpleRoundIconButton />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumorphism001 />
+                    <RealShadowButton />
                 </Flex>
                 <Flex m={4}>
                     <TemplatesNeumorphism001 />
