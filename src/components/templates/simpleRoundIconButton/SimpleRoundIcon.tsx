@@ -34,7 +34,7 @@ export const SimpleRoundIconButton = () => {
         dispatch(setColor(buttonStyle.color))
         // dispatch(setCursor(buttonStyle.cursor))
         dispatch(setPadding(buttonStyle.padding))
-        // dispatch(setBakcgroungImage(buttonStyle.backgroundImage))
+        // dispatch(setBackgroundImage(buttonStyle.backgroundImage))
         // dispatch(setBackgroundSize(buttonStyle.backgroundSize))
         // dispatch(setBackgroundRepeat(buttonStyle.backgroundRepeat))
         // dispatch(setBackgroundPosition(buttonStyle.backgroundPosition))

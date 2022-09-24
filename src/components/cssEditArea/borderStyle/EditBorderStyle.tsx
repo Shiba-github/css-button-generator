@@ -47,20 +47,20 @@ export const EditBorderStyle = () => {
         } else {
             if (position === 'top') {
                 borderStyleList[0] = _borderStyle
-                const borderStyleSrtings = borderStyleList.join(' ')
-                dispatch(setBorderStyle(borderStyleSrtings))
+                const borderStyleStrings = borderStyleList.join(' ')
+                dispatch(setBorderStyle(borderStyleStrings))
             } else if (position === 'right') {
                 borderStyleList[1] = _borderStyle
-                const borderStyleSrtings = borderStyleList.join(' ')
-                dispatch(setBorderStyle(borderStyleSrtings))
+                const borderStyleStrings = borderStyleList.join(' ')
+                dispatch(setBorderStyle(borderStyleStrings))
             } else if (position === 'bottom') {
                 borderStyleList[2] = _borderStyle
-                const borderStyleSrtings = borderStyleList.join(' ')
-                dispatch(setBorderStyle(borderStyleSrtings))
+                const borderStyleStrings = borderStyleList.join(' ')
+                dispatch(setBorderStyle(borderStyleStrings))
             } else if (position === 'left') {
                 borderStyleList[3] = _borderStyle
-                const borderStyleSrtings = borderStyleList.join(' ')
-                dispatch(setBorderStyle(borderStyleSrtings))
+                const borderStyleStrings = borderStyleList.join(' ')
+                dispatch(setBorderStyle(borderStyleStrings))
             }
         }
     }

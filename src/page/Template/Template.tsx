@@ -2,8 +2,9 @@ import { Flex } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { HandWrittenLikeButton } from '../../components/templates/handWrittenLikeButton/HandWrittenLikeButton'
 import { SimpleRoundIconButton } from '../../components/templates/simpleRoundIconButton/SimpleRoundIcon'
+import { RealShadowButton } from '../../components/templates/realShadowButton/RealShadowButton'
 import { SpreadContentButton } from '../../components/templates/spreadContentButton/SpreadContentButton'
-import { TemplatesNeumophism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumophism001'
+import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumorphism001'
 
 const Template = () => {
     const [mouseX, setMouseX] = useState(0)
@@ -38,7 +39,7 @@ const Template = () => {
                     <SimpleRoundIconButton />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <RealShadowButton />
                 </Flex>
                 <Flex m={4}>
                     <SpreadContentButton />
@@ -46,30 +47,30 @@ const Template = () => {
             </Flex>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <TemplatesNeumorphism001 />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <TemplatesNeumorphism001 />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <TemplatesNeumorphism001 />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <TemplatesNeumorphism001 />
                 </Flex>
             </Flex>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <TemplatesNeumorphism001 />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <TemplatesNeumorphism001 />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <TemplatesNeumorphism001 />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumophism001 />
+                    <TemplatesNeumorphism001 />
                 </Flex>
             </Flex>
         </Flex>
