@@ -69,7 +69,6 @@ export const pseudoAreaSlice = createSlice({
     initialState,
     reducers: {
         setElementNameSelectedCurrent: (state, action: PayloadAction<string>) => {
-            console.log('setElementNameSelectedCurrent: ' + action.payload)
             state.elementNameSelectedCurrent = action.payload
         },
         setElementClassSelectedCurrent: (state, action: PayloadAction<string>) => {
@@ -181,18 +180,33 @@ export const pseudoAreaSlice = createSlice({
             }
             state.cssStates[uid] = newCssState
         },
-        setPseudoButtonLIfeCycle: (state,action: PayloadAction<{
-            timing:'pushed' | 'savedDisplayStatus' | 'savedCssProps' | 'loadedDisplayStatus'
-            lifeCycle: boolean
-        }>) => {
+        setPseudoButtonLIfeCycle: (
+            state,
+            action: PayloadAction<{
+                timing: 'pushed' | 'savedDisplayStatus' | 'savedCssProps' | 'loadedDisplayStatus'
+                lifeCycle: boolean
+            }>
+        ) => {
             if (action.payload.timing === 'pushed') {
-                state.pseudoButtonLifeCycle = {...current(state.pseudoButtonLifeCycle), isPushed: action.payload.lifeCycle}
+                state.pseudoButtonLifeCycle = {
+                    ...current(state.pseudoButtonLifeCycle),
+                    isPushed: action.payload.lifeCycle,
+                }
             } else if (action.payload.timing === 'savedDisplayStatus') {
-                state.pseudoButtonLifeCycle = {...current(state.pseudoButtonLifeCycle), isSavedDisplayStatus: action.payload.lifeCycle}
+                state.pseudoButtonLifeCycle = {
+                    ...current(state.pseudoButtonLifeCycle),
+                    isSavedDisplayStatus: action.payload.lifeCycle,
+                }
             } else if (action.payload.timing === 'savedCssProps') {
-                state.pseudoButtonLifeCycle = {...current(state.pseudoButtonLifeCycle), isSavedCssProps: action.payload.lifeCycle}
+                state.pseudoButtonLifeCycle = {
+                    ...current(state.pseudoButtonLifeCycle),
+                    isSavedCssProps: action.payload.lifeCycle,
+                }
             } else if (action.payload.timing === 'loadedDisplayStatus') {
-                state.pseudoButtonLifeCycle = {...current(state.pseudoButtonLifeCycle), isLoadedDisplayStatus: action.payload.lifeCycle}
+                state.pseudoButtonLifeCycle = {
+                    ...current(state.pseudoButtonLifeCycle),
+                    isLoadedDisplayStatus: action.payload.lifeCycle,
+                }
             }
         },
         setIsActiveMain: (state, action: PayloadAction<boolean>) => {
@@ -261,14 +275,14 @@ export const isActiveHover = (state: getStateType) => state.pseudoArea.isActiveH
 export const isActiveFocus = (state: getStateType) => state.pseudoArea.isActiveFocus
 export const isActiveActive = (state: getStateType) => state.pseudoArea.isActiveActive
 
-export const getElementUid = (selectedElementName:string, selectedElementClass:string[]) => {
+export const getElementUid = (selectedElementName: string, selectedElementClass: string[]) => {
     const uid =
-            selectedElementName +
-            '_' +
-            selectedElementClass.map((className) => {
-                return className
-            })
-    return uid 
+        selectedElementName +
+        '_' +
+        selectedElementClass.map((className) => {
+            return className
+        })
+    return uid
 }
 
 export default pseudoAreaSlice.reducer

@@ -1,9 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react'
-import React, { useEffect, useRef } from 'react'
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import React from 'react'
+import { useAppSelector } from '../../hooks'
 import { CustomAreaButton } from './CustomAreaButton'
 import {
-    getAllDisplayStatus,
     setDisplayBackgroundColor,
     setDisplayBorderColor,
     setDisplayBorderRadius,
@@ -15,62 +14,8 @@ import {
     setDisplayPadding,
     setDisplayWidth,
 } from './cssCustomAreaSlice'
-import { saveCurrentCustomAreaDisplay, setPseudoButtonLIfeCycle } from '../pseudoArea/pseudoAreaSlice'
 
 export const CssCustomArea = () => {
-    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
-    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
-    const pseudoButtonLifeCycle = useAppSelector((state) => state.pseudoArea.pseudoButtonLifeCycle)
-    const allDisplayStatus = useAppSelector((state) => getAllDisplayStatus(state)) //現在のclass areaすべての表示状態
-    const isFirstRender = useRef(true)
-    const cssState = useAppSelector((state) => state.pseudoArea.cssStates)
-    const dispatch = useAppDispatch()
-    useEffect(() => {
-        // いらないのでは？
-        // if (isFirstRender.current) {
-        //     isFirstRender.current = false
-        //     return
-        // }
-        if (pseudoButtonLifeCycle.isPushed === false) {
-            return
-        }
-        console.log('save current custom area display')
-        dispatch(
-            saveCurrentCustomAreaDisplay({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                allCustomAreaDisplayStatus: { ...allDisplayStatus },
-            })
-        )
-        dispatch(setPseudoButtonLIfeCycle({ timing: 'pushed', lifeCycle: false }))
-        dispatch(setPseudoButtonLIfeCycle({ timing: 'savedDisplayStatus', lifeCycle: true }))
-    }, [pseudoButtonLifeCycle])
-    useEffect(() => {
-        // displayロード
-        if (pseudoButtonLifeCycle.isSavedCssProps === false) {
-            return
-        }
-        console.log('load display')
-        const uid =
-            selectedElementName +
-            '_' +
-            selectedElementClass.map((className) => {
-                return className
-            })
-        // TODO:将来的に長くなりそうなので、そのうちどっかに書き出したい
-        dispatch(setDisplayBackgroundColor(cssState[uid].customAreaDisplay.displayBackgroundColor))
-        dispatch(setDisplayBorderColor(cssState[uid].customAreaDisplay.displayBorderColor))
-        dispatch(setDisplayBorderRadius(cssState[uid].customAreaDisplay.displayBorderRadius))
-        dispatch(setDisplayBorderStyle(cssState[uid].customAreaDisplay.displayBorderStyle))
-        dispatch(setDisplayBorderWidth(cssState[uid].customAreaDisplay.displayBorderWidth))
-        dispatch(setDisplayColor(cssState[uid].customAreaDisplay.displayColor))
-        dispatch(setDisplayFontSize(cssState[uid].customAreaDisplay.displayFontSize))
-        dispatch(setDisplayHeight(cssState[uid].customAreaDisplay.displayHeight))
-        dispatch(setDisplayPadding(cssState[uid].customAreaDisplay.displayPadding))
-        dispatch(setDisplayWidth(cssState[uid].customAreaDisplay.displayWidth))
-        dispatch(setPseudoButtonLIfeCycle({ timing: 'savedCssProps', lifeCycle: false }))
-        dispatch(setPseudoButtonLIfeCycle({ timing: 'loadedDisplayStatus', lifeCycle: true }))
-    }, [pseudoButtonLifeCycle])
     const displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
     const displayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
     const displayColor = useAppSelector((state) => state.cssCustomArea.displayColor)
