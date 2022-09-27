@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getStateType } from '../../store'
 
 type cssCustomAreaType = {
     isOpen: boolean
@@ -20,7 +19,5 @@ export const cssCustomAnimeAreaSlice = createSlice({
 })
 
 export const { setIsOpen } = cssCustomAnimeAreaSlice.actions
-
-export const isOpen = (state: getStateType) => state.cssCustomArea.isOpen
 
 export default cssCustomAnimeAreaSlice.reducer

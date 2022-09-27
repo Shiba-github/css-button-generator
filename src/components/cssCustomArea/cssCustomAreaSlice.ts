@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { getStateType } from '../../store'
 
-type cssCustomAreaType = {
-    isOpen: boolean
+export type cssCustomAreaType = {
     displayWidth: boolean
     displayHeight: boolean
     displayPadding: boolean
@@ -15,8 +14,7 @@ type cssCustomAreaType = {
     displayBackgroundColor: boolean
 }
 
-const initialState: cssCustomAreaType = {
-    isOpen: false,
+export const cssCustomAreaDisplay: cssCustomAreaType = {
     displayWidth: false,
     displayHeight: false,
     displayPadding: false,
@@ -31,11 +29,8 @@ const initialState: cssCustomAreaType = {
 
 export const cssCustomAreaSlice = createSlice({
     name: 'cssCustomArea',
-    initialState,
+    initialState: cssCustomAreaDisplay,
     reducers: {
-        setIsOpen: (state, action: PayloadAction<boolean>) => {
-            state.isOpen = action.payload
-        },
         setDisplayWidth: (state, action: PayloadAction<boolean>) => {
             state.displayWidth = action.payload
         },
@@ -70,7 +65,6 @@ export const cssCustomAreaSlice = createSlice({
 })
 
 export const {
-    setIsOpen,
     setDisplayWidth,
     setDisplayHeight,
     setDisplayPadding,
@@ -83,7 +77,6 @@ export const {
     setDisplayBackgroundColor,
 } = cssCustomAreaSlice.actions
 
-export const isOpen = (state: getStateType) => state.cssCustomArea.isOpen
 export const displayWidth = (state: getStateType) => state.cssCustomArea.displayWidth
 export const displayHeight = (state: getStateType) => state.cssCustomArea.displayHeight
 export const displayPadding = (state: getStateType) => state.cssCustomArea.displayPadding
@@ -94,5 +87,20 @@ export const displayBorderWidth = (state: getStateType) => state.cssCustomArea.d
 export const displayBorderRadius = (state: getStateType) => state.cssCustomArea.displayBorderRadius
 export const displayColor = (state: getStateType) => state.cssCustomArea.displayColor
 export const displayBackgroundColor = (state: getStateType) => state.cssCustomArea.displayBackgroundColor
+
+export const getAllDisplayStatus = (state: getStateType) => {
+    return {
+        displayWidth: state.cssCustomArea.displayWidth,
+        displayHeight: state.cssCustomArea.displayHeight,
+        displayPadding: state.cssCustomArea.displayPadding,
+        displayFontSize: state.cssCustomArea.displayFontSize,
+        displayBorderColor: state.cssCustomArea.displayBorderColor,
+        displayBorderStyle: state.cssCustomArea.displayBorderStyle,
+        displayBorderWidth: state.cssCustomArea.displayBorderWidth,
+        displayBorderRadius: state.cssCustomArea.displayBorderRadius,
+        displayColor: state.cssCustomArea.displayColor,
+        displayBackgroundColor: state.cssCustomArea.displayBackgroundColor,
+    }
+}
 
 export default cssCustomAreaSlice.reducer
