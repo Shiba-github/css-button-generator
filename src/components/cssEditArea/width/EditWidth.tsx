@@ -1,11 +1,14 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setWidth } from '../../buttonView/buttonViewSlice'
+import { getElementUid, saveCurrentCssProps} from '../../pseudoArea/pseudoAreaSlice'
 
 export const EditWidth = () => {
     const [showTooltip, setShowTooltip] = useState(false)
     const dispatch = useAppDispatch()
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const width = useAppSelector((state) => state.buttonView.width)
     const displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
     const onChangeValue = (v: number) => {

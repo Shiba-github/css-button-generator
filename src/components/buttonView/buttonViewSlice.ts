@@ -94,4 +94,22 @@ export const borderRadius = (state: getStateType) => state.buttonView.borderRadi
 export const width = (state: getStateType) => state.buttonView.width
 export const height = (state: getStateType) => state.buttonView.height
 
+export const getAllCssProps = (state: getStateType) => {
+    return {
+        color: state.buttonView.color,
+        backgroundColor: state.buttonView.backgroundColor,
+        border: state.buttonView.border,
+        padding: state.buttonView.padding,
+        textDecoration: state.buttonView.textDecoration,
+        display: state.buttonView.display,
+        fontSize: state.buttonView.fontSize,
+        borderColor: state.buttonView.borderColor,
+        borderStyle: state.buttonView.borderStyle,
+        borderWidth: state.buttonView.borderWidth,
+        borderRadius: state.buttonView.borderRadius,
+        width: state.buttonView.width,
+        height: state.buttonView.height,
+    }
+}
+
 export default buttonViewSlice.reducer
