@@ -4,6 +4,7 @@ import { HandWrittenLikeButton } from '../../components/templates/handWrittenLik
 import { SimpleRoundIconButton } from '../../components/templates/simpleRoundIconButton/SimpleRoundIcon'
 import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumorphism001'
 import { RealShadowButton } from '../../components/templates/realShadowButton/RealShadowButton'
+import { OrangeGradationButton } from '../../components/templates/orangeGradationButton/OrangeGradationButton'
 
 const Template = () => {
     const [mouseX, setMouseX] = useState(0)
@@ -46,7 +47,7 @@ const Template = () => {
             </Flex>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
                 <Flex m={4}>
-                    <TemplatesNeumorphism001 />
+                    <OrangeGradationButton />
                 </Flex>
                 <Flex m={4}>
                     <TemplatesNeumorphism001 />
