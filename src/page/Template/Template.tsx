@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { HandWrittenLikeButton } from '../../components/templates/handWrittenLikeButton/HandWrittenLikeButton'
 import { SimpleRoundIconButton } from '../../components/templates/simpleRoundIconButton/SimpleRoundIcon'
 import { RealShadowButton } from '../../components/templates/realShadowButton/RealShadowButton'
+import { OrangeGradationButton } from '../../components/templates/orangeGradationButton/OrangeGradationButton'
 import { SpreadContentButton } from '../../components/templates/spreadContentButton/SpreadContentButton'
 import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumorphism001'
 import { PushNeumorphismButton } from '../../components/templates/PushNeumorphismButton/PushNeumorphismButton'
@@ -48,7 +49,7 @@ const Template = () => {
             </Flex>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
                 <Flex m={4}>
-                    <TemplatesNeumorphism001 />
+                    <OrangeGradationButton />
                 </Flex>
                 <Flex m={4}>
                     <PushNeumorphismButton />
