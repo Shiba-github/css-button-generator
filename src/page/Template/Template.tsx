@@ -5,6 +5,7 @@ import { SimpleRoundIconButton } from '../../components/templates/simpleRoundIco
 import { RealShadowButton } from '../../components/templates/realShadowButton/RealShadowButton'
 import { SpreadContentButton } from '../../components/templates/spreadContentButton/SpreadContentButton'
 import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumorphism001'
+import { PushNeumorphismButton } from '../../components/templates/PushNeumorphismButton/PushNeumorphismButton'
 
 const Template = () => {
     const [mouseX, setMouseX] = useState(0)
@@ -50,7 +51,7 @@ const Template = () => {
                     <TemplatesNeumorphism001 />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumorphism001 />
+                    <PushNeumorphismButton />
                 </Flex>
                 <Flex m={4}>
                     <TemplatesNeumorphism001 />
