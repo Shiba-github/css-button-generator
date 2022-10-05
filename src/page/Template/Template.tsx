@@ -2,9 +2,10 @@ import { Flex } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { HandWrittenLikeButton } from '../../components/templates/handWrittenLikeButton/HandWrittenLikeButton'
 import { SimpleRoundIconButton } from '../../components/templates/simpleRoundIconButton/SimpleRoundIcon'
-import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumorphism001'
 import { RealShadowButton } from '../../components/templates/realShadowButton/RealShadowButton'
 import { OrangeGradationButton } from '../../components/templates/orangeGradationButton/OrangeGradationButton'
+import { SpreadContentButton } from '../../components/templates/spreadContentButton/SpreadContentButton'
+import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumorphism001'
 
 const Template = () => {
     const [mouseX, setMouseX] = useState(0)
@@ -19,8 +20,8 @@ const Template = () => {
     }, [])
     useEffect(() => {
         const deg = Math.floor(((mouseX + mouseY) / 510) * 360)
-        const firstColor = `rgba(${mouseX},${mouseY},255,1)`
-        const secondColor = `rgba(255,${mouseX},${mouseY},1)`
+        const firstColor = `rgba(255,255,255,1)`
+        const secondColor = `rgba(0,0,0,1)`
         setBackground(`linear-gradient(${deg}deg, ${firstColor} 0%, ${secondColor} 100%)`)
     }, [mouseX, mouseY])
     return (
@@ -42,7 +43,7 @@ const Template = () => {
                     <RealShadowButton />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumorphism001 />
+                    <SpreadContentButton />
                 </Flex>
             </Flex>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
