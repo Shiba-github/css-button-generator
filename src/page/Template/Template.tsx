@@ -7,6 +7,7 @@ import { OrangeGradationButton } from '../../components/templates/orangeGradatio
 import { SpreadContentButton } from '../../components/templates/spreadContentButton/SpreadContentButton'
 import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumorphism001'
 import { PushNeumorphismButton } from '../../components/templates/PushNeumorphismButton/PushNeumorphismButton'
+import { BorderGradientButton } from '../../components/templates/borderGradientButton/BorderGradientButton'
 import { FloatMonochromeButton } from '../../components/templates/floatMonochromeButton/FloatMonochromeButton'
 
 const Template = () => {
@@ -56,7 +57,7 @@ const Template = () => {
                     <PushNeumorphismButton />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumorphism001 />
+                    <BorderGradientButton />
                 </Flex>
                 <Flex m={4}>
                     <FloatMonochromeButton />
