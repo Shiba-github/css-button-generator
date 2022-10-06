@@ -7,6 +7,7 @@ import { OrangeGradationButton } from '../../components/templates/orangeGradatio
 import { SpreadContentButton } from '../../components/templates/spreadContentButton/SpreadContentButton'
 import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeumorphism001/TemplatesNeumorphism001'
 import { PushNeumorphismButton } from '../../components/templates/PushNeumorphismButton/PushNeumorphismButton'
+import { FloatMonochromeButton } from '../../components/templates/floatMonochromeButton/FloatMonochromeButton'
 
 const Template = () => {
     const [mouseX, setMouseX] = useState(0)
@@ -58,7 +59,7 @@ const Template = () => {
                     <TemplatesNeumorphism001 />
                 </Flex>
                 <Flex m={4}>
-                    <TemplatesNeumorphism001 />
+                    <FloatMonochromeButton />
                 </Flex>
             </Flex>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
