@@ -2,7 +2,14 @@ import React from 'react'
 import { css, CSSObject } from '@emotion/react'
 import { Flex } from '@chakra-ui/react'
 import { useAppDispatch } from '../../../hooks'
-import { setWidth, setHeight, setBorder, setColor, setFontSize } from '../../buttonView/buttonViewSlice'
+import {
+    setWidth,
+    setHeight,
+    setBorder,
+    setColor,
+    setFontSize,
+    setBackgroundColor,
+} from '../../buttonView/buttonViewSlice'
 
 // TODO：コメントアウトしてるプロパティはストア側で未対応なので要実装
 export const FloatMonochromeButton = () => {
@@ -10,7 +17,7 @@ export const FloatMonochromeButton = () => {
     const copyCssProps = () => {
         dispatch(setWidth(buttonStyle.width))
         dispatch(setHeight(buttonStyle.height))
-        // dispatch(setBackgroundColor(buttonStyle.backgroundColor))
+        dispatch(setBackgroundColor(buttonStyle.backgroundColor))
         dispatch(setBorder(buttonStyle.border))
         // dispatch(setBoxShadow(buttonStyle.boxShadow))
         dispatch(setColor(buttonStyle.color))
