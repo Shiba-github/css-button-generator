@@ -1,9 +1,13 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { setBorderWidth } from '../../../buttonView/buttonViewSlice'
+import { getAllCssProps, setBorderWidth } from '../../../buttonView/buttonViewSlice'
+import { saveCurrentCssCodes, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditBorderWidthTop = memo(() => {
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
     const [showTooltipBorderWidthTop, setShowTooltipBorderWidthTop] = useState(false)
@@ -20,6 +24,22 @@ export const EditBorderWidthTop = memo(() => {
         if (borderWidthList.length === 4) {
             borderWidthList[0] = v.toString() + 'px'
             dispatch(setBorderWidth(borderWidthList.join(' ')))
+            const newAllCssProps = { ...allCssProps, borderWidth: borderWidthList.join(' ') }
+            dispatch(
+                saveCurrentCssProps({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    allCssProps: newAllCssProps,
+                })
+            )
+            dispatch(
+                saveCurrentCssCodes({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    cssProp: 'borderWidth',
+                    cssValue: borderWidthList.join(' '),
+                })
+            )
         } else {
             dispatch(setBorderWidth(`${borderWidth} ${borderWidth} ${borderWidth} ${borderWidth}`))
         }

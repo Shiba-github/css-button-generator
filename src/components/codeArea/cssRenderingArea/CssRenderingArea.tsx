@@ -1,58 +1,50 @@
 import { Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useAppSelector } from '../../../hooks'
-import { defaultButtonCss } from '../defaultButtonCss'
+import { getElementUid } from '../../pseudoArea/pseudoAreaSlice'
 
+const transformCssLowerCase = (cssProp: string) => {
+    return cssProp
+        .split(/(?=[A-Z])/)
+        .map((item) => item.toLowerCase())
+        .join('-')
+}
 export const CssRenderingArea = () => {
-    const width = useAppSelector((state) => state.buttonView.width)
-    const isDisplayWidth = defaultButtonCss.width === 'ALWAYS' || defaultButtonCss.width !== width
-    const height = useAppSelector((state) => state.buttonView.height)
-    const isDisplayHeight = defaultButtonCss.height === 'ALWAYS' || defaultButtonCss.height !== height
-    const color = useAppSelector((state) => state.buttonView.color)
-    const isDisplayColor = defaultButtonCss.color === 'ALWAYS' || defaultButtonCss.color !== color
-    const backgroundColor = useAppSelector((state) => state.buttonView.backgroundColor)
-    const isDisplayBackgroundColor =
-        defaultButtonCss.backgroundColor === 'ALWAYS' || defaultButtonCss.backgroundColor !== backgroundColor
-    const border = useAppSelector((state) => state.buttonView.border)
-    const isDisplayBorder = defaultButtonCss.border === 'ALWAYS' || defaultButtonCss.border !== border
-    const padding = useAppSelector((state) => state.buttonView.padding)
-    const isDisplayPadding = defaultButtonCss.padding === 'ALWAYS' || defaultButtonCss.padding !== padding
-    const textDecoration = useAppSelector((state) => state.buttonView.textDecoration)
-    const isDisplayTextDecoration =
-        defaultButtonCss.textDecoration === 'ALWAYS' || defaultButtonCss.textDecoration !== textDecoration
-    const display = useAppSelector((state) => state.buttonView.display)
-    const isDisplayDisplay = defaultButtonCss.display === 'ALWAYS' || defaultButtonCss.display !== display
-    const fontSize = useAppSelector((state) => state.buttonView.fontSize)
-    const isDisplayFontSize = defaultButtonCss.fontSize === 'ALWAYS' || defaultButtonCss.fontSize !== fontSize
-    const borderColor = useAppSelector((state) => state.buttonView.borderColor)
-    const isDisplayBorderColor =
-        defaultButtonCss.borderColor === 'ALWAYS' || defaultButtonCss.borderColor !== borderColor
-    const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
-    const isDisplayBorderStyle =
-        defaultButtonCss.borderStyle === 'ALWAYS' || defaultButtonCss.borderStyle !== borderStyle
-    const borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
-    const isDisplayBorderWidth =
-        defaultButtonCss.borderWidth === 'ALWAYS' || defaultButtonCss.borderWidth !== borderWidth
-    const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
-    const isDisplayBorderRadius =
-        defaultButtonCss.borderRadius === 'ALWAYS' || defaultButtonCss.borderRadius !== borderRadius
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates)
+    class HTMLBuilder {
+        buildHeader = (elementName: string, elementClass: string[]) => {
+            const _elementName = elementName === 'Main' ? '' : '::' + elementName
+            const _elementClass = elementClass.length === 0 ? '' : ':' + elementClass.join(':')
+            const resultStr = '.custom_button' + _elementName + _elementClass + ' {'
+            return <Text>{resultStr}</Text>
+        }
+
+        buildContent = (elementName: string, elementClass: string[]) => {
+            const uid = getElementUid(elementName, elementClass)
+            const codes = cssStates[uid].cssCodes
+            const resultStr = []
+            for (const [key, value] of Object.entries(codes)) {
+                resultStr.push(transformCssLowerCase(key) + ': ' + value)
+            }
+            return resultStr.map((str) => {
+                return <Text key={str}>&emsp;{str}</Text>
+            })
+        }
+    }
+    const constructHtml = (builder: typeof HTMLBuilder, elementName: string, elementClass: string[]) => {
+        return (
+            <>
+                {new builder().buildHeader(elementName, elementClass)}
+                {new builder().buildContent(elementName, elementClass)}
+                <Text>{'}'}</Text>
+            </>
+        )
+    }
     return (
         <Flex flexDirection={'column'} color={'black'} fontSize={'1rem'} margin={'1rem'}>
-            <Text>.custom_button {'{'}</Text>
-            {isDisplayWidth && <Text>&emsp;width: {width}</Text>}
-            {isDisplayHeight && <Text>&emsp;height: {height}</Text>}
-            {isDisplayColor && <Text>&emsp;color: {color}</Text>}
-            {isDisplayBackgroundColor && <Text>&emsp;background-color: {backgroundColor}</Text>}
-            {isDisplayBorder && <Text>&emsp;border: {border}</Text>}
-            {isDisplayPadding && <Text>&emsp;padding: {padding}</Text>}
-            {isDisplayTextDecoration && <Text>&emsp;text-decoration: {textDecoration}</Text>}
-            {isDisplayDisplay && <Text>&emsp;display: {display}</Text>}
-            {isDisplayFontSize && <Text>&emsp;font-size: {fontSize}</Text>}
-            {isDisplayBorderColor && <Text>&emsp;border-color: {borderColor}</Text>}
-            {isDisplayBorderStyle && <Text>&emsp;border-style: {borderStyle}</Text>}
-            {isDisplayBorderWidth && <Text>&emsp;border-width: {borderWidth}</Text>}
-            {isDisplayBorderRadius && <Text>&emsp;border-radius: {borderRadius}</Text>}
-            <Text>{'}'}</Text>
+            {Object.values(cssStates).map((cssState) => {
+                return constructHtml(HTMLBuilder, cssState.elementName, cssState.classNames)
+            })}
         </Flex>
     )
 }

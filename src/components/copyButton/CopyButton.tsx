@@ -77,6 +77,7 @@ export const CopyButton = () => {
             alignItems={'center'}
             borderRadius={'20%'}
             bg={'black'}
+            zIndex={100}
             initial={copyAnimeVariants.init}
             whileHover={isCopy ? copyAnimeVariants.whileHoverOut : copyAnimeVariants.whileHover}
             whileTap={copyAnimeVariants.whileTap}

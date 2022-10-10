@@ -1,9 +1,13 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { setBorderRadius } from '../../../buttonView/buttonViewSlice'
+import { getAllCssProps, setBorderRadius } from '../../../buttonView/buttonViewSlice'
+import { saveCurrentCssCodes, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditBorderRadiusTopRightHorizontal = memo(() => {
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
     const [showTooltipTopRightHorizontal, setShowTooltipTopRightHorizontal] = useState(false)
@@ -21,6 +25,22 @@ export const EditBorderRadiusTopRightHorizontal = memo(() => {
             borderRadiusList[1] = v.toString() + 'px'
             borderRadiusList.splice(4, 0, '/')
             dispatch(setBorderRadius(borderRadiusList.join(' ')))
+            const newAllCssProps = { ...allCssProps, borderRadius: borderRadiusList.join(' ') }
+            dispatch(
+                saveCurrentCssProps({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    allCssProps: newAllCssProps,
+                })
+            )
+            dispatch(
+                saveCurrentCssCodes({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    cssProp: 'borderRadius',
+                    cssValue: borderRadiusList.join(' '),
+                })
+            )
         } else {
             dispatch(
                 setBorderRadius(

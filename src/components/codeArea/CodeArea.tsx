@@ -9,7 +9,7 @@ export const CodeArea = () => {
             width={'30rem'}
             height={'15rem'}
             bg={'white'}
-            borderRadius={'2rem'}
+            borderLeftRadius={'2rem'}
             flexDirection={'row'}
             overflowY={'scroll'}
             overflowX={'hidden'}
