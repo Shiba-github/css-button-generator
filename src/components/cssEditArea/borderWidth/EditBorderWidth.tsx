@@ -12,7 +12,7 @@ import {
     Box,
 } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setBorderWidth } from '../../buttonView/buttonViewSlice'
+import { getAllCssProps, setBorderWidth } from '../../buttonView/buttonViewSlice'
 import { AddIcon } from '@chakra-ui/icons'
 import { motion } from 'framer-motion'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
@@ -21,8 +21,12 @@ import { EditBorderWidthTop } from './borderWidthTop/EditBorderWidthTop'
 import { EditBorderWidthRight } from './borderWidthRight/EditBorderWidthRight'
 import { EditBorderWidthBottom } from './borderWidthBottom/EditBorderWidthBottom'
 import { EditBorderWidthLeft } from './borderWidthLeft/EditBorderWidthLeft'
+import { saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const EditBorderWidth = () => {
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
     const displayBorderWidth = useAppSelector((state) => state.cssCustomArea.displayBorderWidth)
@@ -31,8 +35,25 @@ export const EditBorderWidth = () => {
     const [allBorderWidth, setAllBorderWidth] = useState('')
 
     const onChangeValue = (v: number) => {
+        // TODO:親のborderWidthだけ他疑似要素に変更時見た目を保持していない（データは保持できている）
         setAllBorderWidth(v.toString() + 'px')
         dispatch(setBorderWidth(v.toString() + 'px'))
+        const newAllCssProps = { ...allCssProps, borderWidth: v.toString() + 'px' }
+        dispatch(
+            saveCurrentCssProps({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                allCssProps: newAllCssProps,
+            })
+        )
+        dispatch(
+            saveCurrentCssCodes({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                cssProp: 'borderWidth',
+                cssValue: v.toString() + 'px',
+            })
+        )
     }
     return (
         <>

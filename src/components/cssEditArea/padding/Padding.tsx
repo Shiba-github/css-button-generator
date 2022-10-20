@@ -12,7 +12,7 @@ import {
     Box,
 } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setPadding } from '../../buttonView/buttonViewSlice'
+import { getAllCssProps, setPadding } from '../../buttonView/buttonViewSlice'
 import { AddIcon } from '@chakra-ui/icons'
 import { motion } from 'framer-motion'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
@@ -21,8 +21,12 @@ import { EditPaddingTop } from './paddingTop/EditPaddingTop'
 import { EditPaddingRight } from './paddingRight/EditPaddingRight'
 import { EditPaddingBottom } from './paddingBottom/EditPaddingBottom'
 import { EditPaddingLeft } from './paddingLeft/EditPaddingLeft'
+import { saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const Padding = () => {
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const padding = useAppSelector((state) => state.buttonView.padding)
     const displayPadding = useAppSelector((state) => state.cssCustomArea.displayPadding)
@@ -31,8 +35,25 @@ export const Padding = () => {
     const [allPadding, setAllPadding] = useState('')
 
     const onChangeValue = (v: number) => {
+        // TODO:親のpaddingだけ他疑似要素に変更時見た目を保持していない（データは保持できている）
         setAllPadding(v.toString() + 'px')
         dispatch(setPadding(v.toString() + 'px'))
+        const newAllCssProps = { ...allCssProps, padding: v.toString() + 'px' }
+        dispatch(
+            saveCurrentCssProps({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                allCssProps: newAllCssProps,
+            })
+        )
+        dispatch(
+            saveCurrentCssCodes({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                cssProp: 'padding',
+                cssValue: v.toString() + 'px',
+            })
+        )
     }
     return (
         <>

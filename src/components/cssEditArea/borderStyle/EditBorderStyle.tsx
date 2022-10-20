@@ -3,16 +3,39 @@ import { Flex, Button, Box, Text } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setBorderStyle } from '../../buttonView/buttonViewSlice'
+import { getAllCssProps, setBorderStyle } from '../../buttonView/buttonViewSlice'
+import { saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
 export const EditBorderStyle = () => {
-    // TODO:Animationはスーパーてきとー
+    // TODO:でかすぎ
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
     const displayBorderStyle = useAppSelector((state) => state.cssCustomArea.displayBorderStyle)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
+    const onClickBorderStyle = (style: string) => {
+        dispatch(setBorderStyle(style))
+        const newAllCssProps = { ...allCssProps, borderStyle: style }
+        dispatch(
+            saveCurrentCssProps({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                allCssProps: newAllCssProps,
+            })
+        )
+        dispatch(
+            saveCurrentCssCodes({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                cssProp: 'borderStyle',
+                cssValue: style,
+            })
+        )
+    }
     const confirmClickedBorderStyleButton = (_borderStyle: string, position: string) => {
         const borderStyleList = borderStyle.split(' ')
         if (borderStyleList.length === 1) {
@@ -34,35 +57,51 @@ export const EditBorderStyle = () => {
 
     const updateBorderStyle = (_borderStyle: string, position: string) => {
         const borderStyleList = borderStyle.split(' ')
+        let newBorderStyle = ''
         if (borderStyleList.length === 1) {
             if (position === 'top') {
                 dispatch(setBorderStyle(`${_borderStyle} ${borderStyle} ${borderStyle} ${borderStyle}`))
+                newBorderStyle = `${_borderStyle} ${borderStyle} ${borderStyle} ${borderStyle}`
             } else if (position === 'right') {
                 dispatch(setBorderStyle(`${borderStyle} ${_borderStyle} ${borderStyle} ${borderStyle}`))
+                newBorderStyle = `${borderStyle} ${_borderStyle} ${borderStyle} ${borderStyle}`
             } else if (position === 'bottom') {
                 dispatch(setBorderStyle(`${borderStyle} ${borderStyle} ${_borderStyle} ${borderStyle}`))
+                newBorderStyle = `${borderStyle} ${borderStyle} ${_borderStyle} ${borderStyle}`
             } else if (position === 'left') {
                 dispatch(setBorderStyle(`${borderStyle} ${borderStyle} ${borderStyle} ${_borderStyle}`))
+                newBorderStyle = `${borderStyle} ${borderStyle} ${borderStyle} ${_borderStyle}`
             }
         } else {
             if (position === 'top') {
                 borderStyleList[0] = _borderStyle
-                const borderStyleStrings = borderStyleList.join(' ')
-                dispatch(setBorderStyle(borderStyleStrings))
             } else if (position === 'right') {
                 borderStyleList[1] = _borderStyle
-                const borderStyleStrings = borderStyleList.join(' ')
-                dispatch(setBorderStyle(borderStyleStrings))
             } else if (position === 'bottom') {
                 borderStyleList[2] = _borderStyle
-                const borderStyleStrings = borderStyleList.join(' ')
-                dispatch(setBorderStyle(borderStyleStrings))
             } else if (position === 'left') {
                 borderStyleList[3] = _borderStyle
-                const borderStyleStrings = borderStyleList.join(' ')
-                dispatch(setBorderStyle(borderStyleStrings))
             }
+            const borderStyleStrings = borderStyleList.join(' ')
+            dispatch(setBorderStyle(borderStyleStrings))
+            newBorderStyle = borderStyleList.join(' ')
         }
+        const newAllCssProps = { ...allCssProps, borderStyle: newBorderStyle }
+        dispatch(
+            saveCurrentCssProps({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                allCssProps: newAllCssProps,
+            })
+        )
+        dispatch(
+            saveCurrentCssCodes({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                cssProp: 'borderStyle',
+                cssValue: newBorderStyle,
+            })
+        )
     }
 
     return (
@@ -90,7 +129,7 @@ export const EditBorderStyle = () => {
                         <Flex flexDirection={'column'} width={'40rem'} alignItems={'flex-end'}>
                             <Flex flexDirection={'row'} justifyContent={'space-between'}>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('none'))}
+                                    onClick={() => onClickBorderStyle('none')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}
@@ -99,7 +138,7 @@ export const EditBorderStyle = () => {
                                     none
                                 </Button>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('hidden'))}
+                                    onClick={() => onClickBorderStyle('hidden')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}
@@ -108,7 +147,7 @@ export const EditBorderStyle = () => {
                                     hidden
                                 </Button>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('dotted'))}
+                                    onClick={() => onClickBorderStyle('dotted')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}
@@ -117,7 +156,7 @@ export const EditBorderStyle = () => {
                                     dotted
                                 </Button>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('dashed'))}
+                                    onClick={() => onClickBorderStyle('dashed')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}
@@ -126,7 +165,7 @@ export const EditBorderStyle = () => {
                                     dashed
                                 </Button>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('solid'))}
+                                    onClick={() => onClickBorderStyle('solid')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}
@@ -137,7 +176,7 @@ export const EditBorderStyle = () => {
                             </Flex>
                             <Flex flexDirection={'row'} justifyContent={'space-between'}>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('double'))}
+                                    onClick={() => onClickBorderStyle('double')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}
@@ -146,7 +185,7 @@ export const EditBorderStyle = () => {
                                     double
                                 </Button>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('groove'))}
+                                    onClick={() => onClickBorderStyle('groove')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}
@@ -155,7 +194,7 @@ export const EditBorderStyle = () => {
                                     groove
                                 </Button>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('ridge'))}
+                                    onClick={() => onClickBorderStyle('ridge')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}
@@ -164,7 +203,7 @@ export const EditBorderStyle = () => {
                                     ridge
                                 </Button>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('inset'))}
+                                    onClick={() => onClickBorderStyle('inset')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}
@@ -173,7 +212,7 @@ export const EditBorderStyle = () => {
                                     inset
                                 </Button>
                                 <Button
-                                    onClick={() => dispatch(setBorderStyle('outset'))}
+                                    onClick={() => onClickBorderStyle('outset')}
                                     fontSize={'1.2rem'}
                                     margin={'0.1rem'}
                                     height={'2rem'}

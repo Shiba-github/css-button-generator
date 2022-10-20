@@ -4,11 +4,15 @@ import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { AlphaPicker, ChromePicker, ColorResult, HuePicker } from 'react-color'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setColor } from '../../buttonView/buttonViewSlice'
+import { getAllCssProps, setColor } from '../../buttonView/buttonViewSlice'
+import { saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
 export const EditColor = () => {
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const colorRgb = useAppSelector((state) => state.buttonView.color)
     const displayColor = useAppSelector((state) => state.cssCustomArea.displayColor)
@@ -16,6 +20,22 @@ export const EditColor = () => {
     const handleChange = (color: ColorResult) => {
         const rgba = `rgba(${color.rgb.r},${color.rgb.g},${color.rgb.b},${color.rgb.a})`
         dispatch(setColor(rgba))
+        const newAllCssProps = { ...allCssProps, color: rgba }
+        dispatch(
+            saveCurrentCssProps({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                allCssProps: newAllCssProps,
+            })
+        )
+        dispatch(
+            saveCurrentCssCodes({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                cssProp: 'color',
+                cssValue: rgba,
+            })
+        )
     }
     return (
         <>

@@ -1,15 +1,37 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setWidth } from '../../buttonView/buttonViewSlice'
+import { getAllCssProps, setWidth } from '../../buttonView/buttonViewSlice'
+import { saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const EditWidth = () => {
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const [showTooltip, setShowTooltip] = useState(false)
     const dispatch = useAppDispatch()
     const width = useAppSelector((state) => state.buttonView.width)
     const displayWidth = useAppSelector((state) => state.cssCustomArea.displayWidth)
+
     const onChangeValue = (v: number) => {
         dispatch(setWidth(v.toString() + 'px'))
+        // saveCurrentCssPropsにて現在の↑↑で更新された現在のCSSプロパティを入れると非同期処理の問題でスライドバーがガタつく為、新たに作成して代入している。
+        const newAllCssProps = { ...allCssProps, width: v.toString() + 'px' }
+        dispatch(
+            saveCurrentCssProps({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                allCssProps: newAllCssProps,
+            })
+        )
+        dispatch(
+            saveCurrentCssCodes({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                cssProp: 'width',
+                cssValue: v.toString() + 'px',
+            })
+        )
     }
 
     return (

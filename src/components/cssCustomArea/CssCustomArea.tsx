@@ -37,16 +37,16 @@ export const CssCustomArea = () => {
             >
                 Basics
             </Text>
-            <CustomAreaButton text="Width" isDisplay={displayWidth} setter={setDisplayWidth} />
-            <CustomAreaButton text="Height" isDisplay={displayHeight} setter={setDisplayHeight} />
-            <CustomAreaButton text="Color" isDisplay={displayColor} setter={setDisplayColor} />
+            <CustomAreaButton text="width" isDisplay={displayWidth} setter={setDisplayWidth} />
+            <CustomAreaButton text="height" isDisplay={displayHeight} setter={setDisplayHeight} />
+            <CustomAreaButton text="color" isDisplay={displayColor} setter={setDisplayColor} />
             <CustomAreaButton
-                text="BackgroundColor"
+                text="backgroundColor"
                 isDisplay={displayBackgroundColor}
                 setter={setDisplayBackgroundColor}
             />
-            <CustomAreaButton text="FontSize" isDisplay={displayFontSize} setter={setDisplayFontSize} />
-            <CustomAreaButton text="Padding" isDisplay={displayPadding} setter={setDisplayPadding} />
+            <CustomAreaButton text="fontSize" isDisplay={displayFontSize} setter={setDisplayFontSize} />
+            <CustomAreaButton text="padding" isDisplay={displayPadding} setter={setDisplayPadding} />
             <Text
                 display={'flex'}
                 alignItems={'center'}
@@ -56,10 +56,10 @@ export const CssCustomArea = () => {
             >
                 Border
             </Text>
-            <CustomAreaButton text="BorderColor" isDisplay={displayBorderColor} setter={setDisplayBorderColor} />
-            <CustomAreaButton text="BorderStyle" isDisplay={displayBorderStyle} setter={setDisplayBorderStyle} />
-            <CustomAreaButton text="BorderWidth" isDisplay={displayBorderWidth} setter={setDisplayBorderWidth} />
-            <CustomAreaButton text="BorderRadius" isDisplay={displayBorderRadius} setter={setDisplayBorderRadius} />
+            <CustomAreaButton text="borderColor" isDisplay={displayBorderColor} setter={setDisplayBorderColor} />
+            <CustomAreaButton text="borderStyle" isDisplay={displayBorderStyle} setter={setDisplayBorderStyle} />
+            <CustomAreaButton text="borderWidth" isDisplay={displayBorderWidth} setter={setDisplayBorderWidth} />
+            <CustomAreaButton text="borderRadius" isDisplay={displayBorderRadius} setter={setDisplayBorderRadius} />
         </Flex>
     )
 }

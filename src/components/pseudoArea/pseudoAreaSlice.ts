@@ -4,15 +4,18 @@ import { cssTypes } from '../../types/cssTypes'
 import { buttonInitialState } from '../buttonView/buttonViewSlice'
 import { cssCustomAreaDisplay, cssCustomAreaType } from '../cssCustomArea/cssCustomAreaSlice'
 
+type arrayType = {
+    [prop: string]: statesType
+}
+
 type statesType = {
     elementName: string
     classNames: string[]
     cssProps: cssTypes
     customAreaDisplay: cssCustomAreaType
-}
-
-type arrayType = {
-    [prop: string]: statesType
+    cssCodes: {
+        [prop: string]: string
+    }
 }
 
 const initCustomAreaDisplay = { ...cssCustomAreaDisplay }
@@ -22,6 +25,7 @@ const initCssState: statesType = {
     classNames: [], // hover, focus, active, etc...(CSSの仕組み上、複合する可能性あり['hover', 'focus']みたいな感じ)
     cssProps: initCssProps,
     customAreaDisplay: initCustomAreaDisplay,
+    cssCodes: {}, // {width: '100px', height: '100px' ...}
 }
 
 const initCssStates: arrayType = {
@@ -180,6 +184,55 @@ export const pseudoAreaSlice = createSlice({
             }
             state.cssStates[uid] = newCssState
         },
+        saveCurrentCssCodes: (
+            state,
+            action: PayloadAction<{
+                elementName: string
+                classNames: string[]
+                cssProp: string
+                cssValue: string
+            }>
+        ) => {
+            const elementName = action.payload.elementName
+            const classNames = action.payload.classNames
+            const cssProp = action.payload.cssProp
+            const cssValue = action.payload.cssValue
+
+            const uid = getElementUid(elementName, classNames)
+            const cssState = current(state.cssStates)[uid]
+            const newCssState = {
+                ...cssState,
+                cssCodes: {
+                    ...cssState.cssCodes,
+                    [cssProp]: cssValue,
+                },
+            }
+            state.cssStates[uid] = newCssState
+        },
+        removeCurrentCssCodes: (
+            state,
+            action: PayloadAction<{
+                elementName: string
+                classNames: string[]
+                cssProp: string
+            }>
+        ) => {
+            const elementName = action.payload.elementName
+            const classNames = action.payload.classNames
+            const cssProp = action.payload.cssProp
+
+            const uid = getElementUid(elementName, classNames)
+            const cssState = current(state.cssStates)[uid]
+            const newCssCodes = {
+                ...cssState.cssCodes,
+            }
+            delete newCssCodes[cssProp]
+            const newCssState = {
+                ...cssState,
+                cssCodes: newCssCodes,
+            }
+            state.cssStates[uid] = newCssState
+        },
         setPseudoButtonLIfeCycle: (
             state,
             action: PayloadAction<{
@@ -255,6 +308,8 @@ export const {
     createNewCssStates,
     saveCurrentCustomAreaDisplay,
     saveCurrentCssProps,
+    saveCurrentCssCodes,
+    removeCurrentCssCodes,
     setPseudoButtonLIfeCycle,
     setIsActiveMain,
     setIsActiveBefore,

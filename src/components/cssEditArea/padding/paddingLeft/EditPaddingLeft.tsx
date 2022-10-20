@@ -1,9 +1,13 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { setPadding } from '../../../buttonView/buttonViewSlice'
+import { getAllCssProps, setPadding } from '../../../buttonView/buttonViewSlice'
+import { saveCurrentCssCodes, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditPaddingLeft = memo(() => {
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const padding = useAppSelector((state) => state.buttonView.padding)
     const [showTooltipPaddingLeft, setShowTooltipPaddingLeft] = useState(false)
@@ -20,6 +24,22 @@ export const EditPaddingLeft = memo(() => {
         if (paddingList.length === 4) {
             paddingList[3] = v.toString() + 'px'
             dispatch(setPadding(paddingList.join(' ')))
+            const newAllCssProps = { ...allCssProps, padding: paddingList.join(' ') }
+            dispatch(
+                saveCurrentCssProps({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    allCssProps: newAllCssProps,
+                })
+            )
+            dispatch(
+                saveCurrentCssCodes({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    cssProp: 'padding',
+                    cssValue: paddingList.join(' '),
+                })
+            )
         } else {
             dispatch(setPadding(`${padding} ${padding} ${padding} ${padding}`))
         }

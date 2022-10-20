@@ -14,7 +14,8 @@ import {
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setBorderRadius } from '../../buttonView/buttonViewSlice'
+import { getAllCssProps, setBorderRadius } from '../../buttonView/buttonViewSlice'
+import { saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 import { EditBorderRadiusBottomLeftHorizontal } from './bottomLeft/EditBorderRadiusBottomLeftHorizontal'
@@ -27,7 +28,10 @@ import { EditBorderRadiusTopRightHorizontal } from './topRight/EditBorderRadiusT
 import { EditBorderRadiusTopRightVertical } from './topRight/EditBorderRadiusTopRightVertical'
 
 export const EditBorderRadius = () => {
-    // TODO:デザインは一旦ポイ
+    // TODO:親のborderRadiusだけ他疑似要素に変更時見た目を保持していない（データは保持できている）
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
     const displayBorderRadius = useAppSelector((state) => state.cssCustomArea.displayBorderRadius)
@@ -39,6 +43,22 @@ export const EditBorderRadius = () => {
     const onChangeValue = (v: number) => {
         setBorderRadiusAll(v.toString() + 'px')
         dispatch(setBorderRadius(v.toString() + 'px'))
+        const newAllCssProps = { ...allCssProps, borderRadius: v.toString() + 'px' }
+        dispatch(
+            saveCurrentCssProps({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                allCssProps: newAllCssProps,
+            })
+        )
+        dispatch(
+            saveCurrentCssCodes({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                cssProp: 'borderRadius',
+                cssValue: v.toString() + 'px',
+            })
+        )
     }
     return (
         <>

@@ -23,13 +23,7 @@ const Editor = () => {
             <GridItem area={'pseudo'} backgroundColor={'rgb(26 32 44)'} overflowX={'hidden'} overflowY={'scroll'}>
                 <PseudoArea />
             </GridItem>
-            <GridItem
-                display={'flex'}
-                flexDirection={'column'}
-                area={'custom'}
-                backgroundColor={'rgb(26 32 44)'}
-                height={'30rem'}
-            >
+            <GridItem display={'flex'} flexDirection={'column'} area={'custom'} backgroundColor={'rgb(26 32 44)'}>
                 <CssCustomArea />
             </GridItem>
             <GridItem area={'edit'} backgroundColor={'gray.500'} overflowX={'hidden'} overflowY={'scroll'}>
