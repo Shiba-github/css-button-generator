@@ -30,24 +30,24 @@ export const PseudoArea = () => {
             </Text>
             <PseudoButton
                 type="pseudoElements"
-                TitleText={'Before'}
+                TitleText={'before'}
                 isActive={isActiveBefore}
                 setter={setIsActiveBefore}
             />
             <PseudoButton
                 type="pseudoElements"
-                TitleText={'After'}
+                TitleText={'after'}
                 isActive={isActiveAfter}
                 setter={setIsActiveAfter}
             />
             <Text textAlign={'center'} fontSize={'1.5rem'}>
                 Pseudo Class
             </Text>
-            <PseudoButton type="pseudoClass" TitleText={'Hover'} isActive={isActiveHover} setter={setIsActiveHover} />
-            <PseudoButton type="pseudoClass" TitleText={'Focus'} isActive={isActiveFocus} setter={setIsActiveFocus} />
+            <PseudoButton type="pseudoClass" TitleText={'hover'} isActive={isActiveHover} setter={setIsActiveHover} />
+            <PseudoButton type="pseudoClass" TitleText={'focus'} isActive={isActiveFocus} setter={setIsActiveFocus} />
             <PseudoButton
                 type="pseudoClass"
-                TitleText={'Active'}
+                TitleText={'active'}
                 isActive={isActiveActive}
                 setter={setIsActiveActive}
             />
