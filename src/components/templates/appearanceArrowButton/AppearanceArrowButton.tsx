@@ -1,31 +1,31 @@
 import React from 'react'
 import { css, CSSObject } from '@emotion/react'
 import { Flex } from '@chakra-ui/react'
-import { useAppDispatch } from '../../../hooks'
-import {
-    setColor,
-    setHeight,
-    setWidth,
-    setBorder,
-    setBorderRadius,
-    setBackgroundColor,
-    setFontSize,
-} from '../../buttonView/buttonViewSlice'
+// import { useAppDispatch } from '../../../hooks'
+// import {
+//     setColor,
+//     setHeight,
+//     setWidth,
+//     setBorder,
+//     setBorderRadius,
+//     setBackgroundColor,
+//     setFontSize,
+// } from '../../buttonView/buttonViewSlice'
 
 // TODO：コメントアウトしてるプロパティはストア側で未対応なので要実装
 export const AppearanceArrowButton = () => {
-    const dispatch = useAppDispatch()
+    // const dispatch = useAppDispatch()
     const copyCssProps = () => {
-        dispatch(setWidth(buttonStyle.width))
-        dispatch(setHeight(buttonStyle.height))
-        dispatch(setColor(buttonStyle.color))
+        // dispatch(setWidth(buttonStyle.width))
+        // dispatch(setHeight(buttonStyle.height))
+        // dispatch(setColor(buttonStyle.color))
         // dispatch(setCursor(buttonStyle.cursor))
-        dispatch(setBorder(buttonStyle.border))
-        dispatch(setBorderRadius(buttonStyle.borderRadius))
-        dispatch(setBackgroundColor(buttonStyle.backgroundColor))
+        // dispatch(setBorder(buttonStyle.border))
+        // dispatch(setBorderRadius(buttonStyle.borderRadius))
+        // dispatch(setBackgroundColor(buttonStyle.backgroundColor))
         // dispatch(setBackfaceVisibility(buttonStyle.backfaceVisibility))
         // dispatch(setBoxShadow(buttonStyle.boxShadow))
-        dispatch(setFontSize(buttonStyle.fontSize))
+        // dispatch(setFontSize(buttonStyle.fontSize))
         // dispatch(setFontWeight(buttonStyle.fontWeight))
         // dispatch(setTransition(buttonStyle.transition))
     }
