@@ -4,28 +4,29 @@ import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { AlphaPicker, ChromePicker, ColorResult, HuePicker } from 'react-color'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { getAllCssProps, setBackgroundColor } from '../../buttonView/buttonViewSlice'
-import { saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { setBackgroundColor } from '../../buttonView/buttonViewSlice'
+import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
 export const EditBackgroundColor = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
-    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const backgroundColor = useAppSelector((state) => state.buttonView.backgroundColor)
-    const displayBackgroundColor = useAppSelector((state) => state.cssCustomArea.displayBackgroundColor)
+    const uid = getElementUid(selectedElementName, selectedElementClass)
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
+    const displayBackgroundColor = cssStates[uid].customAreaDisplay.backgroundColor
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const handleChange = (color: ColorResult) => {
         const rgba = `rgba(${color.rgb.r},${color.rgb.g},${color.rgb.b},${color.rgb.a})`
         dispatch(setBackgroundColor(rgba))
-        const newAllCssProps = { ...allCssProps, backgroundColor: rgba }
         dispatch(
             saveCurrentCssProps({
                 elementName: selectedElementName,
                 classNames: selectedElementClass,
-                allCssProps: newAllCssProps,
+                cssPropKey: 'backgroundColor',
+                cssPropValue: rgba,
             })
         )
         dispatch(

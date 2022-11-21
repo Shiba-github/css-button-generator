@@ -3,7 +3,6 @@ import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import React, { memo, useEffect, useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import {
-    getAllCssProps,
     setBackgroundColor,
     setBorder,
     setBorderColor,
@@ -18,26 +17,12 @@ import {
     setTextDecoration,
     setWidth,
 } from '../buttonView/buttonViewSlice'
-import {
-    getAllDisplayStatus,
-    setDisplayBackgroundColor,
-    setDisplayBorderColor,
-    setDisplayBorderRadius,
-    setDisplayBorderStyle,
-    setDisplayBorderWidth,
-    setDisplayColor,
-    setDisplayFontSize,
-    setDisplayHeight,
-    setDisplayPadding,
-    setDisplayWidth,
-} from '../cssCustomArea/cssCustomAreaSlice'
+
 import {
     removeElementClassSelectedCurrent,
     createNewCssStates,
     setElementClassSelectedCurrent,
     setElementNameSelectedCurrent,
-    saveCurrentCustomAreaDisplay,
-    saveCurrentCssProps,
 } from './pseudoAreaSlice'
 
 type propsType = {
@@ -53,26 +38,10 @@ export const PseudoButton = memo((props: propsType) => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
-    const allDisplayStatus = useAppSelector((state) => getAllDisplayStatus(state))
-    const allCssProps = useAppSelector((state) => getAllCssProps(state))
 
     const onClickButton = () => {
         // buttonを切り替える
         dispatch(props.setter(!props.isActive))
-
-        // 現在のdisplayを保存する
-        dispatch(
-            saveCurrentCustomAreaDisplay({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                allCustomAreaDisplayStatus: { ...allDisplayStatus },
-            })
-        )
-
-        // 現在のcssStateを保存する
-        dispatch(
-            saveCurrentCssProps({ elementName: selectedElementName, classNames: selectedElementClass, allCssProps })
-        )
 
         // 新しい選択先の selectedElementName, selectedElementClassを保存する
         if (props.type === 'pseudoElements') {
@@ -111,20 +80,9 @@ export const PseudoButton = memo((props: propsType) => {
         if (uid in cssStates === false) {
             return
         }
-        // 新しい選択先のdisplayをロードする
-        // TODO:将来的に長くなりそうなので、そのうちどっかに書き出したい
-        dispatch(setDisplayBackgroundColor(cssStates[uid].customAreaDisplay.displayBackgroundColor))
-        dispatch(setDisplayBorderColor(cssStates[uid].customAreaDisplay.displayBorderColor))
-        dispatch(setDisplayBorderRadius(cssStates[uid].customAreaDisplay.displayBorderRadius))
-        dispatch(setDisplayBorderStyle(cssStates[uid].customAreaDisplay.displayBorderStyle))
-        dispatch(setDisplayBorderWidth(cssStates[uid].customAreaDisplay.displayBorderWidth))
-        dispatch(setDisplayColor(cssStates[uid].customAreaDisplay.displayColor))
-        dispatch(setDisplayFontSize(cssStates[uid].customAreaDisplay.displayFontSize))
-        dispatch(setDisplayHeight(cssStates[uid].customAreaDisplay.displayHeight))
-        dispatch(setDisplayPadding(cssStates[uid].customAreaDisplay.displayPadding))
-        dispatch(setDisplayWidth(cssStates[uid].customAreaDisplay.displayWidth))
 
         // 新しい選択先のcssStateをロードする
+        // TODO:コイツも将来的にpseudo sliceに統合してbutton sliceを削除する
         dispatch(setColor(cssStates[uid].cssProps.color))
         dispatch(setBackgroundColor(cssStates[uid].cssProps.backgroundColor))
         dispatch(setBorder(cssStates[uid].cssProps.border))

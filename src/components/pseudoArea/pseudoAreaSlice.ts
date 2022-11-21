@@ -1,6 +1,5 @@
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { getStateType } from '../../store'
-import { cssTypes } from '../../types/cssTypes'
 import { buttonInitialState } from '../buttonView/buttonViewSlice'
 import { cssCustomAreaDisplay, cssCustomAreaType } from '../cssCustomArea/cssCustomAreaSlice'
 
@@ -11,7 +10,9 @@ type arrayType = {
 type statesType = {
     elementName: string
     classNames: string[]
-    cssProps: cssTypes
+    cssProps: {
+        [prop: string]: string
+    }
     customAreaDisplay: cssCustomAreaType
     cssCodes: {
         [prop: string]: string
@@ -128,17 +129,19 @@ export const pseudoAreaSlice = createSlice({
             }
             state.cssStates[uid] = newCssState
         },
-        saveCurrentCustomAreaDisplay: (
+        saveCustomAreaDisplay: (
             state,
             action: PayloadAction<{
                 elementName: string
                 classNames: string[]
-                allCustomAreaDisplayStatus: cssCustomAreaType
+                cssPropKey: string
+                isDisplay: boolean
             }>
         ) => {
             const elementName = action.payload.elementName
             const classNames = action.payload.classNames
-            const allCustomAreaDisplayStatus = action.payload.allCustomAreaDisplayStatus
+            const cssPropKey = action.payload.cssPropKey
+            const isDisplay = action.payload.isDisplay
 
             // TODO:処理が似ているので、関数化したい
             const uid =
@@ -152,7 +155,10 @@ export const pseudoAreaSlice = createSlice({
                 ...cssState,
                 elementName: elementName,
                 classNames: classNames,
-                customAreaDisplay: allCustomAreaDisplayStatus,
+                customAreaDisplay: {
+                    ...cssState.customAreaDisplay,
+                    [cssPropKey]: isDisplay,
+                },
             }
             state.cssStates[uid] = newCssState
         },
@@ -161,12 +167,17 @@ export const pseudoAreaSlice = createSlice({
             action: PayloadAction<{
                 elementName: string
                 classNames: string[]
-                allCssProps: cssTypes
+                cssPropKey: string
+                cssPropValue: string
             }>
         ) => {
             const elementName = action.payload.elementName
             const classNames = action.payload.classNames
-            const allCssProps = action.payload.allCssProps
+            const cssPropKey = action.payload.cssPropKey
+            const cssPropValue = action.payload.cssPropValue
+            if (!(cssPropKey in buttonInitialState)) {
+                throw new Error(cssPropKey + ' は有効なCSSProperty名ではありません')
+            }
 
             // TODO:処理が似ているので、関数化したい
             const uid =
@@ -180,7 +191,10 @@ export const pseudoAreaSlice = createSlice({
                 ...cssState,
                 elementName: elementName,
                 classNames: classNames,
-                cssProps: allCssProps,
+                cssProps: {
+                    ...cssState.cssProps,
+                    [cssPropKey]: cssPropValue,
+                },
             }
             state.cssStates[uid] = newCssState
         },
@@ -233,35 +247,6 @@ export const pseudoAreaSlice = createSlice({
             }
             state.cssStates[uid] = newCssState
         },
-        setPseudoButtonLIfeCycle: (
-            state,
-            action: PayloadAction<{
-                timing: 'pushed' | 'savedDisplayStatus' | 'savedCssProps' | 'loadedDisplayStatus'
-                lifeCycle: boolean
-            }>
-        ) => {
-            if (action.payload.timing === 'pushed') {
-                state.pseudoButtonLifeCycle = {
-                    ...current(state.pseudoButtonLifeCycle),
-                    isPushed: action.payload.lifeCycle,
-                }
-            } else if (action.payload.timing === 'savedDisplayStatus') {
-                state.pseudoButtonLifeCycle = {
-                    ...current(state.pseudoButtonLifeCycle),
-                    isSavedDisplayStatus: action.payload.lifeCycle,
-                }
-            } else if (action.payload.timing === 'savedCssProps') {
-                state.pseudoButtonLifeCycle = {
-                    ...current(state.pseudoButtonLifeCycle),
-                    isSavedCssProps: action.payload.lifeCycle,
-                }
-            } else if (action.payload.timing === 'loadedDisplayStatus') {
-                state.pseudoButtonLifeCycle = {
-                    ...current(state.pseudoButtonLifeCycle),
-                    isLoadedDisplayStatus: action.payload.lifeCycle,
-                }
-            }
-        },
         setIsActiveMain: (state, action: PayloadAction<boolean>) => {
             if (state.isActiveMain === true) {
                 return
@@ -306,11 +291,10 @@ export const {
     setElementClassSelectedCurrent,
     removeElementClassSelectedCurrent,
     createNewCssStates,
-    saveCurrentCustomAreaDisplay,
+    saveCustomAreaDisplay,
     saveCurrentCssProps,
     saveCurrentCssCodes,
     removeCurrentCssCodes,
-    setPseudoButtonLIfeCycle,
     setIsActiveMain,
     setIsActiveBefore,
     setIsActiveAfter,

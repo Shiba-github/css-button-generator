@@ -1,13 +1,12 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { getAllCssProps, setBorderRadius } from '../../../buttonView/buttonViewSlice'
+import { setBorderRadius } from '../../../buttonView/buttonViewSlice'
 import { saveCurrentCssCodes, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditBorderRadiusBottomLeftHorizontal = memo(() => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
-    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
     const [showTooltipBottomLeftHorizontal, setShowTooltipBottomLeftHorizontal] = useState(false)
@@ -25,12 +24,12 @@ export const EditBorderRadiusBottomLeftHorizontal = memo(() => {
             borderRadiusList[3] = v.toString() + 'px'
             borderRadiusList.splice(4, 0, '/')
             dispatch(setBorderRadius(borderRadiusList.join(' ')))
-            const newAllCssProps = { ...allCssProps, borderRadius: borderRadiusList.join(' ') }
             dispatch(
                 saveCurrentCssProps({
                     elementName: selectedElementName,
                     classNames: selectedElementClass,
-                    allCssProps: newAllCssProps,
+                    cssPropKey: 'borderRadius',
+                    cssPropValue: borderRadiusList.join(' '),
                 })
             )
             dispatch(

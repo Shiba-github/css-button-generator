@@ -1,25 +1,26 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { getAllCssProps, setHeight } from '../../buttonView/buttonViewSlice'
-import { saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { setHeight } from '../../buttonView/buttonViewSlice'
+import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const EditHeight = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
-    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const [showTooltip, setShowTooltip] = useState(false)
     const dispatch = useAppDispatch()
     const height = useAppSelector((state) => state.buttonView.height)
-    const displayHeight = useAppSelector((state) => state.cssCustomArea.displayHeight)
+    const uid = getElementUid(selectedElementName, selectedElementClass)
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
+    const displayHeight = cssStates[uid].customAreaDisplay.height
     const onChangeValue = (v: number) => {
         dispatch(setHeight(v.toString() + 'px'))
-        const newAllCssProps = { ...allCssProps, height: v.toString() + 'px' }
         dispatch(
             saveCurrentCssProps({
                 elementName: selectedElementName,
                 classNames: selectedElementClass,
-                allCssProps: newAllCssProps,
+                cssPropKey: 'height',
+                cssPropValue: v.toString() + 'px',
             })
         )
         dispatch(
