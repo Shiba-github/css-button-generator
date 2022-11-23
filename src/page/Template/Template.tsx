@@ -9,6 +9,7 @@ import { TemplatesNeumorphism001 } from '../../components/templates/templatesNeu
 import { PushNeumorphismButton } from '../../components/templates/PushNeumorphismButton/PushNeumorphismButton'
 import { BorderGradientButton } from '../../components/templates/borderGradientButton/BorderGradientButton'
 import { FloatMonochromeButton } from '../../components/templates/floatMonochromeButton/FloatMonochromeButton'
+import { AppearanceArrowButton } from '../../components/templates/appearanceArrowButton/AppearanceArrowButton'
 
 const Template = () => {
     const [mouseX, setMouseX] = useState(0)
@@ -65,7 +66,7 @@ const Template = () => {
             </Flex>
             <Flex flexDirection={'row'} alignItems={'center'} p={4}>
                 <Flex m={4}>
-                    <TemplatesNeumorphism001 />
+                    <AppearanceArrowButton />
                 </Flex>
                 <Flex m={4}>
                     <TemplatesNeumorphism001 />
