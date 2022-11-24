@@ -1,26 +1,32 @@
 import React, { memo, useEffect, useRef } from 'react'
 import { Button, Flex, Text } from '@chakra-ui/react'
-import { ActionCreatorWithPayload } from '@reduxjs/toolkit'
 import { ChatIcon } from '@chakra-ui/icons'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { customButtonStyle } from './initStyle'
-import { removeCurrentCssCodes, saveCurrentCssCodes, saveCurrentCustomAreaDisplay } from '../pseudoArea/pseudoAreaSlice'
+import { removeCurrentCssCodes, saveCurrentCssCodes, saveCustomAreaDisplay } from '../pseudoArea/pseudoAreaSlice'
 import { getAllCssProps } from '../buttonView/buttonViewSlice'
-import { getAllDisplayStatus } from './cssCustomAreaSlice'
 
 type propsType = {
     text: string
     isDisplay: boolean
-    setter: ActionCreatorWithPayload<boolean>
 }
 
-export const CustomAreaButton = memo(({ text, isDisplay, setter }: propsType) => {
+export const CustomAreaButton = memo(({ text, isDisplay }: propsType) => {
     const isFirstRender = useRef(true)
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
     const dispatch = useAppDispatch()
-    const allCustomDisplayStatus = useAppSelector((state) => getAllDisplayStatus(state))
     const currentAllCssProps = useAppSelector((state) => getAllCssProps(state))
+    const updateCustomAreaDisplay = (value: boolean) => {
+        dispatch(
+            saveCustomAreaDisplay({
+                elementName: selectedElementName,
+                classNames: selectedElementClass,
+                cssPropKey: text,
+                isDisplay: value,
+            })
+        )
+    }
     useEffect(() => {
         if (isFirstRender.current) {
             isFirstRender.current = false
@@ -50,13 +56,6 @@ export const CustomAreaButton = memo(({ text, isDisplay, setter }: propsType) =>
                 })
             )
         }
-        dispatch(
-            saveCurrentCustomAreaDisplay({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                allCustomAreaDisplayStatus: allCustomDisplayStatus,
-            })
-        )
     }, [isDisplay])
     return (
         <Flex flexDirection={'column'} justifyContent={'space-around'} width={customButtonStyle.width}>
@@ -79,7 +78,7 @@ export const CustomAreaButton = memo(({ text, isDisplay, setter }: propsType) =>
                         ? customButtonStyle.whileHoverOnClickBackgroundColor
                         : customButtonStyle.whileHoverBackgroundColor,
                 }}
-                onClick={() => dispatch(setter(!isDisplay))}
+                onClick={() => updateCustomAreaDisplay(!isDisplay)}
             >
                 <ChatIcon boxSize={'5'} marginRight={'0.5rem'} />
                 <Text fontSize={customButtonStyle.fontSize}>{text}</Text>

@@ -3,8 +3,8 @@ import { Flex, Button, Box, Text } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { getAllCssProps, setBorderStyle } from '../../buttonView/buttonViewSlice'
-import { saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { setBorderStyle } from '../../buttonView/buttonViewSlice'
+import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
@@ -12,19 +12,20 @@ export const EditBorderStyle = () => {
     // TODO:でかすぎ
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
-    const allCssProps = useAppSelector((state) => getAllCssProps(state))
     const dispatch = useAppDispatch()
     const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
-    const displayBorderStyle = useAppSelector((state) => state.cssCustomArea.displayBorderStyle)
+    const uid = getElementUid(selectedElementName, selectedElementClass)
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
+    const displayBorderStyle = cssStates[uid].customAreaDisplay.borderStyle
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const onClickBorderStyle = (style: string) => {
         dispatch(setBorderStyle(style))
-        const newAllCssProps = { ...allCssProps, borderStyle: style }
         dispatch(
             saveCurrentCssProps({
                 elementName: selectedElementName,
                 classNames: selectedElementClass,
-                allCssProps: newAllCssProps,
+                cssPropKey: 'borderStyle',
+                cssPropValue: style,
             })
         )
         dispatch(
@@ -86,12 +87,12 @@ export const EditBorderStyle = () => {
             dispatch(setBorderStyle(borderStyleStrings))
             newBorderStyle = borderStyleList.join(' ')
         }
-        const newAllCssProps = { ...allCssProps, borderStyle: newBorderStyle }
         dispatch(
             saveCurrentCssProps({
                 elementName: selectedElementName,
                 classNames: selectedElementClass,
-                allCssProps: newAllCssProps,
+                cssPropKey: 'borderStyle',
+                cssPropValue: newBorderStyle,
             })
         )
         dispatch(

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import buttonViewSlice from './components/buttonView/buttonViewSlice'
 import cssCustomAnimeAreaSlice from './components/cssCustomAnimeArea/cssCustomAnimeAreaSlice'
-import cssCustomAreaSlice from './components/cssCustomArea/cssCustomAreaSlice'
+// import cssCustomAreaSlice from './components/cssCustomArea/cssCustomAreaSlice'
 import pseudoAreaSlice from './components/pseudoArea/pseudoAreaSlice'
 import counterReducer from './redux_test/counterSlice'
 
@@ -9,7 +9,7 @@ export const store = configureStore({
     reducer: {
         counter: counterReducer,
         buttonView: buttonViewSlice,
-        cssCustomArea: cssCustomAreaSlice,
+        // cssCustomArea: cssCustomAreaSlice,
         cssCustomAnimeArea: cssCustomAnimeAreaSlice,
         pseudoArea: pseudoAreaSlice,
     },
