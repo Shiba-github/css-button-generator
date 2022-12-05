@@ -1,7 +1,7 @@
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { getStateType } from '../../store'
 import { buttonInitialState } from '../buttonView/buttonViewSlice'
-import { cssCustomAreaDisplay, cssCustomAreaType } from '../cssCustomArea/cssCustomAreaSlice'
+import { cssCustomAreaDisplay } from '../cssCustomArea/cssCustomAreaSlice'
 
 type arrayType = {
     [prop: string]: statesType
@@ -13,20 +13,17 @@ type statesType = {
     cssProps: {
         [prop: string]: string
     }
-    customAreaDisplay: cssCustomAreaType
-    cssCodes: {
-        [prop: string]: string
+    customAreaDisplay: {
+        [prop: string]: boolean
     }
 }
 
 const initCustomAreaDisplay = { ...cssCustomAreaDisplay }
-const initCssProps = { ...buttonInitialState }
 const initCssState: statesType = {
     elementName: 'Main', // main, before, after, etc
     classNames: [], // hover, focus, active, etc...(CSSの仕組み上、複合する可能性あり['hover', 'focus']みたいな感じ)
-    cssProps: initCssProps,
+    cssProps: {}, // {width: '100px', height: '100px' ...}
     customAreaDisplay: initCustomAreaDisplay,
-    cssCodes: {}, // {width: '100px', height: '100px' ...}
 }
 
 const initCssStates: arrayType = {
@@ -198,32 +195,7 @@ export const pseudoAreaSlice = createSlice({
             }
             state.cssStates[uid] = newCssState
         },
-        saveCurrentCssCodes: (
-            state,
-            action: PayloadAction<{
-                elementName: string
-                classNames: string[]
-                cssProp: string
-                cssValue: string
-            }>
-        ) => {
-            const elementName = action.payload.elementName
-            const classNames = action.payload.classNames
-            const cssProp = action.payload.cssProp
-            const cssValue = action.payload.cssValue
-
-            const uid = getElementUid(elementName, classNames)
-            const cssState = current(state.cssStates)[uid]
-            const newCssState = {
-                ...cssState,
-                cssCodes: {
-                    ...cssState.cssCodes,
-                    [cssProp]: cssValue,
-                },
-            }
-            state.cssStates[uid] = newCssState
-        },
-        removeCurrentCssCodes: (
+        removeCurrentCssProps: (
             state,
             action: PayloadAction<{
                 elementName: string
@@ -237,13 +209,13 @@ export const pseudoAreaSlice = createSlice({
 
             const uid = getElementUid(elementName, classNames)
             const cssState = current(state.cssStates)[uid]
-            const newCssCodes = {
-                ...cssState.cssCodes,
+            const newCssProps = {
+                ...cssState.cssProps,
             }
-            delete newCssCodes[cssProp]
+            delete newCssProps[cssProp]
             const newCssState = {
                 ...cssState,
-                cssCodes: newCssCodes,
+                cssProps: newCssProps,
             }
             state.cssStates[uid] = newCssState
         },
@@ -293,8 +265,7 @@ export const {
     createNewCssStates,
     saveCustomAreaDisplay,
     saveCurrentCssProps,
-    saveCurrentCssCodes,
-    removeCurrentCssCodes,
+    removeCurrentCssProps,
     setIsActiveMain,
     setIsActiveBefore,
     setIsActiveAfter,

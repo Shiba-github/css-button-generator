@@ -2,13 +2,16 @@ import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, 
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
 import { setBorderRadius } from '../../../buttonView/buttonViewSlice'
-import { saveCurrentCssCodes, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
+import { saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditBorderRadiusTopLeftVertical = memo(() => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const dispatch = useAppDispatch()
-    const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
+    let borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
+    if (!borderRadius) {
+        borderRadius = ''
+    }
     const [showTooltipTopLeftVertical, setShowTooltipTopLeftVertical] = useState(false)
     const getBorderRadius = () => {
         const borderRadiusList = borderRadius.split(' ').filter((value) => value !== '/')
@@ -30,14 +33,6 @@ export const EditBorderRadiusTopLeftVertical = memo(() => {
                     classNames: selectedElementClass,
                     cssPropKey: 'borderRadius',
                     cssPropValue: borderRadiusList.join(' '),
-                })
-            )
-            dispatch(
-                saveCurrentCssCodes({
-                    elementName: selectedElementName,
-                    classNames: selectedElementClass,
-                    cssProp: 'borderRadius',
-                    cssValue: borderRadiusList.join(' '),
                 })
             )
         } else {

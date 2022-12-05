@@ -21,10 +21,12 @@ export const CssRenderingArea = () => {
 
         buildContent = (elementName: string, elementClass: string[]) => {
             const uid = getElementUid(elementName, elementClass)
-            const codes = cssStates[uid].cssCodes
+            const _cssStates = cssStates[uid]
             const resultStr = []
-            for (const [key, value] of Object.entries(codes)) {
-                resultStr.push(transformCssLowerCase(key) + ': ' + value)
+            for (const [key, value] of Object.entries(_cssStates.cssProps)) {
+                if (_cssStates.customAreaDisplay[key]) {
+                    resultStr.push(transformCssLowerCase(key) + ': ' + value)
+                }
             }
             return resultStr.map((str) => {
                 return <Text key={str}>&emsp;{str}</Text>

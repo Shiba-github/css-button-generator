@@ -15,7 +15,7 @@ import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setBorderRadius } from '../../buttonView/buttonViewSlice'
-import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 import { EditBorderRadiusBottomLeftHorizontal } from './bottomLeft/EditBorderRadiusBottomLeftHorizontal'
@@ -32,7 +32,10 @@ export const EditBorderRadius = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const dispatch = useAppDispatch()
-    const borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
+    let borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
+    if (!borderRadius) {
+        borderRadius = ''
+    }
     const uid = getElementUid(selectedElementName, selectedElementClass)
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
     const displayBorderRadius = cssStates[uid].customAreaDisplay.borderRadius
@@ -50,14 +53,6 @@ export const EditBorderRadius = () => {
                 classNames: selectedElementClass,
                 cssPropKey: 'borderRadius',
                 cssPropValue: v.toString() + 'px',
-            })
-        )
-        dispatch(
-            saveCurrentCssCodes({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                cssProp: 'borderRadius',
-                cssValue: v.toString() + 'px',
             })
         )
     }

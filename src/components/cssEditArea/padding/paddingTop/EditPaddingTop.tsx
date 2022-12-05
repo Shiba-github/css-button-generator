@@ -2,7 +2,7 @@ import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, 
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
 import { setPadding } from '../../../buttonView/buttonViewSlice'
-import { saveCurrentCssCodes, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
+import { saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditPaddingTop = memo(() => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
@@ -29,14 +29,6 @@ export const EditPaddingTop = memo(() => {
                     classNames: selectedElementClass,
                     cssPropKey: 'padding',
                     cssPropValue: paddingList.join(' '),
-                })
-            )
-            dispatch(
-                saveCurrentCssCodes({
-                    elementName: selectedElementName,
-                    classNames: selectedElementClass,
-                    cssProp: 'padding',
-                    cssValue: paddingList.join(' '),
                 })
             )
         } else {

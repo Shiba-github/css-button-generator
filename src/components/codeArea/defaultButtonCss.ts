@@ -1,6 +1,6 @@
-import { cssTypes } from '../../types/cssTypes'
+import { arrayType } from '../../types/cssTypes'
 
-export const defaultButtonCss: cssTypes = {
+export const defaultButtonCss: arrayType = {
     color: 'rgba(255,0,0,1)',
     backgroundColor: 'rgba(0,0,255,1)',
     border: 'none',

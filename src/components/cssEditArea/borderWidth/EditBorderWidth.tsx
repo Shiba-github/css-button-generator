@@ -21,15 +21,18 @@ import { EditBorderWidthTop } from './borderWidthTop/EditBorderWidthTop'
 import { EditBorderWidthRight } from './borderWidthRight/EditBorderWidthRight'
 import { EditBorderWidthBottom } from './borderWidthBottom/EditBorderWidthBottom'
 import { EditBorderWidthLeft } from './borderWidthLeft/EditBorderWidthLeft'
-import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const EditBorderWidth = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const dispatch = useAppDispatch()
-    const borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
     const uid = getElementUid(selectedElementName, selectedElementClass)
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
+    let borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
+    if (!borderWidth) {
+        borderWidth = ''
+    }
     const displayBorderWidth = cssStates[uid].customAreaDisplay.borderWidth
     const [showTooltip, setShowTooltip] = useState(false)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
@@ -45,14 +48,6 @@ export const EditBorderWidth = () => {
                 classNames: selectedElementClass,
                 cssPropKey: 'borderWidth',
                 cssPropValue: v.toString() + 'px',
-            })
-        )
-        dispatch(
-            saveCurrentCssCodes({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                cssProp: 'borderWidth',
-                cssValue: v.toString() + 'px',
             })
         )
     }
