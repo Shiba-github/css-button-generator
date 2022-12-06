@@ -1,14 +1,15 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { setBorderWidth } from '../../../buttonView/buttonViewSlice'
-import { saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditBorderWidthTop = memo(() => {
-    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
-    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const dispatch = useAppDispatch()
-    let borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
+    const uid = getElementUid(selectedElementName, selectedElementClass)
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates)
+    let borderWidth = cssStates[uid].cssProps.borderWidth
     if (!borderWidth) {
         borderWidth = ''
     }
@@ -25,7 +26,6 @@ export const EditBorderWidthTop = memo(() => {
         const borderWidthList = borderWidth.split(' ')
         if (borderWidthList.length === 4) {
             borderWidthList[0] = v.toString() + 'px'
-            dispatch(setBorderWidth(borderWidthList.join(' ')))
             dispatch(
                 saveCurrentCssProps({
                     elementName: selectedElementName,
@@ -35,7 +35,14 @@ export const EditBorderWidthTop = memo(() => {
                 })
             )
         } else {
-            dispatch(setBorderWidth(`${borderWidth} ${borderWidth} ${borderWidth} ${borderWidth}`))
+            dispatch(
+                saveCurrentCssProps({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    cssPropKey: 'borderWidth',
+                    cssPropValue: `${borderWidth} ${borderWidth} ${borderWidth} ${borderWidth}`,
+                })
+            )
         }
     }
     return (

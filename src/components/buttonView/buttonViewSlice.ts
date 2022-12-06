@@ -18,6 +18,8 @@ export const buttonInitialState: cssTypes = {
     height: '75x',
 }
 
+// TODO:引っ越しが完了したので現状不要になってはいるが、template button で利用していて、消すと非対応プロパティがわからなくなるので、いったん残しておきます
+// template button 側が対応したら削除します
 export const buttonViewSlice = createSlice({
     name: 'buttonView',
     initialState: buttonInitialState,

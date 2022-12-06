@@ -1,14 +1,18 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { setPadding } from '../../../buttonView/buttonViewSlice'
-import { saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditPaddingRight = memo(() => {
-    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
-    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const dispatch = useAppDispatch()
-    const padding = useAppSelector((state) => state.buttonView.padding)
+    const uid = getElementUid(selectedElementName, selectedElementClass)
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates)
+    let padding = cssStates[uid].cssProps.padding
+    if (!padding) {
+        padding = ''
+    }
     const [showTooltipPaddingRight, setShowTooltipPaddingRight] = useState(false)
     const getPadding = () => {
         const paddingList = padding.split(' ')
@@ -22,7 +26,6 @@ export const EditPaddingRight = memo(() => {
         const paddingList = padding.split(' ')
         if (paddingList.length === 4) {
             paddingList[1] = v.toString() + 'px'
-            dispatch(setPadding(paddingList.join(' ')))
             dispatch(
                 saveCurrentCssProps({
                     elementName: selectedElementName,
@@ -32,7 +35,14 @@ export const EditPaddingRight = memo(() => {
                 })
             )
         } else {
-            dispatch(setPadding(`${padding} ${padding} ${padding} ${padding}`))
+            dispatch(
+                saveCurrentCssProps({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    cssPropKey: 'padding',
+                    cssPropValue: `${padding} ${padding} ${padding} ${padding}`,
+                })
+            )
         }
     }
     return (
