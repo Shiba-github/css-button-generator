@@ -1,14 +1,15 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
-import { setBorderRadius } from '../../../buttonView/buttonViewSlice'
-import { saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditBorderRadiusBottomLeftVertical = memo(() => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const dispatch = useAppDispatch()
-    let borderRadius = useAppSelector((state) => state.buttonView.borderRadius)
+    const uid = getElementUid(selectedElementName, selectedElementClass)
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates)
+    let borderRadius = cssStates[uid].cssProps.borderRadius
     if (!borderRadius) {
         borderRadius = ''
     }
@@ -26,7 +27,6 @@ export const EditBorderRadiusBottomLeftVertical = memo(() => {
         if (borderRadiusList.length === 8) {
             borderRadiusList[7] = v.toString() + 'px'
             borderRadiusList.splice(4, 0, '/')
-            dispatch(setBorderRadius(borderRadiusList.join(' ')))
             dispatch(
                 saveCurrentCssProps({
                     elementName: selectedElementName,
@@ -37,9 +37,12 @@ export const EditBorderRadiusBottomLeftVertical = memo(() => {
             )
         } else {
             dispatch(
-                setBorderRadius(
-                    `${borderRadius} ${borderRadius} ${borderRadius} ${borderRadius} / ${borderRadius} ${borderRadius} ${borderRadius} ${borderRadius}`
-                )
+                saveCurrentCssProps({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    cssPropKey: 'borderRadius',
+                    cssPropValue: `${borderRadius} ${borderRadius} ${borderRadius} ${borderRadius} / ${borderRadius} ${borderRadius} ${borderRadius} ${borderRadius}`,
+                })
             )
         }
     }

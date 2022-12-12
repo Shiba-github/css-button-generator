@@ -4,10 +4,10 @@ import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const EditWidth = () => {
-    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
-    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const uid = getElementUid(selectedElementName, selectedElementClass)
-    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates)
     const [showTooltip, setShowTooltip] = useState(false)
     const dispatch = useAppDispatch()
     let width = cssStates[uid].cssProps.width

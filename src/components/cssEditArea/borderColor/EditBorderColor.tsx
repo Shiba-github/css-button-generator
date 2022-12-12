@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { AlphaPicker, ChromePicker, ColorResult, HuePicker } from 'react-color'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setBorderColor } from '../../buttonView/buttonViewSlice'
 import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
@@ -15,7 +14,7 @@ export const EditBorderColor = () => {
     const dispatch = useAppDispatch()
     const uid = getElementUid(selectedElementName, selectedElementClass)
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
-    let borderColor = useAppSelector((state) => state.buttonView.borderColor)
+    let borderColor = cssStates[uid].cssProps.borderColor
     if (!borderColor) {
         borderColor = ''
     }
@@ -23,7 +22,6 @@ export const EditBorderColor = () => {
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const handleChange = (color: ColorResult) => {
         const rgba = `rgba(${color.rgb.r},${color.rgb.g},${color.rgb.b},${color.rgb.a})`
-        dispatch(setBorderColor(rgba))
         dispatch(
             saveCurrentCssProps({
                 elementName: selectedElementName,

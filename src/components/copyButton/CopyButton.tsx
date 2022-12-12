@@ -8,6 +8,7 @@ import { copyAnimeVariants } from './animation/copyAnimation'
 
 export const CopyButton = () => {
     // TODO:codeArea, copyButton, buttonViewでデータはしているが、中身が同期しているかは不明。整合性の確認が必要
+    // TODO:buttonviewSlice -> pseudoSliceにお引越しの関係上、このコピーボタンは一時的に召されています
     const width = useAppSelector((state) => state.buttonView.width)
     const isDisplayWidth = defaultButtonCss.width === 'ALWAYS' || defaultButtonCss.width !== width
     const height = useAppSelector((state) => state.buttonView.height)

@@ -4,18 +4,17 @@ import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { AlphaPicker, ChromePicker, ColorResult, HuePicker } from 'react-color'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setBackgroundColor } from '../../buttonView/buttonViewSlice'
 import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
 export const EditBackgroundColor = () => {
-    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
-    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const dispatch = useAppDispatch()
     const uid = getElementUid(selectedElementName, selectedElementClass)
-    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
-    let backgroundColor = useAppSelector((state) => state.buttonView.backgroundColor)
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates)
+    let backgroundColor = cssStates[uid].cssProps.backgroundColor
     if (!backgroundColor) {
         backgroundColor = ''
     }
@@ -23,7 +22,6 @@ export const EditBackgroundColor = () => {
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const handleChange = (color: ColorResult) => {
         const rgba = `rgba(${color.rgb.r},${color.rgb.g},${color.rgb.b},${color.rgb.a})`
-        dispatch(setBackgroundColor(rgba))
         dispatch(
             saveCurrentCssProps({
                 elementName: selectedElementName,

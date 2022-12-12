@@ -1,23 +1,21 @@
 import React, { useState } from 'react'
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark, Tooltip, Flex, Text } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setFontSize } from '../../buttonView/buttonViewSlice'
 import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const FontSize = () => {
-    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
-    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const dispatch = useAppDispatch()
-    let fontSize = useAppSelector((state) => state.buttonView.fontSize)
+    const uid = getElementUid(selectedElementName, selectedElementClass)
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates)
+    let fontSize = cssStates[uid].cssProps.fontSize
     if (!fontSize) {
         fontSize = ''
     }
     const [showTooltip, setShowTooltip] = useState(false)
-    const uid = getElementUid(selectedElementName, selectedElementClass)
-    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
     const displayFontSize = cssStates[uid].customAreaDisplay.fontSize
     const onChangeValue = (v: number) => {
-        dispatch(setFontSize(v.toString() + 'px'))
         dispatch(
             saveCurrentCssProps({
                 elementName: selectedElementName,

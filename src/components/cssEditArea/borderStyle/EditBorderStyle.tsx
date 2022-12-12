@@ -3,26 +3,24 @@ import { Flex, Button, Box, Text } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setBorderStyle } from '../../buttonView/buttonViewSlice'
 import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
 export const EditBorderStyle = () => {
     // TODO:でかすぎ
-    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
-    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
+    const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
+    const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const dispatch = useAppDispatch()
     const uid = getElementUid(selectedElementName, selectedElementClass)
-    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
-    let borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
+    const cssStates = useAppSelector((state) => state.pseudoArea.cssStates)
+    let borderStyle = cssStates[uid].cssProps.borderStyle
     if (!borderStyle) {
         borderStyle = ''
     }
     const displayBorderStyle = cssStates[uid].customAreaDisplay.borderStyle
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const onClickBorderStyle = (style: string) => {
-        dispatch(setBorderStyle(style))
         dispatch(
             saveCurrentCssProps({
                 elementName: selectedElementName,
@@ -56,16 +54,44 @@ export const EditBorderStyle = () => {
         let newBorderStyle = ''
         if (borderStyleList.length === 1) {
             if (position === 'top') {
-                dispatch(setBorderStyle(`${_borderStyle} ${borderStyle} ${borderStyle} ${borderStyle}`))
+                dispatch(
+                    saveCurrentCssProps({
+                        elementName: selectedElementName,
+                        classNames: selectedElementClass,
+                        cssPropKey: 'borderStyle',
+                        cssPropValue: `${_borderStyle} ${borderStyle} ${borderStyle} ${borderStyle}`,
+                    })
+                )
                 newBorderStyle = `${_borderStyle} ${borderStyle} ${borderStyle} ${borderStyle}`
             } else if (position === 'right') {
-                dispatch(setBorderStyle(`${borderStyle} ${_borderStyle} ${borderStyle} ${borderStyle}`))
+                dispatch(
+                    saveCurrentCssProps({
+                        elementName: selectedElementName,
+                        classNames: selectedElementClass,
+                        cssPropKey: 'borderStyle',
+                        cssPropValue: `${borderStyle} ${_borderStyle} ${borderStyle} ${borderStyle}`,
+                    })
+                )
                 newBorderStyle = `${borderStyle} ${_borderStyle} ${borderStyle} ${borderStyle}`
             } else if (position === 'bottom') {
-                dispatch(setBorderStyle(`${borderStyle} ${borderStyle} ${_borderStyle} ${borderStyle}`))
+                dispatch(
+                    saveCurrentCssProps({
+                        elementName: selectedElementName,
+                        classNames: selectedElementClass,
+                        cssPropKey: 'borderStyle',
+                        cssPropValue: `${borderStyle} ${borderStyle} ${_borderStyle} ${borderStyle}`,
+                    })
+                )
                 newBorderStyle = `${borderStyle} ${borderStyle} ${_borderStyle} ${borderStyle}`
             } else if (position === 'left') {
-                dispatch(setBorderStyle(`${borderStyle} ${borderStyle} ${borderStyle} ${_borderStyle}`))
+                dispatch(
+                    saveCurrentCssProps({
+                        elementName: selectedElementName,
+                        classNames: selectedElementClass,
+                        cssPropKey: 'borderStyle',
+                        cssPropValue: `${borderStyle} ${borderStyle} ${borderStyle} ${_borderStyle}`,
+                    })
+                )
                 newBorderStyle = `${borderStyle} ${borderStyle} ${borderStyle} ${_borderStyle}`
             }
         } else {
@@ -79,7 +105,14 @@ export const EditBorderStyle = () => {
                 borderStyleList[3] = _borderStyle
             }
             const borderStyleStrings = borderStyleList.join(' ')
-            dispatch(setBorderStyle(borderStyleStrings))
+            dispatch(
+                saveCurrentCssProps({
+                    elementName: selectedElementName,
+                    classNames: selectedElementClass,
+                    cssPropKey: 'borderStyle',
+                    cssPropValue: borderStyleStrings,
+                })
+            )
             newBorderStyle = borderStyleList.join(' ')
         }
         dispatch(
