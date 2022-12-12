@@ -13,3 +13,6 @@ export type cssTypes = {
     width: string
     height: string
 }
+export type arrayType = {
+    [prop: string]: string
+}

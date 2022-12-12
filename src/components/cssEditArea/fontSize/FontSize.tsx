@@ -2,13 +2,16 @@ import React, { useState } from 'react'
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark, Tooltip, Flex, Text } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setFontSize } from '../../buttonView/buttonViewSlice'
-import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const FontSize = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const dispatch = useAppDispatch()
-    const fontSize = useAppSelector((state) => state.buttonView.fontSize)
+    let fontSize = useAppSelector((state) => state.buttonView.fontSize)
+    if (!fontSize) {
+        fontSize = ''
+    }
     const [showTooltip, setShowTooltip] = useState(false)
     const uid = getElementUid(selectedElementName, selectedElementClass)
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
@@ -21,14 +24,6 @@ export const FontSize = () => {
                 classNames: selectedElementClass,
                 cssPropKey: 'fontSize',
                 cssPropValue: v.toString() + 'px',
-            })
-        )
-        dispatch(
-            saveCurrentCssCodes({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                cssProp: 'fontSize',
-                cssValue: v.toString() + 'px',
             })
         )
     }

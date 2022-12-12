@@ -2,12 +2,7 @@ import React from 'react'
 import { css, CSSObject } from '@emotion/react'
 import { Flex } from '@chakra-ui/react'
 import { useAppDispatch } from '../../hooks'
-import {
-    createNewCssStates,
-    saveCurrentCssCodes,
-    saveCurrentCssProps,
-    saveCustomAreaDisplay,
-} from '../pseudoArea/pseudoAreaSlice'
+import { createNewCssStates, saveCurrentCssProps, saveCustomAreaDisplay } from '../pseudoArea/pseudoAreaSlice'
 
 type cssStyles = {
     width?: string
@@ -22,8 +17,8 @@ type cssStyles = {
 type buttonStyles =
     | cssStyles
     | {
-          '&hover'?: cssStyles
-          '&active'?: cssStyles
+          '&:hover'?: cssStyles
+          '&:active'?: cssStyles
       }
 
 type newArray = {
@@ -77,14 +72,6 @@ export const ButtonTemplate = (buttonStyle: buttonStyles) => {
                             classNames: classNames,
                             cssPropKey: cssPropKey,
                             cssPropValue: cssPropValue,
-                        })
-                    )
-                    dispatch(
-                        saveCurrentCssCodes({
-                            elementName: elementName,
-                            classNames: classNames,
-                            cssProp: cssPropKey,
-                            cssValue: cssPropValue,
                         })
                     )
                     dispatch(

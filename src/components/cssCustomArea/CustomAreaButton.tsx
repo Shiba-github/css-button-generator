@@ -1,10 +1,9 @@
-import React, { memo, useEffect, useRef } from 'react'
+import React, { memo } from 'react'
 import { Button, Flex, Text } from '@chakra-ui/react'
 import { ChatIcon } from '@chakra-ui/icons'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { customButtonStyle } from './initStyle'
-import { removeCurrentCssCodes, saveCurrentCssCodes, saveCustomAreaDisplay } from '../pseudoArea/pseudoAreaSlice'
-import { getAllCssProps } from '../buttonView/buttonViewSlice'
+import { saveCustomAreaDisplay } from '../pseudoArea/pseudoAreaSlice'
 
 type propsType = {
     text: string
@@ -12,11 +11,9 @@ type propsType = {
 }
 
 export const CustomAreaButton = memo(({ text, isDisplay }: propsType) => {
-    const isFirstRender = useRef(true)
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
     const dispatch = useAppDispatch()
-    const currentAllCssProps = useAppSelector((state) => getAllCssProps(state))
     const updateCustomAreaDisplay = (value: boolean) => {
         dispatch(
             saveCustomAreaDisplay({
@@ -27,36 +24,6 @@ export const CustomAreaButton = memo(({ text, isDisplay }: propsType) => {
             })
         )
     }
-    useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false
-            return
-        }
-        let cssVal = ''
-        for (const [key, value] of Object.entries(currentAllCssProps)) {
-            if (key === text) {
-                cssVal = value
-            }
-        }
-        if (isDisplay) {
-            dispatch(
-                saveCurrentCssCodes({
-                    elementName: selectedElementName,
-                    classNames: selectedElementClass,
-                    cssProp: text,
-                    cssValue: cssVal,
-                })
-            )
-        } else {
-            dispatch(
-                removeCurrentCssCodes({
-                    elementName: selectedElementName,
-                    classNames: selectedElementClass,
-                    cssProp: text,
-                })
-            )
-        }
-    }, [isDisplay])
     return (
         <Flex flexDirection={'column'} justifyContent={'space-around'} width={customButtonStyle.width}>
             <Button

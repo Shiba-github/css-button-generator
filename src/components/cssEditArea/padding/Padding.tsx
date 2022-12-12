@@ -21,15 +21,18 @@ import { EditPaddingTop } from './paddingTop/EditPaddingTop'
 import { EditPaddingRight } from './paddingRight/EditPaddingRight'
 import { EditPaddingBottom } from './paddingBottom/EditPaddingBottom'
 import { EditPaddingLeft } from './paddingLeft/EditPaddingLeft'
-import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const Padding = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const dispatch = useAppDispatch()
-    const padding = useAppSelector((state) => state.buttonView.padding)
     const uid = getElementUid(selectedElementName, selectedElementClass)
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
+    let padding = cssStates[uid].cssProps.padding
+    if (!padding) {
+        padding = ''
+    }
     const displayPadding = cssStates[uid].customAreaDisplay.padding
     const [showTooltip, setShowTooltip] = useState(false)
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
@@ -45,14 +48,6 @@ export const Padding = () => {
                 classNames: selectedElementClass,
                 cssPropKey: 'padding',
                 cssPropValue: v.toString() + 'px',
-            })
-        )
-        dispatch(
-            saveCurrentCssCodes({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                cssProp: 'padding',
-                cssValue: v.toString() + 'px',
             })
         )
     }

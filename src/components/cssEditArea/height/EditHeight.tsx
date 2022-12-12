@@ -2,14 +2,17 @@ import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, 
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setHeight } from '../../buttonView/buttonViewSlice'
-import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const EditHeight = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const [showTooltip, setShowTooltip] = useState(false)
     const dispatch = useAppDispatch()
-    const height = useAppSelector((state) => state.buttonView.height)
+    let height = useAppSelector((state) => state.buttonView.height)
+    if (!height) {
+        height = ''
+    }
     const uid = getElementUid(selectedElementName, selectedElementClass)
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
     const displayHeight = cssStates[uid].customAreaDisplay.height
@@ -21,14 +24,6 @@ export const EditHeight = () => {
                 classNames: selectedElementClass,
                 cssPropKey: 'height',
                 cssPropValue: v.toString() + 'px',
-            })
-        )
-        dispatch(
-            saveCurrentCssCodes({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                cssProp: 'height',
-                cssValue: v.toString() + 'px',
             })
         )
     }

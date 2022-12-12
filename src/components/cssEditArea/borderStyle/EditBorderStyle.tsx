@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setBorderStyle } from '../../buttonView/buttonViewSlice'
-import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
@@ -13,9 +13,12 @@ export const EditBorderStyle = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const dispatch = useAppDispatch()
-    const borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
     const uid = getElementUid(selectedElementName, selectedElementClass)
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
+    let borderStyle = useAppSelector((state) => state.buttonView.borderStyle)
+    if (!borderStyle) {
+        borderStyle = ''
+    }
     const displayBorderStyle = cssStates[uid].customAreaDisplay.borderStyle
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const onClickBorderStyle = (style: string) => {
@@ -26,14 +29,6 @@ export const EditBorderStyle = () => {
                 classNames: selectedElementClass,
                 cssPropKey: 'borderStyle',
                 cssPropValue: style,
-            })
-        )
-        dispatch(
-            saveCurrentCssCodes({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                cssProp: 'borderStyle',
-                cssValue: style,
             })
         )
     }
@@ -93,14 +88,6 @@ export const EditBorderStyle = () => {
                 classNames: selectedElementClass,
                 cssPropKey: 'borderStyle',
                 cssPropValue: newBorderStyle,
-            })
-        )
-        dispatch(
-            saveCurrentCssCodes({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                cssProp: 'borderStyle',
-                cssValue: newBorderStyle,
             })
         )
     }

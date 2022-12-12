@@ -1,24 +1,21 @@
 import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, Text, Tooltip } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { setWidth } from '../../buttonView/buttonViewSlice'
-import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 
 export const EditWidth = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
-    const [showTooltip, setShowTooltip] = useState(false)
-    const dispatch = useAppDispatch()
-    // TODO:↓↓buttonViewから取得しているが、それだと、例えばmain -> beforeと切り替えたときに、以前のプロパティを（見た目上）
-    // 保持したままになってしまうので、pseudoSliceから取得し、無ければ初期値を適用する処理が必要
-    const width = useAppSelector((state) => state.buttonView.width)
     const uid = getElementUid(selectedElementName, selectedElementClass)
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
+    const [showTooltip, setShowTooltip] = useState(false)
+    const dispatch = useAppDispatch()
+    let width = cssStates[uid].cssProps.width
+    if (!width) {
+        width = ''
+    }
     const displayWidth = cssStates[uid].customAreaDisplay.width
-
     const onChangeValue = (v: number) => {
-        dispatch(setWidth(v.toString() + 'px'))
-        // saveCurrentCssPropsにて現在の↑↑で更新された現在のCSSプロパティを入れると非同期処理の問題でスライドバーがガタつく為、新たに作成して代入している。
         dispatch(
             saveCurrentCssProps({
                 elementName: selectedElementName,
@@ -27,16 +24,7 @@ export const EditWidth = () => {
                 cssPropValue: v.toString() + 'px',
             })
         )
-        dispatch(
-            saveCurrentCssCodes({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                cssProp: 'width',
-                cssValue: v.toString() + 'px',
-            })
-        )
     }
-
     return (
         <>
             {displayWidth ? (

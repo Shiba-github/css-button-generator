@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { AlphaPicker, ChromePicker, ColorResult, HuePicker } from 'react-color'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { setColor } from '../../buttonView/buttonViewSlice'
-import { getElementUid, saveCurrentCssCodes, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
+import { getElementUid, saveCurrentCssProps } from '../../pseudoArea/pseudoAreaSlice'
 import { addCssButtonAnimeVariants } from '../animation/addCssButton'
 import { rotateElementVariants } from '../animation/rotateElement'
 
@@ -13,9 +13,12 @@ export const EditColor = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const dispatch = useAppDispatch()
-    const colorRgb = useAppSelector((state) => state.buttonView.color)
     const uid = getElementUid(selectedElementName, selectedElementClass)
     const cssStates = useAppSelector((state) => state.pseudoArea.cssStates) //現在のcssState
+    let colorRgb = useAppSelector((state) => state.buttonView.color)
+    if (!colorRgb) {
+        colorRgb = ''
+    }
     const displayColor = cssStates[uid].customAreaDisplay.color
     const [isDisplayDetail, setIsDisplayDetail] = useState(false)
     const handleChange = (color: ColorResult) => {
@@ -27,14 +30,6 @@ export const EditColor = () => {
                 classNames: selectedElementClass,
                 cssPropKey: 'color',
                 cssPropValue: rgba,
-            })
-        )
-        dispatch(
-            saveCurrentCssCodes({
-                elementName: selectedElementName,
-                classNames: selectedElementClass,
-                cssProp: 'color',
-                cssValue: rgba,
             })
         )
     }

@@ -2,13 +2,16 @@ import { Flex, Slider, SliderFilledTrack, SliderMark, SliderThumb, SliderTrack, 
 import React, { memo, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../../hooks'
 import { setBorderWidth } from '../../../buttonView/buttonViewSlice'
-import { saveCurrentCssCodes, saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
+import { saveCurrentCssProps } from '../../../pseudoArea/pseudoAreaSlice'
 
 export const EditBorderWidthBottom = memo(() => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent) //現在の選択中のelementName
     const dispatch = useAppDispatch()
-    const borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
+    let borderWidth = useAppSelector((state) => state.buttonView.borderWidth)
+    if (!borderWidth) {
+        borderWidth = ''
+    }
     const [showTooltipBorderWidthBottom, setShowTooltipBorderWidthBottom] = useState(false)
     const getBorderWidth = () => {
         const borderWidthList = borderWidth.split(' ')
@@ -29,14 +32,6 @@ export const EditBorderWidthBottom = memo(() => {
                     classNames: selectedElementClass,
                     cssPropKey: 'borderWidth',
                     cssPropValue: borderWidthList.join(' '),
-                })
-            )
-            dispatch(
-                saveCurrentCssCodes({
-                    elementName: selectedElementName,
-                    classNames: selectedElementClass,
-                    cssProp: 'borderWidth',
-                    cssValue: borderWidthList.join(' '),
                 })
             )
         } else {
