@@ -2,7 +2,12 @@ import React from 'react'
 import { css, CSSObject } from '@emotion/react'
 import { Flex } from '@chakra-ui/react'
 import { useAppDispatch } from '../../hooks'
-import { createNewCssStates, saveCurrentCssProps, saveCustomAreaDisplay } from '../pseudoArea/pseudoAreaSlice'
+import {
+    createNewCssStates,
+    resetCssStates,
+    saveCurrentCssProps,
+    saveCustomAreaDisplay,
+} from '../pseudoArea/pseudoAreaSlice'
 
 type cssStyles = {
     width?: string
@@ -30,6 +35,8 @@ type newArray = {
 export const ButtonTemplate = (buttonStyle: buttonStyles) => {
     const dispatch = useAppDispatch()
     const adaptCssProps = () => {
+        // 初めに初期化しておく
+        dispatch(resetCssStates())
         const _buttonStyle: newArray = {}
         _buttonStyle['Main'] = {}
         for (const [key, value] of Object.entries(buttonStyle)) {
