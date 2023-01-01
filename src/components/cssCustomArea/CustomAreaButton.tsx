@@ -1,6 +1,5 @@
 import React, { memo } from 'react'
-import { Button, Flex, Text } from '@chakra-ui/react'
-import { ChatIcon } from '@chakra-ui/icons'
+import { Button, Flex, Image, Text } from '@chakra-ui/react'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { customButtonStyle } from './initStyle'
 import { saveCustomAreaDisplay } from '../pseudoArea/pseudoAreaSlice'
@@ -8,9 +7,10 @@ import { saveCustomAreaDisplay } from '../pseudoArea/pseudoAreaSlice'
 type propsType = {
     text: string
     isDisplay: boolean
+    iconPath: string
 }
 
-export const CustomAreaButton = memo(({ text, isDisplay }: propsType) => {
+export const CustomAreaButton = memo(({ text, isDisplay, iconPath }: propsType) => {
     const selectedElementName = useAppSelector((state) => state.pseudoArea.elementNameSelectedCurrent)
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent)
     const dispatch = useAppDispatch()
@@ -47,8 +47,8 @@ export const CustomAreaButton = memo(({ text, isDisplay }: propsType) => {
                 }}
                 onClick={() => updateCustomAreaDisplay(!isDisplay)}
             >
-                <ChatIcon boxSize={'5'} marginRight={'0.5rem'} />
-                <Text fontSize={customButtonStyle.fontSize}>{text}</Text>
+                <Image src={iconPath} boxSize="20px" />
+                <Text fontSize={customButtonStyle.fontSize}>&emsp;{text}</Text>
             </Button>
         </Flex>
     )

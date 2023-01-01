@@ -3,6 +3,16 @@ import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 import { CustomAreaButton } from './CustomAreaButton'
 import { createNewCssStates, getElementUid } from '../pseudoArea/pseudoAreaSlice'
+import WidthIcon from '../../img/width/width.png'
+import HeightIcon from '../../img/height/height.png'
+import backgroundColorIcon from '../../img/backgroundColor/backgroundColor.png'
+import colorIcon from '../../img/color/color.png'
+import fontSizeIcon from '../../img/fontSize/fontSize.png'
+import paddingIcon from '../../img/padding/padding.png'
+import borderColorIcon from '../../img/borderColor/borderColor.png'
+import borderStyleIcon from '../../img/borderStyle/borderStyle.png'
+import borderwidthIcon from '../../img/borderwidth/borderwidth.png'
+import borderRadiusIcon from '../../img/borderRadius/borderRadius.png'
 
 export const CssCustomArea = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
@@ -37,12 +47,16 @@ export const CssCustomArea = () => {
             >
                 Basics
             </Text>
-            <CustomAreaButton text="width" isDisplay={displayWidth} />
-            <CustomAreaButton text="height" isDisplay={displayHeight} />
-            <CustomAreaButton text="color" isDisplay={displayColor} />
-            <CustomAreaButton text="backgroundColor" isDisplay={displayBackgroundColor} />
-            <CustomAreaButton text="fontSize" isDisplay={displayFontSize} />
-            <CustomAreaButton text="padding" isDisplay={displayPadding} />
+            <CustomAreaButton text="width" isDisplay={displayWidth} iconPath={WidthIcon} />
+            <CustomAreaButton text="height" isDisplay={displayHeight} iconPath={HeightIcon} />
+            <CustomAreaButton text="color" isDisplay={displayColor} iconPath={colorIcon} />
+            <CustomAreaButton
+                text="backgroundColor"
+                isDisplay={displayBackgroundColor}
+                iconPath={backgroundColorIcon}
+            />
+            <CustomAreaButton text="fontSize" isDisplay={displayFontSize} iconPath={fontSizeIcon} />
+            <CustomAreaButton text="padding" isDisplay={displayPadding} iconPath={paddingIcon} />
             <Text
                 display={'flex'}
                 alignItems={'center'}
@@ -52,10 +66,10 @@ export const CssCustomArea = () => {
             >
                 Border
             </Text>
-            <CustomAreaButton text="borderColor" isDisplay={displayBorderColor} />
-            <CustomAreaButton text="borderStyle" isDisplay={displayBorderStyle} />
-            <CustomAreaButton text="borderWidth" isDisplay={displayBorderWidth} />
-            <CustomAreaButton text="borderRadius" isDisplay={displayBorderRadius} />
+            <CustomAreaButton text="borderColor" isDisplay={displayBorderColor} iconPath={borderColorIcon} />
+            <CustomAreaButton text="borderStyle" isDisplay={displayBorderStyle} iconPath={borderStyleIcon} />
+            <CustomAreaButton text="borderWidth" isDisplay={displayBorderWidth} iconPath={borderwidthIcon} />
+            <CustomAreaButton text="borderRadius" isDisplay={displayBorderRadius} iconPath={borderRadiusIcon} />
         </Flex>
     )
 }
