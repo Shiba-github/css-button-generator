@@ -1,3 +1,7 @@
+export type arrayType = {
+    [prop: string]: string
+}
+
 export type cssTypes = {
     color: string
     backgroundColor: string
@@ -13,6 +17,18 @@ export type cssTypes = {
     width: string
     height: string
 }
-export type arrayType = {
-    [prop: string]: string
+export const buttonInitialState: cssTypes = {
+    color: 'rgba(255,0,0,1)',
+    backgroundColor: 'rgba(0,0,255,1)',
+    border: 'none',
+    padding: '0px',
+    textDecoration: 'none',
+    display: 'inline-block',
+    fontSize: '30px',
+    borderColor: 'none',
+    borderStyle: 'none',
+    borderWidth: '0px',
+    borderRadius: '0px',
+    width: '150px',
+    height: '75x',
 }
