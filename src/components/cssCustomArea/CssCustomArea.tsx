@@ -9,6 +9,7 @@ import backgroundColorIcon from '../../img/backgroundColor/backgroundColor.png'
 import colorIcon from '../../img/color/color.png'
 import fontSizeIcon from '../../img/fontSize/fontSize.png'
 import paddingIcon from '../../img/padding/padding.png'
+import cursorIcon from '../../img/cursor/cursor.png'
 import borderColorIcon from '../../img/borderColor/borderColor.png'
 import borderStyleIcon from '../../img/borderStyle/borderStyle.png'
 import borderwidthIcon from '../../img/borderwidth/borderwidth.png'
@@ -32,6 +33,7 @@ export const CssCustomArea = () => {
     const displayBackgroundColor = cssStates[uid].customAreaDisplay.backgroundColor
     const displayPadding = cssStates[uid].customAreaDisplay.padding
     const displayFontSize = cssStates[uid].customAreaDisplay.fontSize
+    const displayCursor = cssStates[uid].customAreaDisplay.cursor
     const displayBorderColor = cssStates[uid].customAreaDisplay.borderColor
     const displayBorderStyle = cssStates[uid].customAreaDisplay.borderStyle
     const displayBorderWidth = cssStates[uid].customAreaDisplay.borderWidth
@@ -57,6 +59,7 @@ export const CssCustomArea = () => {
             />
             <CustomAreaButton text="fontSize" isDisplay={displayFontSize} iconPath={fontSizeIcon} />
             <CustomAreaButton text="padding" isDisplay={displayPadding} iconPath={paddingIcon} />
+            <CustomAreaButton text="cursor" isDisplay={displayCursor} iconPath={cursorIcon} />
             <Text
                 display={'flex'}
                 alignItems={'center'}

@@ -5,7 +5,7 @@ const buttonStyle = {
     width: '250px',
     height: '60px',
     color: '#fff',
-    // cursor: 'pointer',
+    cursor: 'pointer',
     borderColor: 'white',
     borderWidth: '1px',
     borderStyle: 'solid',
