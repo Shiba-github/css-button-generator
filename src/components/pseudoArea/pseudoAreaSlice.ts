@@ -126,6 +126,9 @@ export const pseudoAreaSlice = createSlice({
             }
             state.cssStates[uid] = newCssState
         },
+        resetCssStates: (state) => {
+            state.cssStates = initCssStates
+        },
         saveCustomAreaDisplay: (
             state,
             action: PayloadAction<{
@@ -263,6 +266,7 @@ export const {
     setElementClassSelectedCurrent,
     removeElementClassSelectedCurrent,
     createNewCssStates,
+    resetCssStates,
     saveCustomAreaDisplay,
     saveCurrentCssProps,
     removeCurrentCssProps,
