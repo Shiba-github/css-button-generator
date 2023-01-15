@@ -8,13 +8,22 @@ export const ButtonView = () => {
     let buttonStyle = {} as CSSObject
     for (const value of Object.values(cssStates)) {
         if (value.elementName === 'Main' && value.classNames.length === 0) {
-            buttonStyle = { ...buttonStyle, ...value.cssProps }
+            for (const [cssPropsKey, cssPropsValue] of Object.entries(value.cssProps)) {
+                if (value.customAreaDisplay[cssPropsKey]) {
+                    buttonStyle = { ...buttonStyle, [cssPropsKey]: cssPropsValue }
+                }
+            }
         } else {
             const _elementName = value.elementName === 'Main' ? '' : '::' + value.elementName
             const _elementClass = value.classNames.length === 0 ? '' : ':' + value.classNames.join(':')
             const resultStr = '&' + _elementName + _elementClass
-            const _buttonStyle = {
-                [resultStr]: { ...value.cssProps },
+            let _buttonStyle = {} as CSSObject
+            for (const [cssPropsKey, cssPropsValue] of Object.entries(value.cssProps)) {
+                if (value.customAreaDisplay[cssPropsKey]) {
+                    _buttonStyle = {
+                        [resultStr]: { ..._buttonStyle, [cssPropsKey]: cssPropsValue },
+                    }
+                }
             }
             buttonStyle = { ...buttonStyle, ..._buttonStyle }
         }
