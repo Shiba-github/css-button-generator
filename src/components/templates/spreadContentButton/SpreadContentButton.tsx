@@ -13,7 +13,7 @@ const buttonStyle = {
     fontSize: '16px',
     // fontWeight: '600',
     // textTransform: 'uppercase',
-    // cursor: 'pointer',
+    cursor: 'pointer',
     // transform: 'skew(0)',
     '&::before': {
         // content: '""',

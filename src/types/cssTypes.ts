@@ -16,6 +16,7 @@ export type cssTypes = {
     borderRadius: string
     width: string
     height: string
+    cursor: string
 }
 export const buttonInitialState: cssTypes = {
     color: 'rgba(255,0,0,1)',
@@ -31,4 +32,5 @@ export const buttonInitialState: cssTypes = {
     borderRadius: '0px',
     width: '150px',
     height: '75x',
+    cursor: 'auto',
 }

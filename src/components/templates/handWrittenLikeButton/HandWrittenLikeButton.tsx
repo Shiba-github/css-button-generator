@@ -11,7 +11,7 @@ const buttonStyle = {
     borderColor: 'gray',
     // boxShadow: 'rgba(0, 0, 0, .2) 15px 28px 25px -18px',
     color: '#41403e',
-    // cursor: 'pointer',
+    cursor: 'pointer',
     // fontFamily: 'Hannotate SC, Neucha, sans-serif',
     fontSize: '2rem',
     padding: '.75rem',

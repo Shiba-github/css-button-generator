@@ -12,7 +12,7 @@ const buttonStyle = {
     borderColor: '#1FE88A',
     // boxShadow: 'rgba(0, 0, 0, .2) 15px 28px 25px -18px',
     color: '#41403e',
-    // cursor: 'pointer',
+    cursor: 'pointer',
     padding: '.75rem',
     // backgroundSize: '70%',
     // backgroundRepeat: 'no-repeat',
