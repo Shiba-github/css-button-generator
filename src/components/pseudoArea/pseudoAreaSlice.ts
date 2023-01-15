@@ -1,6 +1,6 @@
 import { createSlice, current, PayloadAction } from '@reduxjs/toolkit'
 import { getStateType } from '../../store'
-import { buttonInitialState } from '../buttonView/buttonViewSlice'
+import { buttonInitialState } from '../../types/cssTypes'
 import { cssCustomAreaDisplay } from '../cssCustomArea/cssCustomAreaSlice'
 
 type arrayType = {
