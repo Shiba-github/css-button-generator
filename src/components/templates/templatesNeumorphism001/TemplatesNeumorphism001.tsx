@@ -10,7 +10,7 @@ const buttonStyle = {
     display: 'inline-block',
     fontSize: '20px',
     borderRadius: '50px',
-    // boxShadow: '26px 26px 51px #d9d9d9, -26px -26px 51px #ffffff',
+    boxShadow: '26px 26px 51px #d9d9d9, -26px -26px 51px #ffffff',
 }
 
 export const TemplatesNeumorphism001 = () => {

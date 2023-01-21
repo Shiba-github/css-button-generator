@@ -12,10 +12,10 @@ const buttonStyle = {
     borderStyle: 'none',
     borderRadius: '10px',
     backgroundColor: '#F0F0F3',
-    // boxShadow: '-12px 12px 22px #AEAEC0, 12px -12px 22px #ffffff',
+    boxShadow: '-12px 12px 22px #AEAEC0, 12px -12px 22px #ffffff',
     '&:active': {
         color: '#000',
-        // boxShadow: 'inset -12px 12px 22px #AEAEC0, inset 12px -12px 22px #ffffff',
+        boxShadow: 'inset -12px 12px 22px #AEAEC0, inset 12px -12px 22px #ffffff',
     },
 }
 export const PushNeumorphismButton = () => {

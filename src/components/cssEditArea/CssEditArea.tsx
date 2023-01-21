@@ -11,6 +11,7 @@ import { EditHeight } from './height/EditHeight'
 import { EditBackgroundColor } from './backgroundColor/EditBackgroundColor'
 import { EditBorderWidth } from './borderWidth/EditBorderWidth'
 import { EditCursor } from './cursor/EditCursor'
+import { EditBoxShadow } from './boxShadow/EditBoxShadow'
 
 export const CssEditArea = () => {
     return (
@@ -22,6 +23,7 @@ export const CssEditArea = () => {
             <FontSize />
             <Padding />
             <EditCursor />
+            <EditBoxShadow />
             <EditBorderColor />
             <EditBorderStyle />
             <EditBorderWidth />

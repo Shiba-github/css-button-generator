@@ -5,7 +5,7 @@ import { ButtonTemplate } from '../ButtonTemplate'
 const buttonStyle = {
     width: '230px',
     height: '70px',
-    // boxShadow: '0 0 20px #eee',
+    boxShadow: '0 0 20px #eee',
     borderStyle: 'none',
     borderRadius: '10px',
     // backgroundSize: '200% auto',
