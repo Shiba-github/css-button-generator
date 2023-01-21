@@ -17,6 +17,7 @@ export type cssTypes = {
     width: string
     height: string
     cursor: string
+    boxShadow: string
 }
 export const buttonInitialState: cssTypes = {
     color: 'rgba(255,0,0,1)',
@@ -33,4 +34,5 @@ export const buttonInitialState: cssTypes = {
     width: '150px',
     height: '75x',
     cursor: 'auto',
+    boxShadow: 'none',
 }

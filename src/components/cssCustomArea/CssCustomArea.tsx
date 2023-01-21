@@ -14,6 +14,7 @@ import borderColorIcon from '../../img/borderColor/borderColor.png'
 import borderStyleIcon from '../../img/borderStyle/borderStyle.png'
 import borderwidthIcon from '../../img/borderwidth/borderwidth.png'
 import borderRadiusIcon from '../../img/borderRadius/borderRadius.png'
+import boxShadowIcon from '../../img/boxShadow/boxShadow.png'
 
 export const CssCustomArea = () => {
     const selectedElementClass = useAppSelector((state) => state.pseudoArea.elementClassSelectedCurrent) //現在の選択中のelementClass
@@ -34,6 +35,7 @@ export const CssCustomArea = () => {
     const displayPadding = cssStates[uid].customAreaDisplay.padding
     const displayFontSize = cssStates[uid].customAreaDisplay.fontSize
     const displayCursor = cssStates[uid].customAreaDisplay.cursor
+    const displayBoxShadow = cssStates[uid].customAreaDisplay.boxShadow
     const displayBorderColor = cssStates[uid].customAreaDisplay.borderColor
     const displayBorderStyle = cssStates[uid].customAreaDisplay.borderStyle
     const displayBorderWidth = cssStates[uid].customAreaDisplay.borderWidth
@@ -60,6 +62,7 @@ export const CssCustomArea = () => {
             <CustomAreaButton text="fontSize" isDisplay={displayFontSize} iconPath={fontSizeIcon} />
             <CustomAreaButton text="padding" isDisplay={displayPadding} iconPath={paddingIcon} />
             <CustomAreaButton text="cursor" isDisplay={displayCursor} iconPath={cursorIcon} />
+            <CustomAreaButton text="boxShadow" isDisplay={displayBoxShadow} iconPath={boxShadowIcon} />
             <Text
                 display={'flex'}
                 alignItems={'center'}
