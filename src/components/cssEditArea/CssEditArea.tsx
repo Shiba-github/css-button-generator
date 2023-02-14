@@ -11,6 +11,11 @@ import { EditHeight } from './height/EditHeight'
 import { EditBackgroundColor } from './backgroundColor/EditBackgroundColor'
 import { EditBorderWidth } from './borderWidth/EditBorderWidth'
 import { EditCursor } from './cursor/EditCursor'
+import { EditTransition } from './transition/EditTransition'
+import { EditTransitionDelay } from './transitionDelay/EditTransitionDelay'
+import { EditTransitionDuration } from './transitionDuration/EditTransitionDuration'
+import { EditTransitionProperty } from './transitionProperty/EditTransitionProperty'
+import { EditTransitionTimingFunction } from './transitionTimingFunction/EditTransitionTimingFunction'
 
 export const CssEditArea = () => {
     return (
@@ -22,6 +27,11 @@ export const CssEditArea = () => {
             <FontSize />
             <Padding />
             <EditCursor />
+            <EditTransition />
+            <EditTransitionDelay />
+            <EditTransitionDuration />
+            <EditTransitionProperty />
+            <EditTransitionTimingFunction />
             <EditBorderColor />
             <EditBorderStyle />
             <EditBorderWidth />

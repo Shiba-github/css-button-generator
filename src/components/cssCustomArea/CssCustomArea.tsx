@@ -34,6 +34,11 @@ export const CssCustomArea = () => {
     const displayPadding = cssStates[uid].customAreaDisplay.padding
     const displayFontSize = cssStates[uid].customAreaDisplay.fontSize
     const displayCursor = cssStates[uid].customAreaDisplay.cursor
+    const displayTransition = cssStates[uid].customAreaDisplay.transition
+    const displayTransitionDelay = cssStates[uid].customAreaDisplay.transitionDelay
+    const displayTransitionDuration = cssStates[uid].customAreaDisplay.transitionDuration
+    const displayTransitionProperty = cssStates[uid].customAreaDisplay.transitionProperty
+    const displayTransitionTimingFunction = cssStates[uid].customAreaDisplay.transitionTimingFunction
     const displayBorderColor = cssStates[uid].customAreaDisplay.borderColor
     const displayBorderStyle = cssStates[uid].customAreaDisplay.borderStyle
     const displayBorderWidth = cssStates[uid].customAreaDisplay.borderWidth
@@ -60,6 +65,24 @@ export const CssCustomArea = () => {
             <CustomAreaButton text="fontSize" isDisplay={displayFontSize} iconPath={fontSizeIcon} />
             <CustomAreaButton text="padding" isDisplay={displayPadding} iconPath={paddingIcon} />
             <CustomAreaButton text="cursor" isDisplay={displayCursor} iconPath={cursorIcon} />
+            <Text
+                display={'flex'}
+                alignItems={'center'}
+                justifyContent={'center'}
+                backgroundColor={'#38a1db'}
+                fontSize={'2rem'}
+            >
+                Transition
+            </Text>
+            <CustomAreaButton text="transition" isDisplay={displayTransition} iconPath={cursorIcon} />
+            <CustomAreaButton text="transitionDelay" isDisplay={displayTransitionDelay} iconPath={cursorIcon} />
+            <CustomAreaButton text="transitionDuration" isDisplay={displayTransitionDuration} iconPath={cursorIcon} />
+            <CustomAreaButton text="transitionProperty" isDisplay={displayTransitionProperty} iconPath={cursorIcon} />
+            <CustomAreaButton
+                text="transitionTimingFunction"
+                isDisplay={displayTransitionTimingFunction}
+                iconPath={cursorIcon}
+            />
             <Text
                 display={'flex'}
                 alignItems={'center'}

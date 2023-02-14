@@ -17,6 +17,11 @@ export type cssTypes = {
     width: string
     height: string
     cursor: string
+    transition: string
+    transitionDelay: string
+    transitionDuration: string
+    transitionProperty: string
+    transitionTimingFunction: string
 }
 export const buttonInitialState: cssTypes = {
     color: 'rgba(255,0,0,1)',
@@ -33,4 +38,9 @@ export const buttonInitialState: cssTypes = {
     width: '150px',
     height: '75x',
     cursor: 'auto',
+    transition: 'ppppp',
+    transitionDelay: '0s',
+    transitionDuration: '0s',
+    transitionProperty: 'none',
+    transitionTimingFunction: 'ease',
 }
